@@ -7,10 +7,30 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEyeFill } from "react-icons/bs";
+import { useFormik } from "formik";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  birthDate: "",
+  birthMonth: "",
+  birthYear: "",
+  gender: "",
+};
 
 const Registration = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const [selectedGender, setSelectedGender] = useState("");
+
+  const formik = useFormik({
+    initialValues: initialState,
+    // validationSchema,
+    onSubmit: () => {
+      console.log("all set");
+    },
+  });
 
   const days = [
     { date: "01" },
@@ -100,7 +120,7 @@ const Registration = () => {
             >
               Create Your Free Ripple Account
             </Typography>
-            <form>
+            <form onSubmit={formik.handleSubmit}>
               <Typography
                 variant="p"
                 className="font-poppins text-[17px] text-title_color mb-[2px] ml-[2px]"
@@ -110,16 +130,22 @@ const Registration = () => {
               <div className="flex gap-7 mb-6">
                 <Input
                   type={"text"}
-                  id={"firstname"}
-                  name={"firstname"}
+                  id={"firstName"}
+                  name={"firstName"}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.firstName}
                   placeholder={"First name"}
                   error={false}
                   className={`w-2/4`}
                 />
                 <Input
                   type={"text"}
-                  id={"lastname"}
-                  name={"lastname"}
+                  id={"lastName"}
+                  name={"lastName"}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastName}
                   placeholder={"Last name (optional)"}
                   error={false}
                   className={`w-2/4`}
@@ -131,6 +157,9 @@ const Registration = () => {
                   type={"email"}
                   id={"email"}
                   name={"email"}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
                   placeholder={"Enter your email"}
                   error={false}
                   className={`w-full`}
@@ -142,6 +171,9 @@ const Registration = () => {
                   type={passwordShow ? "text" : "password"}
                   id={"password"}
                   name={"password"}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
                   placeholder={"Enter your password ( 6+ characters )"}
                   error={false}
                   className={`w-full`}
@@ -168,11 +200,13 @@ const Registration = () => {
               <div className="mb-6 flex justify-between gap-6">
                 <select
                   id="birthDate"
+                  name="birthDate"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.birthDate}
                   className="w-1/3 border border-[#cacad8] font-poppins text-[#9e949c]s text-black py-[17px] px-7 rounded-[8px] focus:outline-1 focus:outline-[#dddcea]"
                 >
-                  <option value="Birth date" selected>
-                    Birth date
-                  </option>
+                  <option value="birth-date">Birth date</option>
                   {days.map((item, index) => (
                     <option key={index} value={item.date}>
                       {item.date}
@@ -181,12 +215,14 @@ const Registration = () => {
                 </select>
 
                 <select
-                  id="birthDate"
+                  id="birthMonth"
+                  name="birthMonth"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.birthMonth}
                   className="w-1/3 border border-[#cacad8] font-poppins text-[#9e949c]s text-black py-[17px] px-7 rounded-[8px] focus:outline-1 focus:outline-[#dddcea]"
                 >
-                  <option value="Birth month" selected>
-                    Birth month
-                  </option>
+                  <option value="birth-month">Birth month</option>
                   {months.map((item, index) => (
                     <option key={index} value={item.month}>
                       {item.month}
@@ -199,6 +235,9 @@ const Registration = () => {
                     type={"text"}
                     id={"birthYear"}
                     name={"birthYear"}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.birthYear}
                     placeholder={"Enter your birth year"}
                     error={false}
                     className={`w-full`}
@@ -206,7 +245,11 @@ const Registration = () => {
                 </div>
 
                 {/* <select
-                  id="birthDate"
+                  id="birthYear"
+                  name="birthYear"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.birthYear}
                   className="w-[33%] border border-[#cacad8] font-poppins text-[#9e949c]s text-black py-[17px] px-7 rounded-[8px] focus:outline-1 focus:outline-[#dddcea]"
                 >
                   <option value="Birth year" selected>
@@ -238,15 +281,18 @@ const Registration = () => {
                     id="male"
                     name="gender"
                     value="male"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     className="w-[20px] aspect-square cursor-pointer"
                   />
                   <label
-                    for="male"
+                    htmlFor="male"
                     className="block cursor-pointer py-[17px] w-full"
                   >
                     Male
                   </label>
                 </div>
+
                 <div
                   onClick={() => setSelectedGender("female")}
                   className={
@@ -260,10 +306,12 @@ const Registration = () => {
                     id="female"
                     name="gender"
                     value="female"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     className="w-[20px] aspect-square cursor-pointer"
                   />
                   <label
-                    for="female"
+                    htmlFor="female"
                     className="block cursor-pointer py-[17px] w-full"
                   >
                     Female
