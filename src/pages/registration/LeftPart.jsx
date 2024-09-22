@@ -9,7 +9,7 @@ const LeftPart = ({ title, image, imageAltText, description }) => {
         {title}
       </Typography>
 
-      <Image src={image} alt={imageAltText} className={`lg:w-[350px] xl:w-[395px] 2xl:w-[480px] mx-auto`} />
+      <Image src={image} alt={imageAltText} className={`lg:w-[350px] xl:w-[355px] 2xl:w-[480px] mx-auto`} />
 
       <Typography
         variant="h3"

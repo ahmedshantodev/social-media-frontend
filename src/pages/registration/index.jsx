@@ -13,7 +13,7 @@ const Registration = () => {
       </Helmet>
 
       <section className="w-full lg:h-dvh bg-white xl:bg-registration-bg bg-no-repeat bg-cover flex items-center justify-center">
-        <div className="bg-white xl:rounded-[28px] w-full xl:w-[95%] 2xl:w-[90%] xl:h-[90%] 2xl:h-[85%] py-7 md:py-9 2xl:py-12 px-6 sm:px-8 xl:px-10 2xl:px-16 flex items-center xl:shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+        <div className="bg-white xl:rounded-[28px] w-full xl:w-[90%] xl:h-[85%] py-7 md:py-9 2xl:py-12 px-6 sm:px-8 xl:px-10 2xl:px-16 flex items-center xl:shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
           <div className="bg-white hidden lg:block w-[40%]">
             <LeftPart
               title="Ripple - Where Connections Make Waves"

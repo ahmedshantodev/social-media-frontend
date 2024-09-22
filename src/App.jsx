@@ -11,7 +11,7 @@ import Login from "./pages/login";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<Registration />} />
+      <Route path="/registration" element={<Registration />} />
       <Route path="/login" element={<Login />} />
     </Route>
   )
