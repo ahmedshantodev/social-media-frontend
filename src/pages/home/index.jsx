@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
-    <div>index</div>
-  )
-}
+    <>
+      <Helmet>
+        <title>Ripple | Home</title>
+      </Helmet>
+      home
+    </>
+  );
+};
 
-export default Home
+export default Home;

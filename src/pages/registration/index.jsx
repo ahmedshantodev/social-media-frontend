@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import registrationPageLeftImage from "/public/images/signup-image.png";
 import { Helmet } from "react-helmet-async";
 import LeftPart from "./LeftPart";

@@ -5,7 +5,7 @@ import NameEmailPassowrd from "./NameEmailPassowrd";
 import DateOfBirth from "./DateOfBirth";
 import Gender from "./Gender";
 import { toast } from "react-toastify";
-import { useRegistrationMutation } from "../../features/api/authenticationApi";
+import { useRegistrationMutation } from "../../redux/api/authenticationApi";
 import { useFormik } from "formik";
 import { signup } from "../../validation/index";
 

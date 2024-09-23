@@ -3,13 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Typography from "../../components/layout/Typography";
 import NameEmailPassowrd from "./NameEmailPassowrd";
 import { toast } from "react-toastify";
-import { useLoginMutation } from "../../features/api/authenticationApi";
+import { useLoginMutation } from "../../redux/api/authenticationApi";
 import { useFormik } from "formik";
 import { signin } from "../../validation/index";
 import rippleLogo from "/public/images/ripple-logo.png";
+import { useDispatch } from "react-redux";
+import { activeUser } from "../../redux/slices/activeUserSlice";
 
 const RightPart = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [login, { isLoading }] = useLoginMutation();
 
   const formik = useFormik({
@@ -24,33 +27,38 @@ const RightPart = () => {
         password: formik.values.password,
       });
 
-      console.log(response);
-
       if (response.error?.data?.message) {
         if (response.error?.data?.message == "user not found") {
           return (formik.errors.email = response.error.data.message);
         }
-        
+
         if (response.error?.data?.message == "wrong credential") {
           return (formik.errors.password = response.error.data.message);
         }
       }
 
       if (response.data?.message) {
-        setTimeout(() => {
-          formik.resetForm();
-        }, 1000);
+        const { message, ...rest } = response.data;
 
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
+        console.log(rest) ;
+        dispatch(activeUser(rest));
+        localStorage.setItem("user" , JSON.stringify(rest))
 
-        return toast.success(response.data?.message, {
+        toast.success(response.data?.message, {
           autoClose: 4000,
           position: "bottom-center",
           hideProgressBar: true,
           theme: "colored",
         });
+
+        setTimeout(() => {
+          formik.resetForm();
+        }, 700);
+
+        return setTimeout(() => {
+          formik.resetForm();
+          navigate("/");
+        }, 1000);
       }
     },
   });
@@ -79,7 +87,6 @@ const RightPart = () => {
 
         {isLoading ? (
           <button
-            type="submit"
             className="w-full rounded-full py-2 lg:py-2 2xl:py-3 bg-[#e0e3ea] text-black xs:text-[15px] text-base 2xl:text-lg font-poppins cursor-wait"
           >
             saving.....

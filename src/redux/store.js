@@ -1,14 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { activeUser } from "./features/slices/activeUserSlice";
-import { authenticationApi } from "./features/api/authenticationApi";
+import { authenticationApi } from "./api/authenticationApi";
+import activeUserSlice  from "./slices/activeUserSlice";
 
 const store = configureStore({
   reducer: {
     [authenticationApi.reducerPath]: authenticationApi.reducer,
-    user: activeUser,
+    user: activeUserSlice
   },
+  devTools: import.meta.env.MODE !== "production",
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authenticationApi.middleware),
   
 });
 
-export default store
+export default store;
