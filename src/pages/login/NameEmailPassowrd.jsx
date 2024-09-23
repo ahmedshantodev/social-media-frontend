@@ -4,54 +4,25 @@ import Input from "../../components/layout/Input";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEyeFill } from "react-icons/bs";
 
-const NameEmailPassowrd = ({existUserError, onBlur, onChange, value, error }) => {
+const NameEmailPassowrd = ({
+  existUserError,
+  onBlur,
+  onChange,
+  value,
+  error,
+}) => {
   const [passwordShow, setPasswordShow] = useState(false);
-  
+
   return (
     <div>
-      <Typography
-        variant="p"
-        className="font-poppins text-[15px] lg:text-sm xl:text-[15] 2xl:text-[17px] text-title_color mb-[2px] ml-[2px]"
-      >
-        Name, Email and Password :
-      </Typography>
-
-      <div className="sm:flex sm:gap-3 md:gap-4 2xl:gap-7 mb-4 2xl:mb-6">
-        <div className="w-full sm:w-2/4 relative mb-4 sm:mb-0">
-          <Input
-            type={"text"}
-            id={"firstName"}
-            name={"firstName"}
-            placeholder={"First name"}
-            autoComplate="off"
-            onBlur={onBlur}
-            onChange={onChange}
-            value={value.firstName}
-            error={error.firstName ? true : false}
-            className={`w-full`}
-          />
-
-          {error.firstName && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
-              {error.firstName}
-            </Typography>
-          )}
-        </div>
-
-        <Input
-          type={"text"}
-          id={"lastName"}
-          name={"lastName"}
-          onBlur={onBlur}
-          onChange={onChange}
-          value={value.lastName}
-          placeholder={"Last name (optional)"}
-          error={false}
-          className={`w-full sm:w-2/4`}
-        />
-      </div>
-
       <div className="mb-4 2xl:mb-6">
+        <label
+          htmlFor="email"
+          className="font-poppins text-[15px] lg:text-sm xl:text-[15] 2xl:text-[17px] text-title_color mb-[2px] ml-[2px]"
+        >
+          Email :
+        </label>
+
         <div className="w-full relative">
           <Input
             type={"email"}
@@ -65,7 +36,7 @@ const NameEmailPassowrd = ({existUserError, onBlur, onChange, value, error }) =>
             className={`w-full`}
           />
 
-          {error.email  && (
+          {error.email && (
             <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.email}
             </Typography>
@@ -78,7 +49,14 @@ const NameEmailPassowrd = ({existUserError, onBlur, onChange, value, error }) =>
         </div>
       </div>
 
-      <div className="mb-4 2xl:mb-6 relative">
+      <div className="mb-3 md:mb-4 2xl:mb-6 relative">
+        <label
+          htmlFor="password"
+          className="font-poppins text-[15px] lg:text-sm xl:text-[15] 2xl:text-[17px] text-title_color mb-[2px] ml-[2px]"
+        >
+          Password :
+        </label>
+
         <div className="w-full relative">
           <Input
             type={passwordShow ? "text" : "password"}

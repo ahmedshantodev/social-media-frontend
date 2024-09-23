@@ -17,12 +17,12 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
         Date of birth :
       </Typography>
 
-      <div className="mb-3 md:mb-4 2xl:mb-6 sm:flex justify-between gap-3 md:gap-4 xl:gap-6">
+      <div className="mb-4 md:mb-4 2xl:mb-6 sm:flex justify-between gap-3 md:gap-4 xl:gap-6">
         <div
           className={
             error.birthDate
-              ? `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#e32626] rounded-[8px] relative mb-[13px] md:mb-0`
-              : `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#cacad8] rounded-[8px] relative mb-[13px] md:mb-0`
+              ? `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#e32626] rounded-[8px] relative mb-[16px] md:mb-0`
+              : `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#cacad8] rounded-[8px] relative mb-[16px] md:mb-0`
           }
         >
           <select
@@ -48,7 +48,7 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
           </select>
 
           {error.birthDate && (
-            <Typography className="font-inter text-[11px] 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] md:-bottom-4 2xl:-bottom-[22px] left-1">
+            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.birthDate}
             </Typography>
           )}
@@ -57,8 +57,8 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
         <div
           className={
             error.birthMonth
-              ? `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#e32626] rounded-[8px] relative mb-[13px] md:mb-0`
-              : `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#cacad8] rounded-[8px] relative mb-[13px] md:mb-0`
+              ? `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#e32626] rounded-[8px] relative mb-[16px] md:mb-0`
+              : `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#cacad8] rounded-[8px] relative mb-[16px] md:mb-0`
           }
         >
           <select
@@ -88,7 +88,7 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
           </select>
 
           {error.birthMonth && (
-            <Typography className="font-inter text-[11px] 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] md:-bottom-4 2xl:-bottom-[22px] left-1">
+            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.birthMonth}
             </Typography>
           )}
@@ -97,8 +97,8 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
         <div
           className={
             error.birthYear
-              ? `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#e32626] rounded-[8px] relative mb-[13px] md:mb-0`
-              : `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#cacad8] rounded-[8px] relative mb-[13px] md:mb-0`
+              ? `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#e32626] rounded-[8px] relative mb-[16px] md:mb-0`
+              : `w-full sm:w-1/3 px-4 2xl:px-7 border border-[#cacad8] rounded-[8px] relative mb-[16px] md:mb-0`
           }
         >
           <select
@@ -124,7 +124,7 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
           </select>
 
           {error.birthYear && (
-            <Typography className="font-inter text-[11px] 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] md:-bottom-4 2xl:-bottom-[22px] left-1">
+            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.birthYear}
             </Typography>
           )}

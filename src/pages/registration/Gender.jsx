@@ -3,6 +3,7 @@ import Typography from "../../components/layout/Typography";
 
 const Gender = ({ onBlur, onChange, error }) => {
   const [selectedGender, setSelectedGender] = useState("");
+
   return (
     <div>
       <Typography
