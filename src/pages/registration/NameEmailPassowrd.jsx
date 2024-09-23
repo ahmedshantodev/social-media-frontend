@@ -4,7 +4,7 @@ import Input from "../../components/layout/Input";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEyeFill } from "react-icons/bs";
 
-const NameEmailPassowrd = ({existUserError, onBlur, onChange, value, error }) => {
+const NameEmailPassowrd = ({ onBlur, onChange, value, error }) => {
   const [passwordShow, setPasswordShow] = useState(false);
   
   return (
@@ -61,18 +61,13 @@ const NameEmailPassowrd = ({existUserError, onBlur, onChange, value, error }) =>
             onChange={onChange}
             value={value.email}
             placeholder={"Enter your email"}
-            error={error.email || existUserError ? true : false}
+            error={error.email ? true : false}
             className={`w-full`}
           />
 
           {error.email  && (
             <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.email}
-            </Typography>
-          )}
-          {existUserError && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
-              {existUserError}
             </Typography>
           )}
         </div>

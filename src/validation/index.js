@@ -10,7 +10,7 @@ export const signup = Yup.object({
     gender: Yup.string().required("please select your gender"),
 })
 
-export const login = Yup.object({
+export const signin = Yup.object({
     email: Yup.string().email().required("please enter a valid email"),
     password: Yup.string().min(6).max(20).required("password enter your password"),
 })

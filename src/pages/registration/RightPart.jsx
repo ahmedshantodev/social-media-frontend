@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Typography from "../../components/layout/Typography";
 import NameEmailPassowrd from "./NameEmailPassowrd";
 import DateOfBirth from "./DateOfBirth";
@@ -21,8 +21,9 @@ const initialState = {
 };
 
 const RightPart = () => {
-  const [existUserError, setExistUserError] = useState("");
+  const navigate = useNavigate();
   const [registration, { isLoading }] = useRegistrationMutation();
+
   const under_age = new Date(1970 + 18, 0, 1);
   const current_date = new Date();
 
@@ -60,26 +61,27 @@ const RightPart = () => {
       });
 
       if (response.error?.data?.message) {
-        return setExistUserError(response.error.data.message);
+        return (formik.errors.email = response.error.data.message);
       }
 
       if (response.data?.message) {
-        return toast.success(
-          "registration successfull, please check your email for a verification link to activate your account.",
-          {
-            autoClose: 4000,
-            position: "bottom-center",
-            hideProgressBar: true,
-            theme: "colored",
-          }
-        );
+        setTimeout(() => {
+          formik.resetForm();
+        }, 1000);
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+
+        return toast.success(response.data?.message, {
+          autoClose: 4000,
+          position: "bottom-center",
+          hideProgressBar: true,
+          theme: "colored",
+        });
       }
     },
   });
-
-  useEffect(() => {
-    setExistUserError("");
-  }, [formik.values.email]);
 
   return (
     <div className="w-full">
@@ -96,7 +98,6 @@ const RightPart = () => {
           onChange={formik.handleChange}
           value={formik.values}
           error={formik.errors}
-          existUserError={existUserError}
         />
 
         <DateOfBirth
@@ -112,12 +113,21 @@ const RightPart = () => {
           error={formik.errors}
         />
 
-        <button
-          type="submit"
-          className="w-full rounded-full py-2.5 lg:py-2 2xl:py-[14px] bg-[#4474f4] text-white text-base 2xl:text-lg font-poppins"
-        >
-          sign up
-        </button>
+        {isLoading ? (
+          <button
+            type="submit"
+            className="w-full rounded-full py-2 lg:py-2 2xl:py-3 bg-[#e0e3ea] text-black xs:text-[15px] text-base 2xl:text-lg font-poppins cursor-wait"
+          >
+            saving.....
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="w-full rounded-full py-2.5 lg:py-2 2xl:py-[14px] bg-[#4474f4] text-white text-base 2xl:text-lg font-poppins"
+          >
+            sign up
+          </button>
+        )}
       </form>
 
       <Link
