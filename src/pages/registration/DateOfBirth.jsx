@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "../../components/layout/Typography";
-import { dates, months } from "../../data/index";
+import { dates, months } from "./data";
 
 const DateOfBirth = ({ onBlur, onChange, value, error }) => {
   const years = Array.from(

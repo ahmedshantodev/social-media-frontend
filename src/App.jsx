@@ -7,9 +7,13 @@ import {
 } from "react-router-dom";
 import Registration from "./pages/registration/index";
 import Login from "./pages/login";
-import Home from "./pages/home";
 import NotLoggedInUser from "./privateRoute/NotLoggedInUser";
 import LoggedInUser from "./privateRoute/LoggedInUser";
+import RootLayout from "./pages/rootLayout";
+import Feeds from "./pages/feeds";
+import Messages from "./pages/messages";
+import Friends from "./pages/friends";
+import Media from "./pages/media";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +24,12 @@ const router = createBrowserRouter(
       </Route>
 
       <Route element={<LoggedInUser />}>
-        <Route path="/" element={<Home />} />
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Feeds />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="friends" element={<Friends />} />
+          <Route path="media" element={<Media />} />
+        </Route>
       </Route>
     </Route>
   )
