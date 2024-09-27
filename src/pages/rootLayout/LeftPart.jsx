@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "../../components/layout/Image";
-import { data } from "./data";
+import { menu } from "./data";
 import MenuListItem from "../../components/layout/MenuListItem";
 import { SettingsIcon } from "../../assets/svg/SettingsIcon";
 
 const LeftPart = () => {
   return (
-    <div className="bg-[#00b0ff]/40d h-full w-[350px] mt-10 px-5">
+    <div className="w-[270px] mt-8">
       <div>
         <div className="w-24 aspect-square rounded-full overflow-hidden mx-auto">
           <Image
@@ -28,10 +28,10 @@ const LeftPart = () => {
         </div>
       </div>
 
-      <div className="mt-10 w-3/4 mx-auto">
-        {data.map((item, index) => (
+      <div className="w-full mt-8">
+        {menu.map((item, index) => (
           <MenuListItem
-            key={index}
+            index={index}
             icon={item.icon}
             text={item.text}
             path={item.path}

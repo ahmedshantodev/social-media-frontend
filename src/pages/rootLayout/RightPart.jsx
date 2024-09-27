@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import FriendRequestsPart from "./FriendRequestsPart";
+import StoriesPart from "./StoriesPart";
 
 const RightPart = () => {
   return (
-    <div>RightPart</div>
-  )
-}
+    <div>
+      <FriendRequestsPart />
+      <StoriesPart />
+    </div>
+  );
+};
 
-export default RightPart
+export default RightPart;

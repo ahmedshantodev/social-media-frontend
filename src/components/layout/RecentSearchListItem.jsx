@@ -9,7 +9,7 @@ const RecentSearchListItem = ({ image, name, onClick }) => {
         <Image src={image} alt={name} className={`w-full`} />
       </div>
 
-      <h2 className="text-lg font-medium font-poppins">{name}</h2>
+      <h2 className="text-lg font-medium font-poppins text-ellipsis overflow-hidden line-clamp-1 w-[220px]">{name}</h2>
 
       <RxCross2
         onClick={onClick}

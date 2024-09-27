@@ -14,6 +14,7 @@ import Feeds from "./pages/feeds";
 import Messages from "./pages/messages";
 import Friends from "./pages/friends";
 import Media from "./pages/media";
+import Profile from "./pages/profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
           <Route path="friends" element={<Friends />} />
           <Route path="media" element={<Media />} />
         </Route>
+        <Route path="/profile" element={<Profile />} />
       </Route>
     </Route>
   )
