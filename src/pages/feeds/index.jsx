@@ -1,5 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import PostCreatePart from "./PostCreatePart";
+import StoriesPart from "./StoriesPart";
+import PostPart from "./PostPart";
 
 const Feeds = () => {
   return (
@@ -7,7 +10,12 @@ const Feeds = () => {
       <Helmet>
         <title>Ripple</title>
       </Helmet>
-      Feeds
+
+      <div className="w-[700px] mx-auto">
+        <PostCreatePart />
+        <StoriesPart />
+        <PostPart />
+      </div>
     </>
   );
 };

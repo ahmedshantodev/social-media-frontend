@@ -1,12 +1,12 @@
 import React from "react";
 import FriendRequestsPart from "./FriendRequestsPart";
-import StoriesPart from "./StoriesPart";
+import ContactsPart from "./ContactsPart";
 
 const RightPart = () => {
   return (
-    <div>
+    <div className="w-[450px] ml-auto">
       <FriendRequestsPart />
-      <StoriesPart />
+      <ContactsPart />
     </div>
   );
 };

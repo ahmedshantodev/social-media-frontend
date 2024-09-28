@@ -2,7 +2,7 @@ import React from "react";
 
 const FriendRequstListItem = ({ image, name, time, accept, reject }) => {
   return (
-    <div className="flex justify-between items-center p-2 rounded-[10px] mb-1 cursor-pointer hover:bg-white transition-all duration-150 ease-linear">
+    <div className="flex justify-between items-center p-2 rounded-[10px] cursor-pointer hover:bg-[#e4e6e9] transition-all duration-150 ease-linear">
       <div className="flex items-center gap-x-2.5">
         <div className="w-[50px] aspect-square rounded-full overflow-hidden">
           <img src={image} alt={name} className="w-full" />
