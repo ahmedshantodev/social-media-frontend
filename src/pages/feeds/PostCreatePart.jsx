@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import liveVideoLogo from "/public/images/liveVideoLogo.png";
 import galaryLogo from "/public/images/galaryLogo.png";
 import feelingsLogo from "/public/images/feelingsLogo.png";
+import PostCreateModal from "../../components/modal/PostCreateModal";
 
 const PostCreatePart = () => {
+  const [PostCreateModalShow, setPostCreateModalShow] = useState(false);
+
   return (
     <div className="w-full bg-white px-4 pt-4 pb-2 rounded-[10px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-      <div className="flex items-center gap-x-2.5 border-b-[2px] border-[#e4e6eb] pb-3">
+      <div className="flex items-center gap-x-2.5 border-b-[2px] border-secondary-border pb-3">
         <div className="box-content w-[48px] aspect-square rounded-full overflow-hidden border border-border_color">
           <img
             src="https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-6/428701429_399313009412651_7021363013979176346_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=4_IxSHnyrGMQ7kNvgFzWzYZ&_nc_ht=scontent.fdac41-2.fna&_nc_gid=Aqp7xU3qQTquu4QdVw-KsOo&oh=00_AYDA_F02BMq9BrxcjEMoMFA1-j_W3OWbRQ5mP4eivU2KoA&oe=66FC2464"
@@ -15,11 +18,19 @@ const PostCreatePart = () => {
           />
         </div>
 
-        <div className="bg-[#f0f2f5] px-5 py-3 w-full rounded-[30px] cursor-pointer hover:bg-[#e4e6e9] transition-all duration-150 ease-in-out">
-          <p className="text-base text-title_color font-semibold">
+        <div
+          onClick={() => setPostCreateModalShow(true)}
+          className="bg-[#f0f2f5] px-5 py-2.5 w-full rounded-[30px] cursor-pointer hover:bg-[#e4e6e9] transition-all duration-150 ease-in-out"
+        >
+          <p className="text-lg text-secondary-text font-medium">
             What's on your mind, Monsur?
           </p>
         </div>
+
+        <PostCreateModal
+          show={PostCreateModalShow}
+          setShow={setPostCreateModalShow}
+        />
       </div>
 
       <div className="mt-3 flex">
@@ -28,7 +39,7 @@ const PostCreatePart = () => {
             <img src={liveVideoLogo} alt="live-video-logo" className="w-full" />
           </div>
 
-          <p className="text-[#65676b] font-semibold font-poppins text-[15px]">
+          <p className="text-secondary-text font-semibold font-poppins text-[15px]">
             Live Video
           </p>
         </button>
@@ -38,7 +49,7 @@ const PostCreatePart = () => {
             <img src={galaryLogo} alt="live-video-logo" className="w-full" />
           </div>
 
-          <p className="text-[#65676b] font-semibold font-poppins text-[15px]">
+          <p className="text-secondary-text font-semibold font-poppins text-[15px]">
             Photo/Video
           </p>
         </button>
@@ -48,7 +59,7 @@ const PostCreatePart = () => {
             <img src={feelingsLogo} alt="live-video-logo" className="w-full" />
           </div>
 
-          <p className="text-[#65676b] font-semibold font-poppins text-[15px]">
+          <p className="text-secondary-text font-semibold font-poppins text-[15px]">
             Feeling/activity
           </p>
         </button>

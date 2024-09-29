@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Typography from "../../components/layout/Typography";
 import Input from "../../components/layout/Input";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEyeFill } from "react-icons/bs";
@@ -9,12 +8,11 @@ const NameEmailPassowrd = ({ onBlur, onChange, value, error }) => {
   
   return (
     <div>
-      <Typography
-        variant="p"
+      <p
         className="font-poppins text-[15px] lg:text-sm xl:text-[15] 2xl:text-[17px] text-title_color mb-[2px] ml-[2px]"
       >
         Name, Email and Password :
-      </Typography>
+      </p>
 
       <div className="sm:flex sm:gap-3 md:gap-4 2xl:gap-7 mb-4 2xl:mb-6">
         <div className="w-full sm:w-2/4 relative mb-4 sm:mb-0">
@@ -32,9 +30,9 @@ const NameEmailPassowrd = ({ onBlur, onChange, value, error }) => {
           />
 
           {error.firstName && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.firstName}
-            </Typography>
+            </p>
           )}
         </div>
 
@@ -66,9 +64,9 @@ const NameEmailPassowrd = ({ onBlur, onChange, value, error }) => {
           />
 
           {error.email  && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.email}
-            </Typography>
+            </p>
           )}
         </div>
       </div>
@@ -100,9 +98,9 @@ const NameEmailPassowrd = ({ onBlur, onChange, value, error }) => {
           )}
 
           {error.password && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.password}
-            </Typography>
+            </p>
           )}
         </div>
       </div>

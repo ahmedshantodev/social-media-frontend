@@ -1,10 +1,10 @@
 import React from "react";
-import FriendRequestsPart from "./FriendRequestsPart";
-import ContactsPart from "./ContactsPart";
+import FriendRequestsPart from "../../components/section/FriendRequestsPart";
+import ContactsPart from "../../components/section/ContactsPart";
 
 const RightPart = () => {
   return (
-    <div className="w-[450px] ml-auto">
+    <div className="w-full">
       <FriendRequestsPart />
       <ContactsPart />
     </div>

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
-import RecentSearchListItem from "../../components/layout/RecentSearchListItem";
+import RecentSearchListItem from "../listItem/RecentSearchListItem";
 import OutSideClick from "../../functions/click";
 import rippleLogo from "/public/images/ripple-logo.png";
 import { FaFacebookMessenger } from "react-icons/fa6";
@@ -16,13 +16,15 @@ const Header = () => {
   });
 
   return (
-    <div className="flex items-center justify-between bg-white px-5 py-3 relative shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
+    <div className="flex items-center justify-between bg-primary-bg px-5 py-3 relative shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
       <div className="flex items-center gap-1">
         <div>
           <img src={rippleLogo} alt="ripple-logo" className="w-[45px]" />
         </div>
 
-        <h3 className="text-xl font-medium font-poppins ml-2">Ripple</h3>
+        <h3 className="text-xl font-medium font-poppins ml-2 text-primary-text">
+          Ripple
+        </h3>
       </div>
 
       <div
@@ -35,12 +37,12 @@ const Header = () => {
             placeholder="Search"
             className={
               show
-                ? "bg-[#f0f2f5] w-[700px] rounded-full py-2.5 pl-10 pr-5 focus:outline-[2px] outline-[#848f95] placeholder:font-gilroy-reguler"
-                : "bg-[#f0f2f5] w-[700px] rounded-full py-2.5 pl-10 pr-5 focus:outline-[2px] outline-secondary_color placeholder:font-gilroy-reguler"
+                ? "bg-input-color w-[700px] rounded-full py-2.5 pl-10 pr-5 focus:outline-[2px] outline-[#848f95] placeholder:font-gilroy-reguler"
+                : "bg-input-color w-[700px] rounded-full py-2.5 pl-10 pr-5 focus:outline-[2px] outline-secondary_color placeholder:font-gilroy-reguler"
             }
           />
 
-          <FiSearch className="absolute top-2/4 -translate-y-2/4 left-4 text-lg text-secondary_color" />
+          <FiSearch className="absolute top-2/4 -translate-y-2/4 left-4 text-lg text-secondary-text" />
           {show && (
             <RxCross2
               onClick={() => setShow(false)}
@@ -52,11 +54,13 @@ const Header = () => {
         <div
           className={
             show
-              ? "absolute z-0 top-full left-0 bg-white p-4 mt-5 w-full rounded-[16px] font-gilroy-semiBold  visible opacity-100 translate-y-0 transition-all ease-linear duration-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
-              : "absolute z-0 top-full left-0 bg-white p-4 mt-5 w-full rounded-[16px] font-gilroy-semiBold  invisible opacity-0 -translate-y-5 transition-all ease-linear duration-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+              ? "absolute z-0 top-full left-2/4 -translate-x-2/4 bg-white p-4 mt-5 w-[110%] rounded-[16px] font-gilroy-semiBold  visible opacity-100 translate-y-0 transition-all ease-linear duration-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+              : "absolute z-0 top-full left-2/4 -translate-x-2/4 bg-white p-4 mt-5 w-[110%] rounded-[16px] font-gilroy-semiBold  invisible opacity-0 -translate-y-5 transition-all ease-linear duration-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
           }
         >
-          <p className="font-inter text-title_color ml-2">Recent Searches :</p>
+          <p className="font-inter text-secondary-text ml-2">
+            Recent Searches :
+          </p>
 
           <div className="mt-2 min-h-[70px] max-h-[400px] overflow-y-auto">
             <RecentSearchListItem
@@ -83,11 +87,11 @@ const Header = () => {
 
       <div className="flex items-center gap-x-2.5">
         <button className="bg-[#e4e6eb] rounded-full p-2.5">
-          <FaFacebookMessenger className="text-[25px]"/>
+          <FaFacebookMessenger className="text-[25px]" />
         </button>
 
         <button className="bg-[#e4e6eb] rounded-full p-2">
-          <IoMdNotifications className="text-[29px]"/>
+          <IoMdNotifications className="text-[29px]" />
         </button>
 
         <div>

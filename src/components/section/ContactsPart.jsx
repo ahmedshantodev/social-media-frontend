@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ContactListItem from "../../components/layout/ContactListItem";
+import ContactListItem from "../listItem/ContactListItem";
 import { IoIosArrowDown } from "react-icons/io";
 
 const ContactsPart = () => {
@@ -7,7 +7,7 @@ const ContactsPart = () => {
 
   return (
     <div>
-      <p className="font-inter font-semibold text-lg text-[#65676b] mb-3">
+      <p className="font-inter font-semibold text-lg text-secondary-text mb-3">
         Contacts
       </p>
 

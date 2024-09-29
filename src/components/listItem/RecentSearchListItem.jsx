@@ -1,15 +1,14 @@
 import React from "react";
-import Image from "./Image";
 import { RxCross2 } from "react-icons/rx";
 
 const RecentSearchListItem = ({ image, name, onClick }) => {
   return (
     <div className="flex items-center gap-4 cursor-pointer p-2 rounded-[10px] relative mr-2 hover:bg-[#f2f2f2] transition-all ease-linear duration-100">
       <div className="w-[50px] aspect-square rounded-full overflow-hidden">
-        <Image src={image} alt={name} className={`w-full`} />
+        <img src={image} alt={name} className={`w-full`} />
       </div>
 
-      <h2 className="text-lg font-medium font-poppins text-ellipsis overflow-hidden line-clamp-1 w-[220px]">{name}</h2>
+      <h2 className="text-primary-text text-lg font-medium font-poppins text-ellipsis overflow-hidden line-clamp-1 w-[220px]">{name}</h2>
 
       <RxCross2
         onClick={onClick}

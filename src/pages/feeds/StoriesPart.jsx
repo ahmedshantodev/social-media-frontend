@@ -1,5 +1,5 @@
 import React from "react";
-import StoryListItem from "../../components/layout/StoryListItem";
+import StoryListItem from "../../components/listItem/StoryListItem";
 import { FiPlus } from "react-icons/fi";
 import { story } from "../rootLayout/data";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -33,7 +33,7 @@ const StoriesPart = () => {
         </SwiperSlide>
 
         {story.map((item, index) => (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             <StoryListItem
               index={index}
               name={item.name}

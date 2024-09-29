@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Typography from "../../components/layout/Typography";
 import NameEmailPassowrd from "./NameEmailPassowrd";
 import { toast } from "react-toastify";
 import { useLoginMutation } from "../../redux/api/authenticationApi";
@@ -70,12 +69,11 @@ const RightPart = () => {
         alt="ripple-logo"
         className="w-[50px] mx-auto mb-2 lg:hidden"
       />
-      <Typography
-        variant="h3"
+      <h3
         className="font-inter font-semibold text-lg lg:text-[20px] 2xl:text-[26px] text-center lg:text-start mb-4 lg:mb-2 xl:mb-6"
       >
         Login to reconnect with your crew.
-      </Typography>
+      </h3>
 
       <form onSubmit={formik.handleSubmit}>
         <NameEmailPassowrd

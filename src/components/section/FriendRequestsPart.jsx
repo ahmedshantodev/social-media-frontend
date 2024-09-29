@@ -1,19 +1,19 @@
 import React from "react";
-import FriendRequstListItem from "../../components/layout/FriendRequstListItem";
+import FriendRequstListItem from "../listItem/FriendRequstListItem";
 import { NavLink } from "react-router-dom";
 
 const FriendRequestsPart = () => {
   return (
     <div className="border-b border-[#ced0d4] pb-3 mb-3">
       <div className="flex items-center justify-between">
-        <p className="font-inter font-semibold text-lg text-[#65676b]">
+        <p className="font-inter font-semibold text-lg text-secondary-text">
           Friend requsts
         </p>
 
         <div>
           <NavLink
             to={"/friends"}
-            className="bg-black text-white rounded-full px-4 py-[6px] text-sm font-gilroy-medium border border-black hover:bg-white hover:text-black transition-all ease-in-out duration-150"
+            className="text-tertiary-text font-poppins hover:underline transition-all ease-in-out duration-150"
           >
             See all
           </NavLink>

@@ -1,5 +1,4 @@
 import React from "react";
-import Typography from "../../components/layout/Typography";
 import { dates, months } from "./data";
 
 const DateOfBirth = ({ onBlur, onChange, value, error }) => {
@@ -10,12 +9,11 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
 
   return (
     <div>
-      <Typography
-        variant="p"
+      <p
         className="font-poppins text-[15px] lg:text-sm xl:text-[15] 2xl:text-[17px] text-title_color mb-[2px] ml-[2px]"
       >
         Date of birth :
-      </Typography>
+      </p>
 
       <div className="mb-4 md:mb-4 2xl:mb-6 sm:flex justify-between gap-3 md:gap-4 xl:gap-6">
         <div
@@ -48,9 +46,9 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
           </select>
 
           {error.birthDate && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.birthDate}
-            </Typography>
+            </p>
           )}
         </div>
 
@@ -88,9 +86,9 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
           </select>
 
           {error.birthMonth && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.birthMonth}
-            </Typography>
+            </p>
           )}
         </div>
 
@@ -124,9 +122,9 @@ const DateOfBirth = ({ onBlur, onChange, value, error }) => {
           </select>
 
           {error.birthYear && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.birthYear}
-            </Typography>
+            </p>
           )}
         </div>
       </div>

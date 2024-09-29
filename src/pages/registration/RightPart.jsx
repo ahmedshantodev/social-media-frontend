@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Typography from "../../components/layout/Typography";
 import NameEmailPassowrd from "./NameEmailPassowrd";
 import DateOfBirth from "./DateOfBirth";
 import Gender from "./Gender";
@@ -85,12 +84,11 @@ const RightPart = () => {
 
   return (
     <div className="w-full">
-      <Typography
-        variant="h3"
+      <h3
         className="font-inter font-semibold text-xl lg:text-[22px] 2xl:text-[25px] text-center md:text-start mb-4 lg:mb-2 xl:mb-4"
       >
         Create Your Free Ripple Account
-      </Typography>
+      </h3>
 
       <form onSubmit={formik.handleSubmit}>
         <NameEmailPassowrd

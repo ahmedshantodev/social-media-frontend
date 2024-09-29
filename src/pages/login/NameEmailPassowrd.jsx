@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Typography from "../../components/layout/Typography";
 import Input from "../../components/layout/Input";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEyeFill } from "react-icons/bs";
@@ -36,9 +35,9 @@ const NameEmailPassowrd = ({
           />
 
           {error.email && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.email}
-            </Typography>
+            </p>
           )}
         </div>
       </div>
@@ -77,9 +76,9 @@ const NameEmailPassowrd = ({
           )}
 
           {error.password && (
-            <Typography className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
+            <p className="font-inter text-[11px] lg:text-xs 2xl:text-[15px] text-[#e32626] absolute -bottom-[14px] lg:-bottom-[15px] 2xl:-bottom-[18px] left-1">
               {error.password}
-            </Typography>
+            </p>
           )}
         </div>
       </div>
