@@ -38,3 +38,18 @@
   font-family: "Gilroy ExtraBold";
   src: url("./assets/fonts/Gilroy-ExtraBold.ttf");
 }
+
+
+/* custom scroll bar */
+::-webkit-scrollbar{
+  width: 9px;
+}
+
+::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #bcc0c4;
+  border-radius: 10px;
+}

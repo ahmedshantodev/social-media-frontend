@@ -44,7 +44,10 @@ const PostCreatePart = () => {
           </p>
         </button>
 
-        <button className="w-1/3 flex justify-center items-center gap-x-2.5 py-2.5 hover:bg-[#f2f2f2] rounded-[6px] transition-all duration-200 ease-in-out">
+        <button
+          onClick={() => setPostCreateModalShow(true)}
+          className="w-1/3 flex justify-center items-center gap-x-2.5 py-2.5 hover:bg-[#f2f2f2] rounded-[6px] transition-all duration-200 ease-in-out"
+        >
           <div className="w-[23px] aspect-square">
             <img src={galaryLogo} alt="live-video-logo" className="w-full" />
           </div>

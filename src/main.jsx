@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import 'swiper/css';
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
     <HelmetProvider>
       <Provider store={store}>
         <App />
@@ -19,5 +19,5 @@ createRoot(document.getElementById("root")).render(
         <ToastContainer />
       </Provider>
     </HelmetProvider>
-  </StrictMode>
+  // </StrictMode>
 );

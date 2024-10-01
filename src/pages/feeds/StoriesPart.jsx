@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import StoryListItem from "../../components/listItem/StoryListItem";
 import { FiPlus } from "react-icons/fi";
 import { story } from "../rootLayout/data";
-import { Swiper, SwiperSlide } from "swiper/react";
+
 import { IoIosArrowForward } from "react-icons/io";
-import { useSwiper } from "swiper/react";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const StoriesPart = () => {
-  const swiper = useSwiper();
+  let sliderRef = useRef(null);
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToScroll: 4,
+    slidesToShow: 4,
+  };
+
+  const next = () => {
+    sliderRef.current.slickNext();
+  };
+
+  const previous = () => {
+    sliderRef.current.slickPrev();
+  };
 
   return (
     <div className="w-full mt-4 relative">
-      <Swiper spaceBetween={12} slidesPerView={5}>
-        <SwiperSlide>
-          <div className="group relative w-full h-[225px] rounded-[10px] overflow-hidden cursor-pointer">
+      <div className="slider-container">
+        <Slider {...settings} ref={sliderRef}>
+          <div className="group relative w-ful h-[225px] rounded-[10px] overflow-hidden cursor-pointer">
             <div className="w-full h-[70%]">
               <img
                 src={
@@ -30,22 +48,29 @@ const StoriesPart = () => {
               <p className="font-poppins font-medium">Create Story</p>
             </div>
           </div>
-        </SwiperSlide>
 
-        {story.map((item, index) => (
-          <SwiperSlide key={index}>
-            <StoryListItem
-              index={index}
-              name={item.name}
-              image={item.image}
-              story={item.story}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          {story.map((item, index) => (
+            <div key={index}>
+              <StoryListItem
+                index={index}
+                name={item.name}
+                image={item.image}
+                story={item.story}
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
 
       <button
-        onClick={() => swiper.slidePrev()}
+        onClick={previous}
+        className="absolute left-4 top-2/4 z-10 -translate-y-2/4 box-content bg-white text-black text-2xl p-3 rounded-full "
+      >
+        <IoIosArrowForward className=" rotate-180" />
+      </button>
+
+      <button
+        onClick={next}
         className="absolute right-4 top-2/4 z-10 -translate-y-2/4 box-content bg-white text-black text-2xl p-3 rounded-full "
       >
         <IoIosArrowForward />
