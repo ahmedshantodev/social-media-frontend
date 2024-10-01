@@ -8,7 +8,6 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import 'swiper/css';
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
