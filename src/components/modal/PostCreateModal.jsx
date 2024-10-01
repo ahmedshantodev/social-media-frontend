@@ -4,14 +4,18 @@ import { RxCross2 } from "react-icons/rx";
 import PostCustomizationOption from "../layout/PostCustomizationOption";
 import PostStylingOption from "../layout/PostStylingOption";
 import MediaUploader from "../layout/MediaUploader";
+import { feelings } from "../../data/feelings";
 
 const PostCreateModal = ({ show, setShow }) => {
   const inputRef = useRef(null);
   const [inputData, setInputData] = useState("");
   const [selectedBackgroundInfo, setselectedBackgroundInfo] = useState("");
   const [mediaUploaderShow, setMediaUploaderShow] = useState(false);
+  const [feelingSelectorShow, setFeelingSelectorShow] = useState(false);
   const [postImages, setPostImages] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
+
+  const handleFeelingSelect = (item) => {};
 
   return (
     <Modal
@@ -48,7 +52,7 @@ const PostCreateModal = ({ show, setShow }) => {
         <div className="w-full max-h-[480px] overflow-y-auto px-2 mt-1 mb-2">
           {selectedBackgroundInfo != "" ? (
             <div className="mt-2 w-full h-[390px] relative mb-2">
-              <textarea
+              {/* <textarea
                 name="post"
                 id="post"
                 ref={inputRef}
@@ -56,7 +60,16 @@ const PostCreateModal = ({ show, setShow }) => {
                 placeholder="What's on your mind, Monsur?"
                 onChange={(e) => setInputData(e.target.value)}
                 className={`w-full h-full absolute top-0 left-0 z-10 bg-transparent border-none focus:outline-none rounded-[6px] resize-none py-2 placeholder:text-[23px] text-3xl placeholder:text-white`}
-              />
+              /> */}
+
+              <div className="w-full h-full absolute top-0 left-0 z-10 flex items-center justify-center text-center px-5">
+                <p
+                  contentEditable="true"
+                  className="text-3xl text-white outline-none w-full"
+                >
+                  What's on your mind, Monsur?
+                </p>
+              </div>
 
               <div className="w-full h-full absolute top-0 left-0">
                 <img
@@ -76,10 +89,10 @@ const PostCreateModal = ({ show, setShow }) => {
               onChange={(e) => setInputData(e.target.value)}
               className={
                 mediaUploaderShow
-                  ? "w-full mt-2 border-none focus:outline-none rounded-[6px] h-[100px] resize-none py-2 placeholder:text-lg text-lg placeholder:text-[#65676b]"
+                  ? "w-full border-none focus:outline-none rounded-[6px] h-[100px] resize-none py-2 placeholder:text-lg text-lg placeholder:text-[#65676b]"
                   : inputData.length > 200
-                  ? "w-full mt-2 border-none focus:outline-none rounded-[6px] h-[130px] resize-nones py-2 placeholder:text-lg text-lg placeholder:text-[#65676b]"
-                  : "w-full mt-2 border-none focus:outline-none rounded-[6px] h-[130px] resize-none py-2 placeholder:text-[23px] text-2xl placeholder:text-[#65676b]"
+                  ? "w-full border-none focus:outline-none rounded-[6px] h-[130px] resize-nones py-2 placeholder:text-lg text-lg placeholder:text-[#65676b]"
+                  : "w-full border-none focus:outline-none rounded-[6px] h-[130px] resize-none py-2 placeholder:text-[24px] text-2xl placeholder:text-[#65676b]"
               }
             />
           )}
@@ -100,6 +113,29 @@ const PostCreateModal = ({ show, setShow }) => {
             postImages={postImages}
             setPostImages={setPostImages}
           />
+
+          {feelingSelectorShow && (
+            <div className="w-full h- border border-primary-border rounded-[6px] px-3 py-2 mt-2">
+              <h2 className="text-[17px] font-inter font-medium text-secondary-text mb-2">
+                Feelings:
+              </h2>
+
+              <div className="flex justify-between flex-wrap gap-[6px]">
+                {feelings.map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleFeelingSelect(item)}
+                    className="bg-gray-100 hover:bg-secondary-bg w-[32.5%] px-2 py-2 rounded-[6px] flex items-center gap-x-2 cursor-pointer"
+                  >
+                    <p className="text-2xl bg-[#e4e6eb] p-1 rounded-full">{item.emoji}</p>
+                    <p className="text-[17px] font-poppins text-secondary-texts font-light">
+                      {item.feeling}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <PostCustomizationOption
@@ -107,6 +143,8 @@ const PostCreateModal = ({ show, setShow }) => {
           mediaUploaderShow={mediaUploaderShow}
           selectedOption={selectedOption}
           selectedBackgroundInfo={selectedBackgroundInfo}
+          feelingSelectorShow={feelingSelectorShow}
+          setFeelingSelectorShow={setFeelingSelectorShow}
         />
 
         <button
