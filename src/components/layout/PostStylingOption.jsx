@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { HiOutlineFaceSmile } from "react-icons/hi2";
 import addBackgroudLogo from "/public/images/add-background-logo.png";
-import { postBackgroundInfo } from "../../pages/feeds/postBackgroundInfo";
+import { postBackgroundInfo } from "../../data/postBackgroundInfo";
 import EmojiPicker from "emoji-picker-react";
 
 const PostStylingOption = ({
@@ -38,8 +38,8 @@ const PostStylingOption = ({
     const start = inputData.substring(0, inputRef.current.selectionStart);
     const end = inputData.substring(inputRef.current.selectionStart);
 
-    setInputData(start + emoji + end);
-    setCursorPosition(start.length + emoji.length);
+    setInputData(start + e.emoji + end);
+    setCursorPosition(start.length + e.emoji.length);
   };
 
   useEffect(() => {

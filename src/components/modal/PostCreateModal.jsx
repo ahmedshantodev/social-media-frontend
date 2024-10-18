@@ -5,6 +5,7 @@ import PostCustomizationOption from "../layout/PostCustomizationOption";
 import PostStylingOption from "../layout/PostStylingOption";
 import MediaUploader from "../layout/MediaUploader";
 import { feelings } from "../../data/feelings";
+import userImage from "/public/remove/shanto.jpg";
 
 const PostCreateModal = ({ show, setShow }) => {
   const inputRef = useRef(null);
@@ -38,7 +39,7 @@ const PostCreateModal = ({ show, setShow }) => {
         <div className="mt-4 flex items-center gap-x-3">
           <div>
             <img
-              src="https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-6/428701429_399313009412651_7021363013979176346_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=4_IxSHnyrGMQ7kNvgFzWzYZ&_nc_ht=scontent.fdac41-2.fna&_nc_gid=An_R3pvhv819fGSedV0nki8&oh=00_AYDxn0_RYFKF4166DfDPvfwMdkljjesROAUbibkQ193Yug&oe=66FEFFA4"
+              src={userImage}
               alt=""
               className="w-[45px] aspect-square rounded-full border border-primary-border"
             />
@@ -52,24 +53,25 @@ const PostCreateModal = ({ show, setShow }) => {
         <div className="w-full max-h-[480px] overflow-y-auto px-2 mt-1 mb-2">
           {selectedBackgroundInfo != "" ? (
             <div className="mt-2 w-full h-[390px] relative mb-2">
-              {/* <textarea
+              <textarea
+                style={{ color: `${selectedBackgroundInfo.textColor}` }}
                 name="post"
                 id="post"
                 ref={inputRef}
                 value={inputData}
                 placeholder="What's on your mind, Monsur?"
                 onChange={(e) => setInputData(e.target.value)}
-                className={`w-full h-full absolute top-0 left-0 z-10 bg-transparent border-none focus:outline-none rounded-[6px] resize-none py-2 placeholder:text-[23px] text-3xl placeholder:text-white`}
-              /> */}
+                className={`w-full h-full absolute top-0 left-0 z-10 bg-transparent border-none focus:outline-none rounded-[6px] resize-none py-2 placeholder:text-[30px] placeholder:font-semibold font-semibold text-3xl placeholder:text-white placeholder:leading-[42px] leading-[42px]`}
+              />
 
-              <div className="w-full h-full absolute top-0 left-0 z-10 flex items-center justify-center text-center px-5">
+              {/* <div className="w-full h-full absolute top-0 left-0 z-10 flex items-center justify-center text-center px-5">
                 <p
                   contentEditable="true"
                   className="text-3xl text-white outline-none w-full"
                 >
                   What's on your mind, Monsur?
                 </p>
-              </div>
+              </div> */}
 
               <div className="w-full h-full absolute top-0 left-0">
                 <img
@@ -127,7 +129,9 @@ const PostCreateModal = ({ show, setShow }) => {
                     onClick={() => handleFeelingSelect(item)}
                     className="bg-gray-100 hover:bg-secondary-bg w-[32.5%] px-2 py-2 rounded-[6px] flex items-center gap-x-2 cursor-pointer"
                   >
-                    <p className="text-2xl bg-[#e4e6eb] p-1 rounded-full">{item.emoji}</p>
+                    <p className="text-2xl bg-[#e4e6eb] p-1 rounded-full">
+                      {item.emoji}
+                    </p>
                     <p className="text-[17px] font-poppins text-secondary-texts font-light">
                       {item.feeling}
                     </p>

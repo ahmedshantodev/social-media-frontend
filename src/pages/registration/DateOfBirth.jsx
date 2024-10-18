@@ -1,5 +1,6 @@
 import React from "react";
-import { dates, months } from "./data";
+import { dates } from "../../data/dates";
+import { months } from "../../data/months";
 
 const DateOfBirth = ({ onBlur, onChange, value, error }) => {
   const years = Array.from(

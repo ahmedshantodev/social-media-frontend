@@ -6,6 +6,8 @@ import OutSideClick from "../../functions/click";
 import rippleLogo from "/public/images/ripple-logo.png";
 import { FaFacebookMessenger } from "react-icons/fa6";
 import { IoMdNotifications } from "react-icons/io";
+import userImage from "/public/remove/shanto.jpg";
+import { recentSearchList } from "../../data/recentSearchList";
 
 const Header = () => {
   const searchBoxRef = useRef();
@@ -63,24 +65,13 @@ const Header = () => {
           </p>
 
           <div className="mt-2 min-h-[70px] max-h-[400px] overflow-y-auto">
-            <RecentSearchListItem
-              image={
-                "https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-6/428701429_399313009412651_7021363013979176346_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=4_IxSHnyrGMQ7kNvgFzWzYZ&_nc_ht=scontent.fdac41-2.fna&_nc_gid=Aqp7xU3qQTquu4QdVw-KsOo&oh=00_AYDA_F02BMq9BrxcjEMoMFA1-j_W3OWbRQ5mP4eivU2KoA&oe=66FC2464"
-              }
-              name={"Monsur Ahmed Shanto"}
-            />
-            <RecentSearchListItem
-              image={
-                "https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-6/460025155_1204060104249308_2825625522209760280_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SNsjc9wa1kEQ7kNvgFtx4NP&_nc_ht=scontent.fdac41-2.fna&_nc_gid=AT1JjX0jpu57WASk_S1vDWU&oh=00_AYBHM_T3RE016VWRkK_DOrV9oisDzJUNms8puHcAJeGezQ&oe=66FCC6FE"
-              }
-              name={"Rayhan Ahmed Siam"}
-            />
-            <RecentSearchListItem
-              image={
-                "https://scontent.fdac41-1.fna.fbcdn.net/v/t39.30808-6/435545735_964632115143688_8511688179507127314_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=MO2b7n2fSfIQ7kNvgGwcTf8&_nc_ht=scontent.fdac41-1.fna&_nc_gid=AiAZkeB8UMAAzN2duVQUs2Z&oh=00_AYDRVSpnSFdtQWxCgbFV0r5NwmDS5sdThlzE_zEjAAIeSw&oe=66FCA9BB"
-              }
-              name={"Farhad Hossain Mamun"}
-            />
+            {recentSearchList.map((item, index) => (
+              <RecentSearchListItem
+                key={index}
+                image={item.image}
+                name={item.name}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -96,9 +87,7 @@ const Header = () => {
 
         <div>
           <img
-            src={
-              "https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-6/428701429_399313009412651_7021363013979176346_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=4_IxSHnyrGMQ7kNvgFzWzYZ&_nc_ht=scontent.fdac41-2.fna&oh=00_AYC8O7SxBLpsSXxcG0G-OmkugIrn7wkOJNmgvEa9txm-dQ&oe=66FE1EA4"
-            }
+            src={userImage}
             alt="ripple-logo"
             className="w-[45px] aspect-square rounded-full box-content"
           />

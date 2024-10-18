@@ -3,6 +3,7 @@ import liveVideoLogo from "/public/images/liveVideoLogo.png";
 import galaryLogo from "/public/images/galaryLogo.png";
 import feelingsLogo from "/public/images/feelingsLogo.png";
 import PostCreateModal from "../../components/modal/PostCreateModal";
+import userImage from "/public/remove/shanto.jpg";
 
 const PostCreatePart = () => {
   const [PostCreateModalShow, setPostCreateModalShow] = useState(false);
@@ -12,7 +13,7 @@ const PostCreatePart = () => {
       <div className="flex items-center gap-x-2.5 border-b-[2px] border-secondary-border pb-3">
         <div className="box-content w-[48px] aspect-square rounded-full overflow-hidden border border-border_color">
           <img
-            src="https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-6/428701429_399313009412651_7021363013979176346_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=4_IxSHnyrGMQ7kNvgFzWzYZ&_nc_ht=scontent.fdac41-2.fna&_nc_gid=Aqp7xU3qQTquu4QdVw-KsOo&oh=00_AYDA_F02BMq9BrxcjEMoMFA1-j_W3OWbRQ5mP4eivU2KoA&oe=66FC2464"
+            src={userImage}
             alt=""
             className="w-full"
           />

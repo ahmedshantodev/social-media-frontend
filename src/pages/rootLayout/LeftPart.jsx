@@ -1,6 +1,7 @@
 import React from "react";
-import { menu } from "./data";
+import { navmenu } from "../../data/navmenu";
 import MenuListItem from "../../components/listItem/MenuListItem";
+import userImage from "/public/remove/shanto.jpg";
 
 const LeftPart = () => {
   return (
@@ -8,9 +9,7 @@ const LeftPart = () => {
       <div className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1">
         <div className="w-[45px] aspect-square rounded-full overflow-hidden border border-border_color">
           <img
-            src={
-              "https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-6/428701429_399313009412651_7021363013979176346_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=4_IxSHnyrGMQ7kNvgFzWzYZ&_nc_ht=scontent.fdac41-2.fna&_nc_gid=Aqp7xU3qQTquu4QdVw-KsOo&oh=00_AYDA_F02BMq9BrxcjEMoMFA1-j_W3OWbRQ5mP4eivU2KoA&oe=66FC2464"
-            }
+            src={userImage}
             alt={""}
             className={`w-full`}
           />
@@ -21,7 +20,7 @@ const LeftPart = () => {
         </h3>
       </div>
 
-      {menu.map((item, index) => (
+      {navmenu.map((item, index) => (
         <MenuListItem
           key={index}
           icon={item.icon}
