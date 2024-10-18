@@ -24,7 +24,7 @@ const Header = () => {
           <img src={rippleLogo} alt="ripple-logo" className="w-[45px]" />
         </div>
 
-        <h3 className="text-xl font-medium font-poppins ml-2 text-primary-text">
+        <h3 className="text-xl font-medium font-segoe-ui ml-2 text-primary-text">
           Ripple
         </h3>
       </div>
@@ -39,8 +39,8 @@ const Header = () => {
             placeholder="Search"
             className={
               show
-                ? "bg-input-color w-[700px] rounded-full py-2.5 pl-10 pr-5 focus:outline-[2px] outline-[#848f95] placeholder:font-gilroy-reguler"
-                : "bg-input-color w-[700px] rounded-full py-2.5 pl-10 pr-5 focus:outline-[2px] outline-secondary_color placeholder:font-gilroy-reguler"
+                ? "bg-input-color w-[700px] rounded-full py-2.5 pl-[42px] pr-5 focus:outline-[2px] outline-[#848f95] placeholder:font-segoe-ui placeholder:text-[17px]"
+                : "bg-input-color w-[700px] rounded-full py-2.5 pl-[42px] pr-5 focus:outline-[2px] outline-secondary_color placeholder:font-segoe-ui placeholder:text-[17px]"
             }
           />
 
@@ -60,7 +60,7 @@ const Header = () => {
               : "absolute z-0 top-full left-2/4 -translate-x-2/4 bg-white p-4 mt-5 w-[110%] rounded-[16px] font-gilroy-semiBold  invisible opacity-0 -translate-y-5 transition-all ease-linear duration-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
           }
         >
-          <p className="font-inter text-secondary-text ml-2">
+          <p className="font-segoe-ui font-medium text-secondary-text ml-2">
             Recent Searches :
           </p>
 

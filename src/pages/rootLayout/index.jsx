@@ -6,21 +6,21 @@ import { Outlet } from "react-router-dom";
 
 const RootLayout = () => {
   return (
-    <section className="bg-secondary-bg w-full h-dvh">
-      <div className="w-full sticky top-0 left-0 z-50">
+    <section className="bg-secondary-bg w-full h-dvh overflow-y-auto">
+      <div className="w-full">
         <Header />
       </div>
 
-      <div className="flex w-full pt-5 pl-2 pr-3">
-        <div className="w-[20%]">
+      <div className="flex w-full h-[calc(100dvh-69px)] overflow-y-auto pl-3 pr-1">
+        <div className="w-[20%] h-[calc(100dvh-69px)] pt-5 sticky top-0 left-0 hover:overflow-y-auto pb-6">
           <LeftPart />
         </div>
 
-        <div className="w-[60%]">
+        <div className="w-[58%] pt-5">
           <Outlet />
         </div>
 
-        <div className="w-[20%]">
+        <div className="w-[22%] h-[calc(100dvh-69px)] pt-5 sticky top-0 left-0 hover:overflow-y-auto pr-1 pb-8">
           <RightPart />
         </div>
       </div>

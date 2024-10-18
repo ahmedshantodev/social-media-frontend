@@ -16,8 +16,8 @@ const StoriesPart = () => {
     infinite: false,
     arrows: false,
     speed: 500,
-    slidesToScroll: 4.3,
-    slidesToShow: 4.3,
+    slidesToScroll: 5.5,
+    slidesToShow: 5.5,
   };
 
   const next = () => {
@@ -33,7 +33,7 @@ const StoriesPart = () => {
       <div className="slider-container">
         <Slider {...settings} ref={sliderRef}>
           <div>
-            <div className="group relative w-[95%] h-[225px] rounded-[10px] overflow-hidden cursor-pointer">
+            <div className="group relative w-[95%] h-[210px] rounded-[10px] overflow-hidden cursor-pointer">
               <div className="w-full h-[70%]">
                 <img
                   src={userImage}
@@ -43,9 +43,9 @@ const StoriesPart = () => {
               </div>
 
               <div className="w-full h-[30%] bg-white text-center pt-7 relative">
-                <FiPlus className="absolute top-0 -translate-y-2/4 left-2/4 -translate-x-2/4 box-content bg-[#075ce5] text-white text-2xl p-2 rounded-full border-2 border-white group-hover:scale-[1.04] transition-all duration-150 ease-in-out " />
+                <FiPlus className="absolute top-0 -translate-y-2/4 left-2/4 -translate-x-2/4 box-content bg-[#075ce5] text-white text-[22px] p-[6px] rounded-full border-2 border-white group-hover:scale-[1.04] transition-all duration-150 ease-in-out " />
 
-                <p className="font-poppins font-medium">Create Story</p>
+                <p className="font-segoe-ui font-medium text-[15px]">Create Story</p>
               </div>
             </div>
           </div>
@@ -65,14 +65,14 @@ const StoriesPart = () => {
 
       <button
         onClick={previous}
-        className="absolute left-4 top-2/4 z-10 -translate-y-2/4 box-content bg-white text-black text-2xl p-2.5 rounded-full "
+        className="absolute left-4 top-2/4 z-10 -translate-y-2/4 box-content bg-white text-black text-2xl p-2 rounded-full "
       >
         <IoIosArrowForward className=" rotate-180" />
       </button>
 
       <button
         onClick={next}
-        className="absolute right-4 top-2/4 z-10 -translate-y-2/4 box-content bg-white text-black text-2xl p-2.5 rounded-full "
+        className="absolute right-4 top-2/4 z-10 -translate-y-2/4 box-content bg-white text-black text-2xl p-2 rounded-full "
       >
         <IoIosArrowForward />
       </button>

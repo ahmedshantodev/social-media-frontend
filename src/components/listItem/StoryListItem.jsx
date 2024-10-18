@@ -4,9 +4,9 @@ const StoryListItem = ({ index, name, image, story }) => {
   return (
     <div
       key={index}
-      className=" relative w-[95%] h-[225px] rounded-[10px] overflow-hidden cursor-pointer group"
+      className=" relative w-[95%] h-[210px] rounded-[10px] overflow-hidden cursor-pointer group"
     >
-      <div className="w-[40px] aspect-square absolute top-3 left-3 z-10 rounded-full overflow-hidden border-2 border-white">
+      <div className="w-[38px] aspect-square absolute top-3 left-3 z-10 rounded-full overflow-hidden border-2 border-white">
         <img src={image} alt={name} className="w-full h-full object-cover" />
       </div>
 
@@ -19,7 +19,7 @@ const StoryListItem = ({ index, name, image, story }) => {
       </div>
 
       <div className="absolute bottom-2 left-1 line-clamp-2">
-        <p className="text-white font-medium w-full text-lg leading-5">{name}</p>
+        <p className="text-white font-segoe-ui font-medium w-full text-[15px] leading-5">{name}</p>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ const PostCreateModal = ({ show, setShow }) => {
       setShow={setShow}
       className={`w-[570px] max-h-[85%] py-5 relative`}
     >
-      <p className="text-center text-primary-text font-poppins font-semibold text-lg border-b-2 border-primary-border pb-3">
+      <p className="text-center text-primary-text font-segoe-ui font-semibold text-[19px] border-b-2 border-primary-border pb-3">
         Create Post
       </p>
 
@@ -45,7 +45,7 @@ const PostCreateModal = ({ show, setShow }) => {
             />
           </div>
 
-          <p className="font-inter text-lg text-primary-text font-semibold">
+          <p className="font-segoe-ui text-[19px] text-primary-text font-semibold">
             Monsur Ahmed Shanto
           </p>
         </div>
@@ -61,7 +61,7 @@ const PostCreateModal = ({ show, setShow }) => {
                 value={inputData}
                 placeholder="What's on your mind, Monsur?"
                 onChange={(e) => setInputData(e.target.value)}
-                className={`w-full h-full absolute top-0 left-0 z-10 bg-transparent border-none focus:outline-none rounded-[6px] resize-none py-2 placeholder:text-[30px] placeholder:font-semibold font-semibold text-3xl placeholder:text-white placeholder:leading-[42px] leading-[42px]`}
+                className={`w-full h-full absolute top-0 left-0 z-10 bg-transparent border-none focus:outline-none rounded-[6px] resize-none py-2 placeholder:font-segoe-ui placeholder:text-[30px] placeholder:font-semibold font-semibold text-3xl placeholder:text-white placeholder:leading-[42px] leading-[42px]`}
               />
 
               {/* <div className="w-full h-full absolute top-0 left-0 z-10 flex items-center justify-center text-center px-5">
@@ -91,10 +91,10 @@ const PostCreateModal = ({ show, setShow }) => {
               onChange={(e) => setInputData(e.target.value)}
               className={
                 mediaUploaderShow
-                  ? "w-full border-none focus:outline-none rounded-[6px] h-[100px] resize-none py-2 placeholder:text-lg text-lg placeholder:text-[#65676b]"
+                  ? "w-full border-none focus:outline-none rounded-[6px] h-[100px] resize-none py-2 font-segoe-ui placeholder:font-segoe-ui placeholder:text-lg text-lg placeholder:text-[#65676b]"
                   : inputData.length > 200
-                  ? "w-full border-none focus:outline-none rounded-[6px] h-[130px] resize-nones py-2 placeholder:text-lg text-lg placeholder:text-[#65676b]"
-                  : "w-full border-none focus:outline-none rounded-[6px] h-[130px] resize-none py-2 placeholder:text-[24px] text-2xl placeholder:text-[#65676b]"
+                  ? "w-full border-none focus:outline-none rounded-[6px] h-[130px] resize-nones py-2 font-segoe-ui placeholder:font-segoe-ui placeholder:text-lg text-lg placeholder:text-[#65676b]"
+                  : "w-full border-none focus:outline-none rounded-[6px] h-[130px] resize-none py-2 font-segoe-ui placeholder:font-segoe-ui placeholder:text-[24px] text-2xl placeholder:text-[#65676b]"
               }
             />
           )}
@@ -118,7 +118,7 @@ const PostCreateModal = ({ show, setShow }) => {
 
           {feelingSelectorShow && (
             <div className="w-full h- border border-primary-border rounded-[6px] px-3 py-2 mt-2">
-              <h2 className="text-[17px] font-inter font-medium text-secondary-text mb-2">
+              <h2 className="text-[18px] font-segoe-ui font-medium text-secondary-text mb-2">
                 Feelings:
               </h2>
 
@@ -132,7 +132,7 @@ const PostCreateModal = ({ show, setShow }) => {
                     <p className="text-2xl bg-[#e4e6eb] p-1 rounded-full">
                       {item.emoji}
                     </p>
-                    <p className="text-[17px] font-poppins text-secondary-texts font-light">
+                    <p className="text-[18px] font-segoe-ui font-light">
                       {item.feeling}
                     </p>
                   </div>
@@ -154,8 +154,8 @@ const PostCreateModal = ({ show, setShow }) => {
         <button
           className={
             inputData
-              ? "w-full mt-3 rounded-[6px] py-2.5 bg-primary-button text-lg font-poppins font-medium text-white cursor-pointer"
-              : "w-full mt-3 rounded-[6px] py-2.5 bg-tertiary-bg text-lg font-poppins font-medium text-secondary-text cursor-not-allowed"
+              ? "w-full mt-3 rounded-[6px] py-2.5 bg-primary-button text-lg font-segoe-ui font-medium text-white cursor-pointer"
+              : "w-full mt-3 rounded-[6px] py-2.5 bg-tertiary-bg text-lg font-segoe-ui font-medium text-secondary-text cursor-not-allowed"
           }
         >
           Next

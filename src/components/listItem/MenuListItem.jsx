@@ -15,7 +15,7 @@ const MenuListItem = ({ icon, text, path }) => {
         <img src={icon} alt={text} className={`w-full`} />
       </div>
 
-      <p className="text-base font-medium font-poppins text-primary-text">{text}</p>
+      <p className="text-[17px] font-segoe-ui font-medium text-primary-text">{text}</p>
     </NavLink>
   );
 };

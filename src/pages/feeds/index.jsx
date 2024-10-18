@@ -11,7 +11,7 @@ const Feeds = () => {
         <title>Ripple</title>
       </Helmet>
 
-      <div className="w-[700px] mx-auto">
+      <div className="w-[700px] mx-auto pb-1">
         <PostCreatePart />
         <StoriesPart />
         <PostPart />

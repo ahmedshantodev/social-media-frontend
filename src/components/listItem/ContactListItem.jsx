@@ -7,7 +7,7 @@ const ContactListItem = ({ index, image, name }) => {
         <img src={image} alt={name} className="w-full" />
       </div>
 
-      <h2 className="text-base font-medium font-poppins text-primary-text">
+      <h2 className="text-[17px] font-medium font-segoe-ui text-primary-text">
         {name}
       </h2>
     </div>

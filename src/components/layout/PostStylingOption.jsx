@@ -61,7 +61,7 @@ const PostStylingOption = ({
               alt="add-background-logo"
               className="w-[40px] aspect-square"
             />
-            <p className="text-secondary-text font-poppins text-[17px]">
+            <p className="text-secondary-text font-segoe-ui text-[18px] font-medium">
               Add Background
             </p>
 
@@ -81,7 +81,7 @@ const PostStylingOption = ({
               alt="add-background-logo"
               className="w-[40px] aspect-square"
             />
-            <p className="text-secondary-text font-poppins text-[17px]">
+            <p className="text-secondary-text font-segoe-ui text-[18px] font-medium">
               Add Background
             </p>
           </button>
@@ -100,7 +100,7 @@ const PostStylingOption = ({
               <HiOutlineFaceSmile className="text-2xl text-secondary-text" />
             </div>
 
-            <p className="text-secondary-text font-poppins text-[17px]">
+            <p className="text-secondary-text font-segoe-ui text-[18px] font-medium">
               Add Emoji
             </p>
 
@@ -121,7 +121,7 @@ const PostStylingOption = ({
               <HiOutlineFaceSmile className="text-2xl text-secondary-text" />
             </div>
 
-            <p className="text-secondary-text font-poppins text-[17px]">
+            <p className="text-secondary-text font-segoe-ui text-[18px] font-medium">
               Add Emoji
             </p>
           </button>
@@ -139,7 +139,7 @@ const PostStylingOption = ({
           onClick={handleBackgroundRemove}
           className="w-[18%] aspect-square rounded-[10px] border border-primary-border flex items-center justify-center cursor-pointer"
         >
-          <p className="font-inter text-secondary-text font-semibold">Remove</p>
+          <p className="font-segoe-ui text-[17px] text-secondary-text font-semibold">Remove</p>
         </div>
         {postBackgroundInfo.map((item, index) => (
           <div

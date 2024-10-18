@@ -23,7 +23,7 @@ const PostCreatePart = () => {
           onClick={() => setPostCreateModalShow(true)}
           className="bg-[#f0f2f5] px-5 py-2.5 w-full rounded-[30px] cursor-pointer hover:bg-[#e4e6e9] transition-all duration-150 ease-in-out"
         >
-          <p className="text-lg text-secondary-text font-medium">
+          <p className="font-segoe-ui text-lg text-secondary-text font-medium">
             What's on your mind, Monsur?
           </p>
         </div>
@@ -40,7 +40,7 @@ const PostCreatePart = () => {
             <img src={liveVideoLogo} alt="live-video-logo" className="w-full" />
           </div>
 
-          <p className="text-secondary-text font-semibold font-poppins text-[15px]">
+          <p className="text-secondary-text font-semibold font-segoe-ui text-[17px]">
             Live Video
           </p>
         </button>
@@ -53,7 +53,7 @@ const PostCreatePart = () => {
             <img src={galaryLogo} alt="live-video-logo" className="w-full" />
           </div>
 
-          <p className="text-secondary-text font-semibold font-poppins text-[15px]">
+          <p className="text-secondary-text font-semibold font-segoe-ui text-[17px]">
             Photo/Video
           </p>
         </button>
@@ -63,7 +63,7 @@ const PostCreatePart = () => {
             <img src={feelingsLogo} alt="live-video-logo" className="w-full" />
           </div>
 
-          <p className="text-secondary-text font-semibold font-poppins text-[15px]">
+          <p className="text-secondary-text font-semibold font-segoe-ui text-[17px]">
             Feeling/activity
           </p>
         </button>

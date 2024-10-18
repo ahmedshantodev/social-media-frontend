@@ -10,6 +10,8 @@ module.exports = {
       "gilroy-semiBold": ["Gilroy SemiBold"],
       "gilroy-bold": ["Gilroy Bold"],
       "gilroy-extraBold": ["Gilroy ExtraBold"],
+      "segoe-ui": ["Segoe UI"],
+      "segoe-ui-bold": ["Segoe UI Bold"],
       poppins: ["Poppins", "system-ui"],
       inter: ["Inter", "sans-serif"],
     },

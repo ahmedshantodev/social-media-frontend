@@ -7,14 +7,14 @@ const FriendRequestsPart = () => {
   return (
     <div className="border-b border-[#ced0d4] pb-3 mb-3">
       <div className="flex items-center justify-between">
-        <p className="font-inter font-semibold text-lg text-secondary-text">
+        <p className="font-segoe-ui font-semibold text-lg text-secondary-text">
           Friend requsts
         </p>
 
         <div>
           <NavLink
             to={"/friends"}
-            className="text-tertiary-text font-poppins hover:underline transition-all ease-in-out duration-150"
+            className="text-tertiary-text font-segoe-ui hover:underline transition-all ease-in-out duration-150"
           >
             See all
           </NavLink>

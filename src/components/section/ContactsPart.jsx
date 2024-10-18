@@ -8,7 +8,7 @@ const ContactsPart = () => {
 
   return (
     <div>
-      <p className="font-inter font-semibold text-lg text-secondary-text mb-3">
+      <p className="font-segoe-ui font-semibold text-lg text-secondary-text mb-3">
         Contacts
       </p>
 

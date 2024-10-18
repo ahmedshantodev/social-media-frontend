@@ -9,10 +9,10 @@ const FriendRequstListItem = ({ image, name, time, accept, reject }) => {
         </div>
 
         <div>
-          <h2 className="text-base text-primary-text font-medium font-poppins text-ellipsis overflow-hidden line-clamp-1 w-[155px]">
+          <h2 className="text-[17px] text-primary-text font-medium font-segoe-ui text-ellipsis overflow-hidden line-clamp-1 w-[155px]">
             {name}
           </h2>
-          <p className="text-sm font-medium font-gilroy-medium text-tertiary-text">
+          <p className="text-sm font-medium font-segoe-ui text-tertiary-text">
             {time}
           </p>
         </div>
@@ -21,13 +21,13 @@ const FriendRequstListItem = ({ image, name, time, accept, reject }) => {
       <div>
         <button
           onClick={accept}
-          className="text-sm bg-black text-white px-3 py-[5px] rounded-full font-gilroy-medium mr-1"
+          className="text-[15px] bg-black text-white px-[14px] py-[4px] rounded-full font-segoe-ui mr-1"
         >
           Accept
         </button>
         <button
           onClick={reject}
-          className="text-sm bg-red-600 text-white px-3 py-[5px] rounded-full font-gilroy-medium"
+          className="text-[15px] bg-red-600 text-white px-[14px] py-[4px] rounded-full font-segoe-ui"
         >
           Reject
         </button>

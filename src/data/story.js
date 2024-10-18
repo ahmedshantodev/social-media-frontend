@@ -52,4 +52,24 @@ export const story = [
     image: storyOne,
     story: storyOne,
   },
+  {
+    name: "Azmir uddin alif",
+    image: storyTwo,
+    story: storyTwo,
+  },
+  {
+    name: "Farhad Hossain Mamun",
+    image: storyOne,
+    story: storyOne,
+  },
+  {
+    name: "Azmir uddin alif",
+    image: storyTwo,
+    story: storyTwo,
+  },
+  {
+    name: "Farhad Hossain Mamun",
+    image: storyOne,
+    story: storyOne,
+  },
 ];

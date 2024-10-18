@@ -38,7 +38,7 @@ const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
         className="bg-white absolute top-5 left-5 z-10 px-5 py-2 rounded-[8px] flex items-center gap-x-2.5 border border-primary-border cursor-pointer"
       >
         <RiImageAddFill className="text-[21px] text-secondary-text" />
-        <p className="text-[17px] text-secondary-text font-inter font-medium">
+        <p className="text-[17px] text-secondary-text font-segoe-ui font-medium">
           Add more photos
         </p>
 
@@ -129,7 +129,7 @@ const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
                   />
 
                   <div className="w-full h-full bg-gray-600/50 absolute top-0 left-0 flex items-center justify-center">
-                    <p className="text-4xl font-semibold text-white font-inter">
+                    <p className="text-4xl font-semibold text-white font-segoe-ui">
                       +{postImages.length - 4}
                     </p>
                   </div>
@@ -163,10 +163,10 @@ const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
           <div>
             <RiImageAddFill className="text-3xl text-secondary-text mx-auto mb-1" />
 
-            <p className="text-[18px] font-medium text-primary-text font-poppins">
+            <p className="text-[19px] font-medium text-primary-text font-segoe-ui">
               Add Photos/Videos
             </p>
-            <p className="text-[13px] text-secondary-text font-poppins">
+            <p className="text-[14px] text-secondary-text font-segoe-ui">
               Or drag and drop
             </p>
           </div>
