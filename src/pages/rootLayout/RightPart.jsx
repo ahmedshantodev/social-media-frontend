@@ -1,12 +1,12 @@
 import React from "react";
 import FriendRequestsPart from "../../components/section/FriendRequestsPart";
-import ContactsPart from "../../components/section/ContactsPart";
+import OnlinePart from "../../components/section/OnlinePart";
 
 const RightPart = () => {
   return (
-    <div className="w-full">
+    <div className="w-full h-full overflow-y-auto no-scrollbar">
       <FriendRequestsPart />
-      <ContactsPart />
+      <OnlinePart />
     </div>
   );
 };

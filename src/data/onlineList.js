@@ -9,55 +9,55 @@ import userEight from "/public/remove/userEight.png"
 import userNine from "/public/remove/userNine.png"
 import userTen from "/public/remove/userTen.png"
 
-export const story = [
+export const onlineList = [
   {
     image: userOne,
     name: "Rayhand Ahmed Siam",
-    story: userOne,
+    status: "online", 
   },
   {
     image: userTwo,
     name: "Syed Rifat",
-    story: userTwo,
+    status: "offline",
   },
   {
     image: userThree,
     name: "Foysal Prodhan",
-    story: userThree,
+    status: "online",
   },
   {
     image: userFour,
     name: "Rayhan Ahmed",
-    story: userFour,
+    status: "offline",
   },
   {
     image: userFive,
     name: "ABM Shawon Islam",
-    story: userFive,
+    status: "online",
   },
   {
     image: userSix,
     name: "Ashif Mahmud",
-    story: userSix,
+    status: "offline",
   },
   {
     image: userSeven,
     name: "Tanvir Ahmed",
-    story: userSeven,
+    status: "online",
   },
   {
     image: userEight,
     name: "Sabbir Ahmed",
-    story: userEight,
+    status: "offline",
   },
   {
     image: userNine,
     name: "Forhad Hossain Mamun",
-    story: userNine,
+    status: "online",
   },
   {
     image: userTen,
     name: "Somor MK",
-    story: userTen,
+    status: "offline",
   },
 ];

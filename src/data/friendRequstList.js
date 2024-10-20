@@ -1,34 +1,27 @@
-import requstImage from "/public/remove/azmir sir.jpg";
+import userEleven from "/public/remove/userEleven.png";
+import userTwelve from "/public/remove/userTwelve.png";
+import userThirteen from "/public/remove/userThirteen.png";
+import userFourteen from "/public/remove/userFourteen.png";
 
 export const friendRequstList = [
-  { 
-    image: requstImage,
-    name: "Azmir Uddin Alif",
-    time: "2 hours ago" 
+  {
+    image: userEleven,
+    name: "Tabir Ahmed",
+    time: "1 hours ago",
   },
-  { 
-    image: requstImage,
-    name: "Azmir Uddin Alif",
-    time: "2 hours ago" 
+  {
+    image: userThirteen,
+    name: "Shoriful Islam Sabbir",
+    time: "2 hours ago",
   },
-  { 
-    image: requstImage,
-    name: "Azmir Uddin Alif",
-    time: "2 hours ago" 
+  {
+    image: userFourteen,
+    name: "Shahin Prodhan",
+    time: "2 hours ago",
   },
-  { 
-    image: requstImage,
-    name: "Azmir Uddin Alif",
-    time: "2 hours ago" 
-  },
-  { 
-    image: requstImage,
-    name: "Azmir Uddin Alif",
-    time: "2 hours ago" 
-  },
-  { 
-    image: requstImage,
-    name: "Azmir Uddin Alif",
-    time: "2 hours ago" 
+  {
+    image: userTwelve,
+    name: "Tanvir Ahmed",
+    time: "2 hours ago",
   },
 ];

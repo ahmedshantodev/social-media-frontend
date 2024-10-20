@@ -11,8 +11,8 @@ const RootLayout = () => {
         <Header />
       </div>
 
-      <div className="flex w-full h-[calc(100dvh-69px)] overflow-y-auto pl-3 pr-1">
-        <div className="w-[20%] h-[calc(100dvh-69px)] pt-5 sticky top-0 left-0 hover:overflow-y-auto pb-6">
+      <div className="flex w-full h-[calc(100dvh-69px)] overflow-y-auto">
+        <div className="scrollbar-parent w-[20%] h-[calc(100dvh-69px)] sticky top-0 left-0">
           <LeftPart />
         </div>
 
@@ -20,7 +20,7 @@ const RootLayout = () => {
           <Outlet />
         </div>
 
-        <div className="w-[22%] h-[calc(100dvh-69px)] pt-5 sticky top-0 left-0 hover:overflow-y-auto pr-1 pb-8">
+        <div className="scrollbar-parent w-[22%] h-[calc(100dvh-69px)] sticky top-0 left-0 pr-1">
           <RightPart />
         </div>
       </div>

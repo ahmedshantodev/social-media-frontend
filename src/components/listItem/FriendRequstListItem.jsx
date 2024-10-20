@@ -9,10 +9,10 @@ const FriendRequstListItem = ({ image, name, time, accept, reject }) => {
         </div>
 
         <div>
-          <h2 className="text-[17px] text-primary-text font-medium font-segoe-ui text-ellipsis overflow-hidden line-clamp-1 w-[155px]">
+          <h2 className="text-[17px] text-primary-text font-medium font-segoe-ui text-ellipsis overflow-hidden line-clamp-1 w-[175px]">
             {name}
           </h2>
-          <p className="text-sm font-medium font-segoe-ui text-tertiary-text">
+          <p className="text-[13px] font-medium font-segoe-ui text-tertiary-text">
             {time}
           </p>
         </div>

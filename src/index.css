@@ -63,3 +63,14 @@
   background: #bcc0c4;
   border-radius: 10px;
 }
+
+/* scrollbar show on hover */
+.no-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.no-scrollbar::-webkit-scrollbar-thumb{
+  visibility: hidden;
+}
+.scrollbar-parent:hover .no-scrollbar::-webkit-scrollbar-thumb{
+  visibility: visible;
+}

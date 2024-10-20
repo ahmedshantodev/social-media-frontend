@@ -1,40 +1,55 @@
-import oneYear from "/public/remove/one-year-academy.jpg";
+import groupOne from "/public/remove/groupOne.png"
+import groupTwo from "/public/remove/groupTwo.png"
+import groupThree from "/public/remove/groupThree.png"
+import groupFour from "/public/remove/groupFour.png"
+import groupFive from "/public/remove/groupFive.png"
+import groupSix from "/public/remove/groupSix.png"
+import groupSeven from "/public/remove/groupSeven.png"
+import groupEight from "/public/remove/groupEight.png"
+import groupNine from "/public/remove/groupNine.png"
+import groupTen from "/public/remove/groupTen.png"
+
+
 
 export const shortcutList = [
   {
-    image: oneYear,
+    image: groupOne,
     name: "One Year Academy",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupTwo,
+    name: "Redux Bangladesh",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupThree,
+    name: "NEXT JS",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupFour,
+    name: "Clash Royal",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupFive,
+    name: "Mongo DB",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupSix,
+    name: "বৈষম্যবিরোধী ছাত্র আন্দোলন",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupSeven,
+    name: "Express js",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupEight,
+    name: "PUBG",
   },
   {
-    image: oneYear,
-    name: "One Year Academy",
+    image: groupNine,
+    name: "Clash of Clans",
+  },
+  {
+    image: groupTen,
+    name: "JS BANGLADESH",
   },
 ];

@@ -5,7 +5,7 @@ import { friendRequstList } from "../../data/friendRequstList";
 
 const FriendRequestsPart = () => {
   return (
-    <div className="border-b border-[#ced0d4] pb-3 mb-3">
+    <div className="border-b border-[#ced0d4] pb-3 mb-3 mt-5 pr-1">
       <div className="flex items-center justify-between">
         <p className="font-segoe-ui font-semibold text-lg text-secondary-text">
           Friend requsts
@@ -22,14 +22,17 @@ const FriendRequestsPart = () => {
       </div>
 
       <div className="mt-3">
-        {friendRequstList.map((item , index) => (
-          <FriendRequstListItem
-            key={index}
-            image={item.image}
-            name={item.name}
-            time={item.time}
-          />
-        ))}
+        {friendRequstList.map(
+          (item, index) =>
+            index <= 3 && (
+              <FriendRequstListItem
+                key={index}
+                image={item.image}
+                name={item.name}
+                time={item.time}
+              />
+            )
+        )}
       </div>
     </div>
   );
