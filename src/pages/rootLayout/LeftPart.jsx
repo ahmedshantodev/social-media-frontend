@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { navmenu } from "../../data/navmenu";
-import MenuListItem from "../../components/listItem/MenuListItem";
 import userImage from "/public/remove/shanto.jpg";
+import { navmenu } from "../../data/navmenu";
 import { shortcutList } from "../../data/shortcutList";
-import ShortcutListItem from "../../components/listItem/ShortcutListItem";
+import FriendListItem from "../../components/listItem/FriendListItem";
+import GroupListItem from "../../components/listItem/GroupListItem";
+import MenuListItem from "../../components/listItem/MenuListItem";
 import { IoIosArrowUp } from "react-icons/io";
 
 const LeftPart = () => {
-  const [seeMore, setSeeMore] = useState(false)
+  const [seeMore, setSeeMore] = useState(false);
 
   return (
     <div className="w-full h-full overflow-y-scroll no-scrollbar pl-3 pr-1 pb-2">
@@ -44,18 +45,30 @@ const LeftPart = () => {
         </div>
 
         <div className="pt-2">
-          {shortcutList.map((item, index) => (
+          {shortcutList.map((item, index) =>
             seeMore ? (
-              <ShortcutListItem key={index} image={item.image} name={item.name} />
+              item.type === "friend" ? (
+                <FriendListItem image={item.image} name={item.name} />
+              ) : (
+                <GroupListItem image={item.image} name={item.name} />
+              )
             ) : (
-              index <= 5 && <ShortcutListItem key={index} image={item.image} name={item.name} />
+              index <= 5 &&
+              (item.type === "friend" ? (
+                <FriendListItem image={item.image} name={item.name} />
+              ) : (
+                <GroupListItem image={item.image} name={item.name} />
+              ))
             )
-          ))}
-          
+          )}
+
           {seeMore ? (
-            <div onClick={() => setSeeMore(!seeMore)} className="group flex items-center gap-4 cursor-pointer px-2 py-2.5 rounded-[10px] relative hover:bg-[#e4e6e9] transition-all ease-linear duration-100">
+            <div
+              onClick={() => setSeeMore(!seeMore)}
+              className="group flex items-center gap-4 cursor-pointer px-2 py-2.5 rounded-[10px] relative hover:bg-[#e4e6e9] transition-all ease-linear duration-100"
+            >
               <div className="w-[40px] aspect-square rounded-full overflow-hidden group-hover:bg-white bg-[#e4e6eb] flex items-center justify-center">
-                <IoIosArrowUp className="text-[25px] text-primary-text"/>
+                <IoIosArrowUp className="text-[25px] text-primary-text" />
               </div>
 
               <h2 className="text-secondary-text text-[18px] font-medium font-segoe-ui text-ellipsis overflow-hidden line-clamp-1 w-[220px]">
@@ -63,9 +76,12 @@ const LeftPart = () => {
               </h2>
             </div>
           ) : (
-            <div onClick={() => setSeeMore(!seeMore)} className="group flex items-center gap-4 cursor-pointer px-2 py-2.5 rounded-[10px] relative hover:bg-[#e4e6e9] transition-all ease-linear duration-100">
+            <div
+              onClick={() => setSeeMore(!seeMore)}
+              className="group flex items-center gap-4 cursor-pointer px-2 py-2.5 rounded-[10px] relative hover:bg-[#e4e6e9] transition-all ease-linear duration-100"
+            >
               <div className="w-[40px] aspect-square rounded-full overflow-hidden group-hover:bg-white bg-[#e4e6eb] flex items-center justify-center">
-                <IoIosArrowUp className="text-[25px] text-primary-text rotate-180"/>
+                <IoIosArrowUp className="text-[25px] text-primary-text rotate-180" />
               </div>
 
               <h2 className="text-secondary-text text-[18px] font-medium font-segoe-ui text-ellipsis overflow-hidden line-clamp-1 w-[220px]">

@@ -9,7 +9,7 @@ import userEight from "/public/remove/userEight.png"
 import userNine from "/public/remove/userNine.png"
 import userTen from "/public/remove/userTen.png"
 
-export const onlineList = [
+export const friendList = [
   {
     image: userOne,
     name: "Rayhand Ahmed Siam",
