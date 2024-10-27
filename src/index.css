@@ -49,17 +49,16 @@
   src: url("./assets/fonts/Segoe\ UI\ Bold.ttf");
 }
 
-
 /* custom scroll bar */
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 9px;
 }
 
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #bcc0c4;
   border-radius: 10px;
 }
@@ -68,9 +67,15 @@
 .no-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
-.no-scrollbar::-webkit-scrollbar-thumb{
+.no-scrollbar::-webkit-scrollbar-thumb {
   visibility: hidden;
 }
-.scrollbar-parent:hover .no-scrollbar::-webkit-scrollbar-thumb{
+.scrollbar-parent:hover .no-scrollbar::-webkit-scrollbar-thumb {
   visibility: visible;
+}
+
+/* input filed type number ar side ar arrow remove korar jonno */
+.spin-button-none::-webkit-outer-spin-button,
+.spin-button-none::-webkit-inner-spin-button {
+  appearance: none;
 }

@@ -1,30 +1,66 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-const Input = ({
+const input = ({
+  label,
+  name,
+  onChange,
   type,
   id,
-  onChange,
-  value,
-  name,
   placeholder,
-  error,
   className,
+  error,
 }) => {
+  // to prevent tab key from jumping to the next form field?
+  const inputRef = useRef(null);
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Tab") {
+        event.preventDefault();
+        inputRef.current.focus();
+      }
+    };
+
+    inputRef.current?.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      inputRef.current?.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
-    <input
-      id={id}
-      name={name}
-      value={value}
-      onChange={onChange}
-      type={type ? type : "text"}
-      placeholder={placeholder}
-      className={`${className} ${
-        error
-          ? "border border-[#dc2626] font-poppins text-text_color placeholder:font-poppins placeholder:text-[#dc2626] placeholder:text-[12px] md:placeholder:text-[13px] lg:placeholder:text-xs xl:placeholder:text-sm 2xl:placeholder:text-base focus:outline-1 focus:outline-[#dc2626] py-2 2xl:py-[17px] px-4 md:px-5 2xl:px-7 rounded-[8px]"
-          : "border border-[#cacad8] font-poppins text-text_color placeholder:font-poppins placeholder:text-[#9e949c] placeholder:text-[12px] md:placeholder:text-[13px] lg:placeholder:text-xs xl:placeholder:text-sm 2xl:placeholder:text-base focus:outline-1 focus:outline-[#dddcea] py-2 2xl:py-[17px] px-4 md:px-5 2xl:px-7 rounded-[8px]"
-      }`}
-    />
+    <div className={`relative ${className}`}>
+      {label && (
+        <label
+          htmlFor={id}
+          className={
+            "block text-xl font-segoe-ui font-medium text-secondary-text mb-[6px]"
+          }
+        >
+          {label}
+        </label>
+      )}
+
+      <input
+        id={id}
+        type={type}
+        name={name}
+        ref={inputRef}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={
+          error
+            ? "w-full border-2 border-[#f87179] focus:outline-none py-4 px-5 rounded-[6px] font-poppins text-primary-text placeholder:font-poppins placeholder:text-[#f87179]"
+            : "w-full border-2 border-[#a8c7fa] focus:outline-none py-4 px-5 rounded-[6px] font-poppins text-primary-text placeholder:font-inter"
+        }
+      />
+
+      {error && (
+        <p className="text-[15px] text-[#f87179] absolute top-full left-0 font-inter">
+          {error}
+        </p>
+      )}
+    </div>
   );
 };
 
-export default Input;
+export default input;
