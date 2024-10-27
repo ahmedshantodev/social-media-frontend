@@ -186,7 +186,7 @@ const Login = () => {
 
                 <button
                   onClick={handleLogin}
-                  className="bg-[#b6d0fb] text-[#062e6f] px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#a8c7fa] active:scale-[0.95] transition-all duration-200 ease-in-out"
+                  className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.95] transition-all duration-200 ease-in-out"
                 >
                   Login
                 </button>
