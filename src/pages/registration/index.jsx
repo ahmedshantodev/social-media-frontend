@@ -87,7 +87,7 @@ const Registration = () => {
       </Helmet>
 
       <section className="w-full h-screen bg-registration-bg bg-no-repeat bg-cover flex items-center justify-center">
-        <div className="w-[1400px] rounded-[30px] bg-[#f0f2f5] p-10 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+        <div className="w-[1450px] rounded-[30px] bg-[#f0f2f5] py-10 px-14 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
           <div>
             <img
               src={ripple_logo}
