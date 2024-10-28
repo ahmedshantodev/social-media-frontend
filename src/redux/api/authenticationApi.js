@@ -21,7 +21,55 @@ export const authenticationApi = createApi({
         body,
       }),
     }),
+
+    findUser: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/find-user",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    findUsername: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/find-username",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    sendOtp: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/send-otp",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    verifyOtp: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/otp-verification",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    passwordReset: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/password-reset",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useRegistrationMutation , useLoginMutation } = authenticationApi;
+export const {
+  useRegistrationMutation,
+  useLoginMutation,
+  useFindUserMutation,
+  useFindUsernameMutation,
+  useSendOtpMutation,
+  useVerifyOtpMutation,
+  usePasswordResetMutation,
+} = authenticationApi;

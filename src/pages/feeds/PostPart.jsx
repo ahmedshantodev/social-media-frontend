@@ -2,6 +2,7 @@ import React from "react";
 import Post from "../../components/section/Post";
 import userImageOne from "/public/remove/shanto.jpg";
 import postImageOne from "/public/remove/postImageOne.jpg";
+import postImageTwo from "/public/remove/post-image.jpg";
 
 const PostPart = () => {
   return (
@@ -10,7 +11,7 @@ const PostPart = () => {
         name={`Monsur Ahmed Shanto`}
         image={userImageOne}
         time={`a day ago`}
-        content={postImageOne}
+        content={postImageTwo}
       />
       <Post
         name={`Monsur Ahmed Shanto`}
@@ -22,7 +23,7 @@ const PostPart = () => {
         name={`Monsur Ahmed Shanto`}
         image={userImageOne}
         time={`a day ago`}
-        content={postImageOne}
+        content={postImageTwo}
       />
       <Post
         name={`Monsur Ahmed Shanto`}

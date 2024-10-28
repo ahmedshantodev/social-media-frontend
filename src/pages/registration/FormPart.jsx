@@ -5,6 +5,10 @@ import Name from "./Name";
 import Password from "./Password";
 import BirthDate_Gender from "./BirthDate_Gender";
 import Email_Username from "./Email_Username";
+import {
+  useFindUserMutation,
+  useFindUsernameMutation,
+} from "../../redux/api/authenticationApi";
 
 const FormPart = ({
   info,
@@ -14,6 +18,8 @@ const FormPart = ({
   isOtpModalShow,
   setIsOtpModalShow,
 }) => {
+  const [findUser] = useFindUserMutation();
+  const [findUsername] = useFindUsernameMutation();
   const [activeItem, setActiveItem] = useState(1);
 
   useEffect(() => {
@@ -49,7 +55,7 @@ const FormPart = ({
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (activeItem === 1) {
       if (info.firstName === "") {
         return setError((prev) => ({
@@ -133,6 +139,14 @@ const FormPart = ({
         });
       }
 
+      const emailResponse = await findUser({ email: info.email });
+      if (emailResponse.data?.email) {
+        return setError({
+          ...error,
+          email: "user already exist",
+        });
+      }
+
       if (info.username === "") {
         return setError({
           ...error,
@@ -144,6 +158,14 @@ const FormPart = ({
         return setError({
           ...error,
           username: "User name must be 10-40 words long.",
+        });
+      }
+
+      const usernameResponse = await findUsername({ username: info.username });
+      if (usernameResponse.error?.data?.message) {
+        return setError({
+          ...error,
+          username: usernameResponse.error?.data?.message,
         });
       }
 

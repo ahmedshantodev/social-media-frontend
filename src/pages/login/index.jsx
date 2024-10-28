@@ -66,8 +66,6 @@ const Login = () => {
       password: info.password,
     });
 
-    console.log(response);
-
     if (response.error?.data?.message) {
       if (response.error?.data?.message == "user not found") {
         return setError((prev) => ({

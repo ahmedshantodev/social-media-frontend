@@ -12,11 +12,11 @@ const RootLayout = () => {
       </div>
 
       <div className="flex w-full h-[calc(100dvh-69px)] overflow-y-auto">
-        <div className="scrollbar-parent w-[20%] h-[calc(100dvh-69px)] sticky top-0 left-0">
+        <div className="scrollbar-parent w-[22%] h-[calc(100dvh-69px)] sticky top-0 left-0">
           <LeftPart />
         </div>
 
-        <div className="w-[58%] pt-5">
+        <div className="w-[56%] pt-5">
           <Outlet />
         </div>
 
