@@ -8,8 +8,8 @@ const Password = ({ activeItem, error, onChange }) => {
     <div
       className={
         activeItem === 4
-          ? "absolute top-0 left-0 w-full pl-3 translate-x-0 transition-all duration-300 ease-in-out"
-          : "absolute top-0 left-0 w-full pl-3 translate-x-full transition-all duration-300 ease-in-out"
+          ? "absolute top-0 left-0 w-full px-2 translate-x-0 transition-all duration-300 ease-in-out"
+          : "absolute top-0 left-0 w-full px-2 translate-x-full transition-all duration-300 ease-in-out"
       }
     >
       <Input
@@ -39,12 +39,12 @@ const Password = ({ activeItem, error, onChange }) => {
           type="checkbox"
           id="show-password"
           name="show-password"
-          className="cursor-pointer scale-[1.2]"
+          className="cursor-pointer scale-[1.1]"
           onChange={() => setIsPasswordShow(!isPasswordShow)}
         />
         <label
           htmlFor="show-password"
-          className="font-segoe-ui text-lg text-secondary-text font-medium cursor-pointer"
+          className="font-inter text-secondary-text font-medium cursor-pointer"
         >
           Show password
         </label>

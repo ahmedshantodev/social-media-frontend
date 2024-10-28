@@ -1,6 +1,6 @@
 import image from "/public/remove/azmir sir.jpg";
 
-export const recentSearchList = [
+const recentSearchList = [
   {
     image: image,
     name: "Azmir Uddin Alif",
@@ -18,3 +18,5 @@ export const recentSearchList = [
     name: "Azmir Uddin Alif",
   },
 ];
+
+export default recentSearchList;

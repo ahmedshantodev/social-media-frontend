@@ -6,8 +6,8 @@ const Name = ({ activeItem, error, onChange }) => {
     <div
       className={
         activeItem === 2 || activeItem === 3 || activeItem === 4 || activeItem === 5
-          ? "absolute top-0 left-0 w-full pl-3 -translate-x-full transition-all duration-300 ease-in-out"
-          : "absolute top-0 left-0 w-full pl-3 translate-x-0 transition-all duration-300 ease-in-out"
+          ? "absolute top-0 left-0 w-full px-2 -translate-x-full transition-all duration-300 ease-in-out"
+          : "absolute top-0 left-0 w-full px-2 translate-x-0 transition-all duration-300 ease-in-out"
       }
     >
       <Input

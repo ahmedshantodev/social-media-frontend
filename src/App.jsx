@@ -6,11 +6,12 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
+import NotLoggedInUser from "./privateRoute/NotLoggedInUser";
+import LoggedInUser from "./privateRoute/LoggedInUser";
+import ForgetPassword from "./pages/forgetPassword";
 import Registration from "./pages/registration/index";
 import Login from "./pages/login/index";
 import Verification from "./pages/verification/index";
-import NotLoggedInUser from "./privateRoute/NotLoggedInUser";
-import LoggedInUser from "./privateRoute/LoggedInUser";
 import RootLayout from "./pages/rootLayout";
 import Feeds from "./pages/feeds";
 import Messages from "./pages/messages";
@@ -21,9 +22,9 @@ import Profile from "./pages/profile";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
+      <Route path="/forget-password" element={<ForgetPassword />}/>
       <Route element={<NotLoggedInUser />}>
         <Route path="/registration" element={<Registration />} />
-        {/* email ar poriborte otp send korar karone verification page bad jabe */}
         <Route path="/verification/:token" element={<Verification />} />
         <Route path="/login" element={<Login />} />
       </Route>

@@ -11,7 +11,7 @@ import { activeUser } from "../../redux/slices/activeUserSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const [isPasswordShow, setIsPasswordShow] = useState(false);
 
   const [info, setInfo] = useState({
@@ -151,20 +151,29 @@ const Login = () => {
                     type={isPasswordShow ? "text" : "password"}
                   />
 
-                  <div className="flex items-center gap-x-2.5 ml-1">
-                    <input
-                      type="checkbox"
-                      id="show-password"
-                      name="show-password"
-                      onChange={() => setIsPasswordShow(!isPasswordShow)}
-                      className="cursor-pointer scale-[1.2]"
-                    />
-                    <label
-                      htmlFor="show-password"
-                      className="font-segoe-ui text-lg text-secondary-text font-medium cursor-pointer"
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-x-2.5 ml-1">
+                      <input
+                        type="checkbox"
+                        id="show-password"
+                        name="show-password"
+                        onChange={() => setIsPasswordShow(!isPasswordShow)}
+                        className="cursor-pointer scale-[1.1]"
+                      />
+                      <label
+                        htmlFor="show-password"
+                        className="font-inter text-secondary-text font-medium cursor-pointer"
+                      >
+                        Show password
+                      </label>
+                    </div>
+
+                    <Link
+                      to={"/forget-password"}
+                      className="font-inter text-secondary-text font-medium hover:underline"
                     >
-                      Show password
-                    </label>
+                      Forgotten password?
+                    </Link>
                   </div>
 
                   {error.credential && (
@@ -184,12 +193,18 @@ const Login = () => {
                   <span className="group-hover:underline">Registration</span>
                 </Link>
 
-                <button
-                  onClick={handleLogin}
-                  className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.95] transition-all duration-200 ease-in-out"
-                >
-                  Login
-                </button>
+                {isLoading ? (
+                  <button className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.95] transition-all duration-200 ease-in-out">
+                    saving...
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleLogin}
+                    className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.95] transition-all duration-200 ease-in-out"
+                  >
+                    Login
+                  </button>
+                )}
               </div>
             </div>
           </div>

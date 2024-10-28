@@ -12,8 +12,8 @@ const Modal = ({ show, setShow, children, className }) => {
     <div
       className={
         show
-          ? "w-full h-dvh fixed top-0 left-0 z-[999] bg-gray-200/55 flex items-center justify-center overflow-y-auto"
-          : "w-full h-dvh fixed top-0 left-0 z-[999] bg-gray-200/55 hidden items-center justify-center overflow-y-auto"
+          ? "w-full h-dvh fixed top-0 left-0 z-[999] bg-gray-600/55 flex items-center justify-center overflow-y-auto"
+          : "w-full h-dvh fixed top-0 left-0 z-[999] bg-gray-600/55 hidden items-center justify-center overflow-y-auto"
       }
     >
       <div
