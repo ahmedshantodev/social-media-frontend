@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { usePasswordResetMutation } from "../../redux/api/authenticationApi";
+import BeatLoader from "react-spinners/BeatLoader";
+import { Link, useNavigate } from "react-router-dom";
 
 const ChangePassword = ({ foundUserInfo }) => {
-  const [passwordReset] = usePasswordResetMutation();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [passwordReset, { isLoading }] = usePasswordResetMutation();
   const [isPasswordShow, setIsPasswordShow] = useState(false);
   const [info, setInfo] = useState({
     newPassword: "",
@@ -44,7 +48,18 @@ const ChangePassword = ({ foundUserInfo }) => {
       password: info.newPassword,
     });
 
-    console.log(response);
+    if (response.error?.data?.message) {
+      return console.log(response.error?.data?.message);
+    }
+
+    if (response.data) {
+      setLoading(true);
+
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/login");
+      }, 1000);
+    }
   };
 
   return (
@@ -134,22 +149,39 @@ const ChangePassword = ({ foundUserInfo }) => {
       </div>
 
       <div className="flex justify-between gap-x-3">
-        <button
-          className={
-            "rounded-md w-[50%] py-2.5 capitalize text-[16px] bg-[#e4e6eb] text-black font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
-          }
-        >
-          back
-        </button>
+        {isLoading || loading ? (
+          <button
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-secondary-text font-semibold text-center cursor-not-allowed"
+            }
+          >
+            back
+          </button>
+        ) : (
+          <Link
+            to={"/login"}
+            className={
+              "text-center rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-black font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
+            }
+          >
+            Cancel
+          </Link>
+        )}
 
-        <button
-          onClick={handleContinue}
-          className={
-            "rounded-md w-[50%] py-2.5 capitalize text-[16px] bg-[#216fdb] text-white font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
-          }
-        >
-          Continue
-        </button>
+        {isLoading || loading ? (
+          <button className="w-1/2 h-[48px] bg-[#dddcea] flex items-center justify-center rounded-md text-secondary-text font-poppins font-semibold cursor-not-allowed">
+            <BeatLoader size={10} />
+          </button>
+        ) : (
+          <button
+            onClick={handleContinue}
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#216fdb] text-white font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
+            }
+          >
+            Change password
+          </button>
+        )}
       </div>
     </div>
   );

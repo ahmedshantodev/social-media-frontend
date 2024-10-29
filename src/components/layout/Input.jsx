@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from "react";
 
 const input = ({
-  label,
-  name,
-  onChange,
-  type,
   id,
-  placeholder,
-  className,
+  name,
+  type,
+  value,
   error,
+  label,
+  onChange,
+  className,
+  placeholder,
 }) => {
   // to prevent tab key from jumping to the next form field?
   const inputRef = useRef(null);
@@ -44,6 +45,7 @@ const input = ({
         id={id}
         type={type}
         name={name}
+        value={value}
         ref={inputRef}
         onChange={onChange}
         placeholder={placeholder}

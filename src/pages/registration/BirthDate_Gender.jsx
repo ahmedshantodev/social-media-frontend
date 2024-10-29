@@ -2,7 +2,7 @@ import React from "react";
 import { dates } from "../../data/dates";
 import { months } from "../../data/months";
 
-const BirthDate_Gender = ({ activeItem, info, error, onChange }) => {
+const BirthDate_Gender = ({ info, error, activeItem, onChange }) => {
   const years = Array.from(
     new Array(105),
     (value, index) => new Date().getFullYear() - index

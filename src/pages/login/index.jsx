@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../../redux/api/authenticationApi";
 import { toast } from "react-toastify";
 import { activeUser } from "../../redux/slices/activeUserSlice";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -92,12 +93,9 @@ const Login = () => {
         autoClose: 4000,
         position: "bottom-center",
         hideProgressBar: true,
-        theme: "colored",
       });
 
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+      navigate("/");
     }
   };
 
@@ -192,13 +190,13 @@ const Login = () => {
                 </Link>
 
                 {isLoading ? (
-                  <button className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.95] transition-all duration-200 ease-in-out">
-                    saving...
+                  <button className="bg-[#e4e6eb] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#e4e6eb] cursor-not-allowed">
+                    <BeatLoader size={10} />
                   </button>
                 ) : (
                   <button
                     onClick={handleLogin}
-                    className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.95] transition-all duration-200 ease-in-out"
+                    className="bg-[#1877f2] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#1877f2]"
                   >
                     Login
                   </button>

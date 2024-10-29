@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../components/layout/Input";
 
-const Name = ({ activeItem, error, onChange }) => {
+const Name = ({ info, error, activeItem, onChange }) => {
   return (
     <div
       className={
@@ -15,8 +15,9 @@ const Name = ({ activeItem, error, onChange }) => {
         id={`firstName`}
         name={`firstName`}
         label={`First name`}
-        error={error.firstName}
         onChange={onChange}
+        value={info.firstName}
+        error={error.firstName}
         className={`w-full mb-5`}
         placeholder={`Enter your first name`}
       />
@@ -28,6 +29,8 @@ const Name = ({ activeItem, error, onChange }) => {
         label={`Last name`}
         onChange={onChange}
         className={`w-full`}
+        value={info.lastName}
+        error={error.lastName}
         placeholder={`Enter your last name (optional)`}
       />
     </div>

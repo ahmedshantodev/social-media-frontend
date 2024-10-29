@@ -18,8 +18,9 @@ const FormPart = ({
   isOtpModalShow,
   setIsOtpModalShow,
 }) => {
-  const [findUser] = useFindUserMutation();
-  const [findUsername] = useFindUsernameMutation();
+  const [findUser, { isLoading: isUserLoading }] = useFindUserMutation();
+  const [findUsername, { isLoading: isUserNameLoading }] =
+    useFindUsernameMutation();
   const [activeItem, setActiveItem] = useState(1);
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const FormPart = ({
       if (info.firstName.length < 4 || info.firstName.length > 25) {
         return setError({
           ...error,
-          firstName: "First name must be 4-20 words long.",
+          firstName: "first name must be 4-20 words long.",
         });
       }
 
@@ -122,7 +123,8 @@ const FormPart = ({
     }
 
     if (activeItem === 3) {
-      let regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+      let regex =
+        /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
       let check = regex.test(info.email);
 
       if (info.email === "") {
@@ -157,7 +159,7 @@ const FormPart = ({
       if (info.username.length < 4 || info.username.length > 40) {
         return setError({
           ...error,
-          username: "User name must be 10-40 words long.",
+          username: "username must be 10-40 words long.",
         });
       }
 
@@ -201,7 +203,12 @@ const FormPart = ({
   return (
     <div>
       <div className="mb-12 h-[250px] relative overflow-hidden">
-        <Name error={error} activeItem={activeItem} onChange={handleChange} />
+        <Name
+          info={info}
+          error={error}
+          activeItem={activeItem}
+          onChange={handleChange}
+        />
 
         <BirthDate_Gender
           info={info}
@@ -211,12 +218,14 @@ const FormPart = ({
         />
 
         <Email_Username
+          info={info}
           error={error}
           activeItem={activeItem}
           onChange={handleChange}
         />
 
         <Password
+          info={info}
           error={error}
           activeItem={activeItem}
           onChange={handleChange}
@@ -242,12 +251,18 @@ const FormPart = ({
             </button>
           )}
 
-          <button
-            onClick={handleNext}
-            className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.95] transition-all duration-200 ease-in-out"
-          >
-            {activeItem === 4 ? "Sign in" : "Next"}
-          </button>
+          {isUserLoading || isUserNameLoading ? (
+            <button className="bg-gray-300 text-black/50 px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#e4e6eb] cursor-not-allowed">
+              Next
+            </button>
+          ) : (
+            <button
+              onClick={handleNext}
+              className="bg-[#1877f2] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#1877f2] active:scale-[0.95] transition-all duration-200 ease-in-out"
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>

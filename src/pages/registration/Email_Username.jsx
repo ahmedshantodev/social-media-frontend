@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../components/layout/Input";
 
-const Email_Username = ({ activeItem, error, onChange }) => {
+const Email_Username = ({ activeItem, info, error, onChange }) => {
   return (
     <div
       className={
@@ -19,6 +19,7 @@ const Email_Username = ({ activeItem, error, onChange }) => {
         label={`Email`}
         error={error.email}
         onChange={onChange}
+        value={info.email}
         className={`w-full mb-5`}
         placeholder={`Enter your email`}
       />
@@ -30,6 +31,7 @@ const Email_Username = ({ activeItem, error, onChange }) => {
         label={`Username`}
         className={`w-full`}
         onChange={onChange}
+        value={info.username.toLowerCase().split(" ").join("")}
         error={error.username}
         placeholder={`Enter your username`}
       />

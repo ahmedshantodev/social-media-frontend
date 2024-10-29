@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useVerifyOtpMutation } from "../../redux/api/authenticationApi";
+import { useVerifyPasswordResetOtpMutation } from "../../redux/api/authenticationApi";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
-  const [otpVeification] = useVerifyOtpMutation();
+  const [loading, setLoading] = useState(false);
+  const [verifyPasswordResetOtp, { isLoading }] = useVerifyPasswordResetOtpMutation();
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
 
@@ -17,12 +19,25 @@ const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
         return setError("Please enter your 6 digit otp");
       }
 
-      const respose = await otpVeification({
+      const response = await verifyPasswordResetOtp({
         email: foundUserInfo.email,
         code: otp,
       });
-      
-      setActiveItem(3)
+
+      console.log(response);
+
+      if (response.error?.data?.message) {
+        return setError(response.error?.data?.message)
+      }
+
+      if (response.data) {
+        setLoading(true);
+
+        setTimeout(() => {
+          setLoading(false);
+          setActiveItem(3);
+        }, 1000);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -72,22 +87,38 @@ const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
       </div>
 
       <div className="flex justify-between gap-x-3">
-        <button
-          className={
-            "rounded-md w-[50%] py-2.5 capitalize text-[16px] bg-[#e4e6eb] text-black font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
-          }
-        >
-          cancel
-        </button>
+        {!isLoading || loading ? (
+          <button
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-secondary-text font-semibold text-center cursor-not-allowed"
+            }
+          >
+            Cancel
+          </button>
+        ) : (
+          <button
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-black font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
+            }
+          >
+            Cancel
+          </button>
+        )}
 
-        <button
-          onClick={handleContinue}
-          className={
-            "rounded-md w-[50%] py-2.5 capitalize text-[16px] bg-[#216fdb] text-white font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
-          }
-        >
-          Continue
-        </button>
+        {isLoading || loading ? (
+          <button className="w-1/2 h-[48px] bg-[#dddcea] flex items-center justify-center rounded-md text-secondary-text font-poppins font-semibold cursor-not-allowed">
+            <BeatLoader size={10} />
+          </button>
+        ) : (
+          <button
+            onClick={handleContinue}
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#1877f2] text-white font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
+            }
+          >
+            Continue
+          </button>
+        )}
       </div>
     </div>
   );

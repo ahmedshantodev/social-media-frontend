@@ -1,16 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useSendUserVerificationOtpMutation } from "../../redux/api/authenticationApi";
+import BeatLoader from "react-spinners/BeatLoader";
 
 let currentOtpIndex = 0;
-const OtpVerification = ({ info, setInfo, error, setError, handleRegistration }) => {
+const OtpVerification = ({
+  info,
+  setInfo,
+  error,
+  setError,
+  handleVerifyOtp,
+  isVerifyOtpLoading,
+}) => {
   const [timer, setTimer] = useState(60);
   const [isRunning, setIsRunning] = useState(false);
-
   const [isResend, setIsResend] = useState(false);
 
-  const handleStart = () => {
+  const [sendUserVerificationOtp] = useSendUserVerificationOtpMutation();
+
+  const handleResendOtp = async () => {
     setTimer(60);
     setIsRunning(true);
     setIsResend(true);
+
+    const response = await sendUserVerificationOtp({
+      firstName: info.firstName,
+      email: info.email,
+    });
+
+    console.log(response);
   };
 
   useEffect(() => {
@@ -80,7 +97,7 @@ const OtpVerification = ({ info, setInfo, error, setError, handleRegistration })
       });
     }
 
-    handleRegistration()
+    handleVerifyOtp();
   };
 
   return (
@@ -127,22 +144,30 @@ const OtpVerification = ({ info, setInfo, error, setError, handleRegistration })
           </p>
         ) : (
           <p
-            onClick={handleStart}
+            onClick={handleResendOtp}
             className="group inline-block font-poppins text-[15px] tracking-[0.0020rem] cursor-pointer"
           >
             Didn't get the code?{" "}
-            <span className="text-[#097b09] font-medium group-hover:underline">
+            <span className="text-[#1877f2] font-medium group-hover:underline">
               Click to resend
             </span>
           </p>
         )}
 
-        <button
-          onClick={handleVerify}
-          className="bg-[#097b09] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#097b09] active:scale-[0.97] transition-all duration-200 ease-in-out"
-        >
-          Verify and proceed
-        </button>
+        {isVerifyOtpLoading ? (
+          <button
+            className="h-[52px] bg-[#d1d5db] px-20 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#d1d5db] cursor-not-allowed"
+          >
+            <BeatLoader size={10}/>
+          </button>
+        ) : (
+          <button
+            onClick={handleVerify}
+            className="bg-[#1877f2] text-white px-10 py-3 rounded-full font-inter border-2 border-[#1877f2]"
+          >
+            Verify and proceed
+          </button>
+        )}
       </div>
     </div>
   );

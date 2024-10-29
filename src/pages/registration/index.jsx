@@ -5,15 +5,24 @@ import { Helmet } from "react-helmet-async";
 import Modal from "../../components/modal/Modal";
 import OtpVerification from "./OtpVerification";
 import { toast } from "react-toastify";
-import { useRegistrationMutation } from "../../redux/api/authenticationApi";
+import {
+  useRegistrationMutation,
+  useSendUserVerificationOtpMutation,
+  useVerifyUserVerificationOtpMutation,
+} from "../../redux/api/authenticationApi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { activeUser } from "../../redux/slices/activeUserSlice";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Registration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [registration] = useRegistrationMutation();
+
+  const [registration, { isLoading: isRegistrationLoading }] = useRegistrationMutation();
+  const [sendUserVerificationOtp, { isLoading: isOtpLoading }] = useSendUserVerificationOtpMutation();
+  const [verifyUserVerificationOtp, { isLoading: isVerifyOtpLoading }] = useVerifyUserVerificationOtpMutation();
+
   const [isOtpModalShow, setIsOtpModalShow] = useState(false);
   const [isOtpVerificationShow, setIsOtpVerificationShow] = useState(false);
 
@@ -46,30 +55,50 @@ const Registration = () => {
     gender: "",
   });
 
-  const handleOtpVerificationShow = () => {
-    setIsOtpVerificationShow(true);
-    setIsOtpModalShow(false);
-  };
-
-  const handleRegistration = async () => {
-    const response = await registration({
+  const handleSendOtp = async () => {
+    const response = await sendUserVerificationOtp({
       firstName: info.firstName,
-      lastName: info.lastName,
       email: info.email,
-      password: info.password,
-      birthDate: info.birthDate,
-      birthMonth: info.birthMonth,
-      birthYear: info.birthYear,
-      gender: info.gender,
     });
 
     if (response.data?.message) {
-      const { message, ...rest } = response.data;
+      setIsOtpVerificationShow(true);
+      setIsOtpModalShow(false);
+    }
+  };
 
+  const handleVerifyOtp = async () => {
+    const verificationResponse = await verifyUserVerificationOtp({
+      email: info.email,
+      otp: info.otp,
+    });
+
+    if (verificationResponse.error?.data?.message) {
+      return setError((prev) => ({
+        ...prev,
+        otp: verificationResponse.error?.data?.message,
+      }));
+    }
+
+    if (verificationResponse.data?.message) {
+      const response = await registration({
+        firstName: info.firstName,
+        lastName: info.lastName,
+        username: info.username.toLowerCase().split(" ").join(""),
+        email: info.email,
+        password: info.password,
+        birthDate: info.birthDate,
+        birthMonth: info.birthMonth,
+        birthYear: info.birthYear,
+        gender: info.gender,
+        verified: true,
+      });
+
+      const { message, ...rest } = response.data;
       dispatch(activeUser(rest));
       localStorage.setItem("user", JSON.stringify(rest));
 
-      toast.success(response.data?.message, {
+      toast.success(message, {
         autoClose: 4000,
         position: "bottom-center",
         hideProgressBar: true,
@@ -116,7 +145,8 @@ const Registration = () => {
                   setInfo={setInfo}
                   error={error}
                   setError={setError}
-                  handleRegistration={handleRegistration}
+                  handleVerifyOtp={handleVerifyOtp}
+                  isVerifyOtpLoading={isVerifyOtpLoading}
                 />
               ) : (
                 <FormPart
@@ -132,24 +162,31 @@ const Registration = () => {
               <Modal
                 show={isOtpModalShow}
                 setShow={setIsOtpModalShow}
-                className={`w-[550px] px-10 py-8`}
+                className={`w-[550px] px-10 pt-5 pb-7`}
               >
-                <h2 className="font-poppins text-3xl font-semibold mb-3">
+                <h2 className="font-poppins text-[28px] font-semibold mb-4 text-center border-b-2 border-primary-border">
                   OTP verification
                 </h2>
-                <h2 className="font-poppins text-[#6C6C73] mb-5">
+
+                <h2 className="font-poppins text-lg text-[#6C6C73] mb-5">
                   To verify your account, We will send a 6-digit OTP to{" "}
                   <span className="font-medium text-black">{info.email}</span> .
                   Please check your inbox (and spam folder) for the code. This
                   code will be valid for 10 minutes.
                 </h2>
 
-                <button
-                  onClick={handleOtpVerificationShow}
-                  className="bg-[#097b09] w-full text-white py-2.5 rounded-[10px] text-lg font-inter font-medium border-2 border-[#097b09] active:scale-[0.98] transition-all duration-200 ease-in-out"
-                >
-                  Get OTP
-                </button>
+                {isOtpLoading ? (
+                  <button className="bg-[#d1d5db] h-[48px] w-full rounded-[6px] text-lg font-inter font-medium border-2 border-[#d1d5db] cursor-not-allowed">
+                    <BeatLoader size={10}/>
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleSendOtp}
+                    className="bg-[#1877f2] w-full text-white py-2.5 rounded-[6px] text-lgs font-inter border-2 border-[#1877f2] active:scale-[0.98] transition-all duration-200 ease-in-out"
+                  >
+                    Get OTP
+                  </button>
+                )}
               </Modal>
             </div>
           </div>

@@ -38,17 +38,17 @@ export const authenticationApi = createApi({
       }),
     }),
 
-    sendOtp: builder.mutation({
+    sendPasswordResetOtp: builder.mutation({
       query: (body) => ({
-        url: "/api/v1/authentication/send-otp",
+        url: "/api/v1/authentication/send-password-reset-otp",
         method: "POST",
         body,
       }),
     }),
 
-    verifyOtp: builder.mutation({
+    verifyPasswordResetOtp: builder.mutation({
       query: (body) => ({
-        url: "/api/v1/authentication/otp-verification",
+        url: "/api/v1/authentication/verify-password-reset-otp",
         method: "POST",
         body,
       }),
@@ -61,6 +61,22 @@ export const authenticationApi = createApi({
         body,
       }),
     }),
+
+    sendUserVerificationOtp: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/send-user-verification-otp",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    verifyUserVerificationOtp: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/verify-user-verification-otp",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -69,7 +85,9 @@ export const {
   useLoginMutation,
   useFindUserMutation,
   useFindUsernameMutation,
-  useSendOtpMutation,
-  useVerifyOtpMutation,
+  useSendPasswordResetOtpMutation,
+  useVerifyPasswordResetOtpMutation,
   usePasswordResetMutation,
+  useSendUserVerificationOtpMutation,
+  useVerifyUserVerificationOtpMutation,
 } = authenticationApi;

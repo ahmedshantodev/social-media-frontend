@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
 import { useFindUserMutation } from "../../redux/api/authenticationApi";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const SearchAccount = ({ setActiveItem, setFoundUserInfo }) => {
-  const [findUser] = useFindUserMutation();
+  const [loading, setLoading] = useState(false);
+  const [findUser, { isLoading }] = useFindUserMutation();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -26,7 +28,12 @@ const SearchAccount = ({ setActiveItem, setFoundUserInfo }) => {
 
       if (response.data) {
         setFoundUserInfo(response.data);
-        setActiveItem(1);
+        setLoading(true);
+
+        setTimeout(() => {
+          setLoading(false);
+          setActiveItem(1);
+        }, 1000);
       }
     } catch (error) {
       console.log(error.message);
@@ -72,7 +79,7 @@ const SearchAccount = ({ setActiveItem, setFoundUserInfo }) => {
           />
         </div>
       </div>
-      
+
       {error && (
         <div className="bg-[#ffebe8] border-2 border-[#dd3c10] w-full p-2 mb-5">
           <h3 className="font-poppins font-medium">No search results</h3>
@@ -84,23 +91,41 @@ const SearchAccount = ({ setActiveItem, setFoundUserInfo }) => {
       )}
 
       <div className="flex justify-between gap-x-3">
-        <Link
-          to={"/"}
-          className={
-            "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] font-semibold text-center active:scale-[0.98] transition-all duration-200 ease-in-out"
-          }
-        >
-          back
-        </Link>
+        {isLoading || loading ? (
+          <button
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-secondary-text font-semibold text-center cursor-not-allowed"
+            }
+          >
+            back
+          </button>
+        ) : (
+          <Link
+            to={"/"}
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] font-semibold text-center active:scale-[0.98] transition-all duration-200 ease-in-out"
+            }
+          >
+            back
+          </Link>
+        )}
 
-        <button
-          onClick={handleSearch}
-          className={
-            "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#097b09] text-white font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
-          }
-        >
-          Search
-        </button>
+        {isLoading || loading ? (
+          <button
+            className="w-1/2 h-[48px] bg-[#dddcea] flex items-center justify-center rounded-md text-secondary-text font-poppins font-semibold cursor-not-allowed"
+          >
+            <BeatLoader size={10} />
+          </button>
+        ) : (
+          <button
+            onClick={handleSearch}
+            className={
+              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#1877f2] text-white font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
+            }
+          >
+            Search
+          </button>
+        )}
       </div>
     </div>
   );
