@@ -11,7 +11,6 @@ import LoggedInUser from "./privateRoute/LoggedInUser";
 import ForgetPassword from "./pages/forgetPassword";
 import Registration from "./pages/registration/index";
 import Login from "./pages/login/index";
-import Verification from "./pages/verification/index";
 import RootLayout from "./pages/rootLayout";
 import Feeds from "./pages/feeds";
 import Messages from "./pages/messages";
@@ -25,7 +24,6 @@ const router = createBrowserRouter(
       <Route path="/forget-password" element={<ForgetPassword />}/>
       <Route element={<NotLoggedInUser />}>
         <Route path="/registration" element={<Registration />} />
-        <Route path="/verification/:token" element={<Verification />} />
         <Route path="/login" element={<Login />} />
       </Route>
 

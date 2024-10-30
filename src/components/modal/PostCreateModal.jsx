@@ -4,19 +4,25 @@ import { RxCross2 } from "react-icons/rx";
 import PostCustomizationOption from "../layout/PostCustomizationOption";
 import PostStylingOption from "../layout/PostStylingOption";
 import MediaUploader from "../layout/MediaUploader";
-import { feelings } from "../../data/feelings";
+import { feelingsList } from "../../data/feelingsList";
 import userImage from "/public/remove/shanto.jpg";
 
 const PostCreateModal = ({ show, setShow }) => {
   const inputRef = useRef(null);
+
   const [inputData, setInputData] = useState("");
   const [selectedBackgroundInfo, setselectedBackgroundInfo] = useState("");
+  const [postImages, setPostImages] = useState([]);
+  const [feelings, setFeelings] = useState("");
+
   const [mediaUploaderShow, setMediaUploaderShow] = useState(false);
   const [feelingSelectorShow, setFeelingSelectorShow] = useState(false);
-  const [postImages, setPostImages] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
 
-  const handleFeelingSelect = (item) => {};
+  const handleFeelingSelect = (item) => {
+    setFeelings(item);
+    setFeelingSelectorShow(false);
+  };
 
   return (
     <Modal
@@ -63,15 +69,6 @@ const PostCreateModal = ({ show, setShow }) => {
                 onChange={(e) => setInputData(e.target.value)}
                 className={`w-full h-full absolute top-0 left-0 z-10 bg-transparent border-none focus:outline-none rounded-[6px] resize-none py-2 placeholder:font-segoe-ui placeholder:text-[30px] placeholder:font-semibold font-semibold text-3xl placeholder:text-white placeholder:leading-[42px] leading-[42px]`}
               />
-
-              {/* <div className="w-full h-full absolute top-0 left-0 z-10 flex items-center justify-center text-center px-5">
-                <p
-                  contentEditable="true"
-                  className="text-3xl text-white outline-none w-full"
-                >
-                  What's on your mind, Monsur?
-                </p>
-              </div> */}
 
               <div className="w-full h-full absolute top-0 left-0">
                 <img
@@ -123,7 +120,7 @@ const PostCreateModal = ({ show, setShow }) => {
               </h2>
 
               <div className="flex justify-between flex-wrap gap-[6px]">
-                {feelings.map((item, index) => (
+                {feelingsList.map((item, index) => (
                   <div
                     key={index}
                     onClick={() => handleFeelingSelect(item)}

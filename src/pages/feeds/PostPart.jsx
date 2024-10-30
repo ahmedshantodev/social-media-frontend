@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Post from "../../components/section/Post";
 import userImageOne from "/public/remove/shanto.jpg";
 import postImageOne from "/public/remove/postImageOne.jpg";

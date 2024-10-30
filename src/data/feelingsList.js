@@ -1,4 +1,4 @@
-export const feelings = [
+export const feelingsList = [
   { emoji: "😊", feeling: "happy" },
   { emoji: "😇", feeling: "blessed" },
   { emoji: "🥰", feeling: "loved" },
