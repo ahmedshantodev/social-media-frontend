@@ -179,7 +179,7 @@ const Header = () => {
           confirm.
         </p>
 
-        <div justifyContent={"between"} className="flex justify-between">
+        <div className="flex justify-between">
           <button
             onClick={handleLogOut}
             className={

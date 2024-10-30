@@ -48,16 +48,16 @@ const LeftPart = () => {
           {shortcutList.map((item, index) =>
             seeMore ? (
               item.type === "friend" ? (
-                <FriendListItem image={item.image} name={item.name} />
+                <FriendListItem key={index} image={item.image} name={item.name} />
               ) : (
-                <GroupListItem image={item.image} name={item.name} />
+                <GroupListItem key={index} image={item.image} name={item.name} />
               )
             ) : (
               index <= 5 &&
               (item.type === "friend" ? (
-                <FriendListItem image={item.image} name={item.name} />
+                <FriendListItem key={index} image={item.image} name={item.name} />
               ) : (
-                <GroupListItem image={item.image} name={item.name} />
+                <GroupListItem key={index} image={item.image} name={item.name} />
               ))
             )
           )}

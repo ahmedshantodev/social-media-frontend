@@ -6,7 +6,6 @@ import { IoIosArrowForward } from "react-icons/io";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import userImage from "/public/remove/shanto.jpg";
 
 const StoriesPart = () => {

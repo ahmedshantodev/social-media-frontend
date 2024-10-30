@@ -1,14 +1,16 @@
 import React from "react";
-import addEmojiLogo from "/public/images/feelingsLogo.png";
+import addBackgroudLogo from "/public/images/add-background-logo.png";
 import galaryLogo from "/public/images/galaryLogo.png";
+import addEmojiLogo from "/public/images/feelingsLogo.png";
 import tagFriends from "/public/images/tag-friends.png";
 import addLocation from "/public/images/add-location.png";
 import addGif from "/public/images/add-gif.png";
 
 const PostCustomizationOption = ({
-  onMediaClick,
-  mediaUploaderShow,
-  selectedOption,
+  isBackgroundShow,
+  setIsBackgroundShow,
+  isImageUploaderShow,
+  setIsImageUploaderShow,
   selectedBackgroundInfo,
   feelingSelectorShow,
   setFeelingSelectorShow,
@@ -24,7 +26,44 @@ const PostCustomizationOption = ({
       </p>
 
       <div className="flex items-center gap-x-2">
-        {selectedOption == "background" || selectedBackgroundInfo ? (
+        {isImageUploaderShow ? (
+          <button
+            className={
+              "grayscale-[100%] cursor-not-allowed p-[6px] rounded-full relative group"
+            }
+          >
+            <img
+              src={addBackgroudLogo}
+              alt="tag-friends-icon"
+              className="w-[30px]"
+            />
+
+            <p className="hidden group-hover:block w-[280px] absolute bottom-full left-2/4 -translate-x-2/4 z-30 bg-[#3c3c3c] text-white px-2 py-2 rounded-[10px] text-[15px] font-segoe-ui">
+              This can't be combined with what you've already added to your post
+            </p>
+          </button>
+        ) : (
+          <button
+            onClick={() => setIsBackgroundShow(!isBackgroundShow)}
+            className={
+              isBackgroundShow
+                ? "p-[6px] rounded-full bg-tertiary-bg relative group"
+                : "p-[6px] rounded-full hover:bg-tertiary-bg relative group"
+            }
+          >
+            <img
+              src={addBackgroudLogo}
+              alt="tag-friends-icon"
+              className="w-[30px]"
+            />
+
+            <p className="hidden group-hover:block w-[145px] absolute bottom-full left-2/4 -translate-x-2/4 z-30 bg-[#3c3c3c] text-white px-4 py-2 rounded-[10px] text-[15px] font-segoe-ui">
+              Add background
+            </p>
+          </button>
+        )}
+
+        {isBackgroundShow || selectedBackgroundInfo ? (
           <button
             className={
               "p-2 rounded-full grayscale-[100%] relative group cursor-not-allowed"
@@ -42,9 +81,9 @@ const PostCustomizationOption = ({
           </button>
         ) : (
           <button
-            onClick={onMediaClick}
+            onClick={() => setIsImageUploaderShow(!isImageUploaderShow)}
             className={
-              mediaUploaderShow
+              isImageUploaderShow
                 ? "p-2 rounded-full bg-tertiary-bg relative group"
                 : "p-2 rounded-full hover:bg-tertiary-bg relative group"
             }
@@ -56,7 +95,7 @@ const PostCustomizationOption = ({
             />
 
             <p className="hidden group-hover:block absolute bottom-full left-2/4 -translate-x-2/4 z-30 bg-[#3c3c3c] text-white px-4 py-2 rounded-[10px] text-[15px] font-segoe-ui">
-              Photo/Video
+              Photo
             </p>
           </button>
         )}

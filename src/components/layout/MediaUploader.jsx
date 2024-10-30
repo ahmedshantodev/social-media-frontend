@@ -2,8 +2,8 @@ import React from "react";
 import { RxCross2 } from "react-icons/rx";
 import { RiImageAddFill } from "react-icons/ri";
 
-const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
-  const handleImageSelect = (e) => {
+let MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
+  let handleImageSelect = (e) => {
     let file = Array.from(e.target.files);
 
     file.forEach((image) => {
@@ -13,7 +13,7 @@ const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
         image.type == "image/webp" ||
         image.type == "image/gif"
       ) {
-        const reader = new FileReader();
+        let reader = new FileReader();
         reader.readAsDataURL(image);
         reader.onload = (readerImage) => {
           setPostImages((prev) => [...prev, readerImage.target.result]);
@@ -22,7 +22,7 @@ const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
     });
   };
 
-  const mediaUploaderPartClose = () => {
+  let mediaUploaderPartClose = () => {
     setPostImages([]);
     setShow(false);
   };
@@ -30,7 +30,7 @@ const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
   return postImages.length >= 1 ? (
     <div
       className={
-        "w-full border border-primary-border p-2.5 rounded-[16px] mb-2 mt-2 relative"
+        "w-full border border-primary-border p-2.5 rounded-[6px] mb-2 mt-2 relative"
       }
     >
       <label
@@ -144,8 +144,8 @@ const MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
     <div
       className={
         show
-          ? "mt-2 w-full h-[270px] visible opacity-100 border border-primary-border p-2.5 rounded-[16px] transition-all duration-150 ease-in-out"
-          : "mt-2 w-full h-0 invisible hidden opacity-0 border border-primary-border p-0 rounded-[16px] transition-all duration-150 ease-in-out"
+          ? "mt-2 w-full h-[260px] visible opacity-100 border border-primary-border p-2.5 rounded-[6px] transition-all duration-150 ease-in-out"
+          : "mt-2 w-full h-0 invisible hidden opacity-0 border border-primary-border p-0 rounded-[6px] transition-all duration-150 ease-in-out"
       }
     >
       <div className="relative w-full h-full">

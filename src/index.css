@@ -79,3 +79,18 @@
 .spin-button-none::-webkit-inner-spin-button {
   appearance: none;
 }
+
+/* react quils wysiwyg editor customize */
+.quill .ql-toolbar{
+  border-radius: 6px 6px 0 0;
+}
+
+.quill .ql-container{
+  min-height: 150px;
+  font-size: 20px;
+  font-family: "Segoe UI";
+  font-style: normal !important;
+  font-weight: 500;
+  color: #6e7074;
+  border-radius: 0 0 6px 6px;
+}
