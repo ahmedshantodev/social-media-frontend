@@ -1,14 +1,14 @@
 import React from "react";
 import { feelingsList } from "../../data/feelingsList";
 
-const FeelingsPart = ({ setFeelings, setFeelingSelectorShow }) => {
+const PostCreateFeelingsPart = ({ setFeelings, setFeelingSelectorShow }) => {
   const handleFeelingSelect = (item) => {
     setFeelings(item);
     setFeelingSelectorShow(false);
   };
 
   return (
-    <div className="w-full h- border border-primary-border rounded-[6px] px-3 py-2 mt-2">
+    <div className="w-full border border-primary-border rounded-[6px] px-3 py-2 mt-2">
       <h2 className="text-[18px] font-segoe-ui font-medium text-secondary-text mb-2">
         Feelings:
       </h2>
@@ -33,4 +33,4 @@ const FeelingsPart = ({ setFeelings, setFeelingSelectorShow }) => {
   );
 };
 
-export default FeelingsPart;
+export default PostCreateFeelingsPart;

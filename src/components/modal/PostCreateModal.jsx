@@ -1,28 +1,44 @@
 import React, { useEffect, useRef, useState } from "react";
-import Modal from "./Modal";
+// react icons
 import { RxCross2 } from "react-icons/rx";
-import PostCustomizationOption from "../layout/PostCustomizationOption";
+// image
 import userImage from "/public/remove/shanto.jpg";
+// redux rtq
 import { usePostCreateMutation } from "../../redux/api/authenticationApi";
-import PostEditorPart from "../../pages/feeds/PostEditorPart";
-import FeelingsPart from "../../pages/feeds/FeelingsPart";
-import MediaUploader from "../layout/MediaUploader";
-import BackgroundPart from "../../pages/feeds/BackgroundPart";
+
+// react components
+import Modal from "./Modal";
+import PostCreateEditorPart from "../layout/PostCreateEditorPart";
+import PostCreateFeelingsPart from "../layout/PostCreateFeelingsPart";
+import ImageUploader from "../layout/ImageUploader";
+import PostCreateBackgroundPart from "../layout/PostCreateBackgroundPart";
+import PostCustomizationOption from "../layout/PostCustomizationOption";
+import PostCreateGifPart from "../layout/PostCreateGifPart";
+import { useSelector } from "react-redux";
+// npm package
+import { toast } from "react-toastify";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const PostCreateModal = ({ show, setShow }) => {
   // useRef
-  const scrollToViewRef = useRef();
+  const inputRef = useRef();
+  const scrollRef = useRef();
+
+  // active user information
+  const activeUser = useSelector((activeUser) => activeUser.user.information);
 
   // post information
   const [text, setText] = useState("");
   const [backgroundInfo, setBackgroundInfo] = useState("");
   const [postImages, setPostImages] = useState([]);
   const [feelings, setFeelings] = useState("");
+  const [gif, setGif] = useState("");
 
   // state
   const [isImageUploaderShow, setIsImageUploaderShow] = useState(false);
   const [isBackgroundShow, setIsBackgroundShow] = useState(false);
   const [isFeelingSelectorShow, setIsFeelingSelectorShow] = useState(false);
+  const [isGifShow, setIsGifShow] = useState(false);
 
   // api call
   const [postCreate, { isLoading }] = usePostCreateMutation();
@@ -34,13 +50,41 @@ const PostCreateModal = ({ show, setShow }) => {
       background: backgroundInfo,
       images: postImages,
       feelings: feelings,
+      gif: gif,
+      user: activeUser.id,
     });
+
+    if (response?.data.message) {
+      toast.success(response?.data.message, {
+        autoClose: 2500,
+        position: "bottom-left",
+        hideProgressBar: true,
+      });
+
+      setText("");
+      setBackgroundInfo("");
+      setPostImages("");
+      setFeelings("");
+      setGif("");
+
+      setShow(false);
+    }
+  };
+
+  // background text color
+  const [placeholder, setPlaceholder] = useState(
+    `What's on your mind, Monsur?`
+  );
+  const handleChange = () => {
+    setPlaceholder("");
+    let value = inputRef.current.textContent;
+    setText(value);
   };
 
   // scroll Into View function
   useEffect(() => {
-    scrollToViewRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [isImageUploaderShow, isBackgroundShow, isFeelingSelectorShow]);
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [isImageUploaderShow, isBackgroundShow, isFeelingSelectorShow, isGifShow]);
 
   return (
     <Modal
@@ -74,39 +118,58 @@ const PostCreateModal = ({ show, setShow }) => {
           </p>
         </div>
 
-        <div className="w-full max-h-[480px] overflow-y-auto mt-1 mb-2">
+        <div className="w-full max-h-[480px] overflow-y-auto mt-1 mb-2 pr-1">
           {backgroundInfo != "" ? (
-            <div className="mr-1">
+            <div>
               <div
                 className="mt-3 rounded-md w-full h-[390px] relative mb-2 flex items-center justify-center text-center"
                 style={{
                   background: `url(${backgroundInfo.background})`,
                 }}
               >
-                <textarea
+                {/* <textarea
                   type="text"
+                  ref={inputRef}
                   autoFocus={true}
-                  style={{ color: backgroundInfo.textColor }}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="What's on your mind, Monsur?"
+                  style={{ color: backgroundInfo.textColor }}
                   className="w-full h-full text-center bg-transparent outline-none resize-none text-3xl font-semibold leading-[45px] text-white placeholder:text-white"
-                />
+                /> */}
+                <p
+                  ref={inputRef}
+                  contentEditable="true"
+                  onInput={handleChange}
+                  style={{ color: backgroundInfo.textColor }}
+                  className="outline-none text-3xl text-white font-inter"
+                >
+                  {placeholder}
+                </p>
               </div>
             </div>
           ) : (
-            <PostEditorPart text={text} setText={setText} />
+            <PostCreateEditorPart text={text} setText={setText} />
+          )}
+
+          {isGifShow && (
+            <PostCreateGifPart
+              gif={gif}
+              setGif={setGif}
+              isGifShow={isGifShow}
+              setIsGifShow={setIsGifShow}
+            />
           )}
 
           {isBackgroundShow && (
-            <BackgroundPart
-              setIsBackgroundShow={setIsBackgroundShow}
-              backgroundInfo={backgroundInfo}
+            <PostCreateBackgroundPart
+              inputRef={inputRef}
               setbackgroundInfo={setBackgroundInfo}
+              setIsBackgroundShow={setIsBackgroundShow}
             />
           )}
 
           {isImageUploaderShow && (
-            <MediaUploader
+            <ImageUploader
               show={isImageUploaderShow}
               setShow={setIsImageUploaderShow}
               postImages={postImages}
@@ -115,43 +178,52 @@ const PostCreateModal = ({ show, setShow }) => {
           )}
 
           {isFeelingSelectorShow && (
-            <FeelingsPart
+            <PostCreateFeelingsPart
               setFeelings={setFeelings}
               setFeelingSelectorShow={setIsFeelingSelectorShow}
             />
           )}
 
-          <div ref={scrollToViewRef} />
+          <div ref={scrollRef} />
         </div>
 
         <PostCustomizationOption
           isBackgroundShow={isBackgroundShow}
           setIsBackgroundShow={setIsBackgroundShow}
+          postImages={postImages}
+          setPostImages={setPostImages}
           isImageUploaderShow={isImageUploaderShow}
           setIsImageUploaderShow={setIsImageUploaderShow}
-          selectedBackgroundInfo={backgroundInfo}
+          backgroundInfo={backgroundInfo}
+          setBackgroundInfo={setBackgroundInfo}
           feelingSelectorShow={isFeelingSelectorShow}
           setFeelingSelectorShow={setIsFeelingSelectorShow}
+          gif={gif}
+          setGif={setGif}
+          isGifShow={isGifShow}
+          setIsGifShow={setIsGifShow}
         />
 
-        {text || isLoading ? (
-          <button
-            className={
-              "w-full mt-3 rounded-[6px] py-2.5 bg-primary-button text-lg font-segoe-ui font-medium text-white cursor-pointer"
-            }
-          >
-            Next
-          </button>
-        ) : (
-          <button
-            onClick={handlePost}
-            className={
-              "w-full mt-3 rounded-[6px] py-2.5 bg-tertiary-bg text-lg font-segoe-ui font-medium text-secondary-text cursor-not-allowed"
-            }
-          >
-            Next
-          </button>
-        )}
+        <div className="pr-1">
+          {isLoading ? (
+            <button
+              className={
+                "w-full mt-3 rounded-[6px] py-2.5 bg-tertiary-bg text-lg font-segoe-ui font-medium text-white cursor-not-allowed"
+              }
+            >
+              <BeatLoader size={10}/>
+            </button>
+          ) : (
+            <button
+              onClick={handlePost}
+              className={
+                "w-full mt-3 rounded-[6px] py-2.5 bg-primary-button text-white text-lg font-segoe-ui font-medium"
+              }
+            >
+              Post
+            </button>
+          )}
+        </div>
       </div>
     </Modal>
   );

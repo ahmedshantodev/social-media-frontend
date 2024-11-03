@@ -2,7 +2,7 @@ import React from "react";
 import { RxCross2 } from "react-icons/rx";
 import { RiImageAddFill } from "react-icons/ri";
 
-let MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
+let ImageUploader = ({ show, setShow, postImages, setPostImages }) => {
   let handleImageSelect = (e) => {
     let file = Array.from(e.target.files);
 
@@ -185,4 +185,4 @@ let MediaUploader = ({ show, setShow, postImages, setPostImages }) => {
   );
 };
 
-export default MediaUploader;
+export default ImageUploader;

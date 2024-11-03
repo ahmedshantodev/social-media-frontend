@@ -78,10 +78,17 @@ export const authenticationApi = createApi({
       }),
     }),
 
-    // post 
     postCreate: builder.mutation({
       query: (body) => ({
         url: "/api/v1/post/post-create",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    imageUpload: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/upload/image-upload",
         method: "POST",
         body,
       }),
@@ -100,4 +107,5 @@ export const {
   useSendUserVerificationOtpMutation,
   useVerifyUserVerificationOtpMutation,
   usePostCreateMutation,
+  useImageUploadMutation
 } = authenticationApi;

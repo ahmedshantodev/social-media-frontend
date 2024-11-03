@@ -1,12 +1,13 @@
 import React from "react";
 import { postBackgroundInfo } from "../../data/postBackgroundInfo";
 
-const BackgroundPart = ({
-  setIsBackgroundShow,
-  backgroundInfo,
+const PostCreateBackgroundPart = ({
+  inputRef,
   setbackgroundInfo,
+  setIsBackgroundShow,
 }) => {
   const handleBackgroundSelect = (item) => {
+    inputRef.current?.focus()
     setbackgroundInfo(item);
     setIsBackgroundShow(false);
   };
@@ -19,7 +20,7 @@ const BackgroundPart = ({
   return (
     <div
       className={
-        "mt-3 w-full h-[200px] flex flex-wrap justify-between gap-3 overflow-y-auto pr-1"
+        "mt-3 w-full h-[200px] flex flex-wrap justify-between gap-3 overflow-y-auto"
       }
     >
       <div
@@ -48,4 +49,4 @@ const BackgroundPart = ({
   );
 };
 
-export default BackgroundPart;
+export default PostCreateBackgroundPart;

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const PostEditorPart = ({ text, setText }) => {
+const PostCreateEditorPart = ({ text, setText }) => {
   const scrollToViewRef = useRef();
 
   const modules = {
@@ -14,12 +14,13 @@ const PostEditorPart = ({ text, setText }) => {
     ],
   };
 
-  useEffect(() => {
-    scrollToViewRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [text]);
+  // scroll to view function
+  // useEffect(() => {
+  //   scrollToViewRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [text]);
 
   return (
-    <div className="mt-3 mb-2 mr-1 shanto">
+    <div className="mt-3 mb-1">
       <ReactQuill
         theme="snow"
         modules={modules}
@@ -33,4 +34,4 @@ const PostEditorPart = ({ text, setText }) => {
   );
 };
 
-export default PostEditorPart;
+export default PostCreateEditorPart;
