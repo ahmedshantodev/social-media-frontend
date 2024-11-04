@@ -1,25 +1,26 @@
 import React, { useState } from "react";
-import userImage from "/public/remove/shanto.jpg";
 import { navmenu } from "../../data/navmenu";
 import { shortcutList } from "../../data/shortcutList";
 import FriendListItem from "../../components/listItem/FriendListItem";
 import GroupListItem from "../../components/listItem/GroupListItem";
 import MenuListItem from "../../components/listItem/MenuListItem";
 import { IoIosArrowUp } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 const LeftPart = () => {
   const [seeMore, setSeeMore] = useState(false);
+  const user = useSelector((activeUser) => activeUser.user.information);
 
   return (
     <div className="w-full h-full overflow-y-scroll no-scrollbar pl-3 pr-1 pb-2">
       <div className="w-full pb-2 border-b border-primary-border mt-5">
-        <div className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1">
+        <div className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1 cursor-pointer">
           <div className="w-[45px] aspect-square rounded-full overflow-hidden border border-border_color">
-            <img src={userImage} alt={""} className={`w-full`} />
+            <img src={user?.profilePicture} alt={""} className={`w-full`} />
           </div>
 
           <h3 className="text-[17px] font-segoe-ui font-medium text-primary-text">
-            Monsur Ahmed Shanto
+          {user?.firstName} {user?.lastName} 
           </h3>
         </div>
 

@@ -2,9 +2,9 @@ import React from "react";
 import { RxCross2 } from "react-icons/rx";
 import { RiImageAddFill } from "react-icons/ri";
 
-let ImageUploader = ({ show, setShow, postImages, setPostImages }) => {
-  let handleImageSelect = (e) => {
-    let file = Array.from(e.target.files);
+const PostImageUploader = ({ show, setShow, postImages, setPostImages }) => {
+  const handleImageSelect = (e) => {
+    const file = Array.from(e.target.files);
 
     file.forEach((image) => {
       if (
@@ -185,4 +185,4 @@ let ImageUploader = ({ show, setShow, postImages, setPostImages }) => {
   );
 };
 
-export default ImageUploader;
+export default PostImageUploader;

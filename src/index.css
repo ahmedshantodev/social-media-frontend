@@ -81,11 +81,11 @@
 }
 
 /* react quils wysiwyg editor customize */
-.quill .ql-toolbar{
+.quill .ql-toolbar {
   border-radius: 6px 6px 0 0;
 }
 
-.quill .ql-container{
+.quill .ql-container {
   min-height: 150px;
   font-size: 20px;
   font-family: "Segoe UI";
@@ -93,4 +93,40 @@
   font-weight: 500;
   color: #6e7074;
   border-radius: 0 0 6px 6px;
+}
+
+/* post content edit */
+#post-content {
+  font-weight: 400;
+  color: #050505;
+  font-family: "Inter", sans-serif !important;
+  letter-spacing: 0.48px;
+}
+
+#post-content h1 {
+  font-size: 30px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#post-content h2 {
+  font-size: 23px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#reaction-picker {
+  animation: reactionPicer 0.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s forwards;
+}
+
+/* reaction picker smoth animation */
+@keyframes reactionPicer {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }

@@ -3,9 +3,10 @@ import liveVideoLogo from "/public/images/liveVideoLogo.png";
 import galaryLogo from "/public/images/galaryLogo.png";
 import feelingsLogo from "/public/images/feelingsLogo.png";
 import PostCreateModal from "../../components/modal/PostCreateModal";
-import userImage from "/public/remove/shanto.jpg";
+import { useSelector } from "react-redux";
 
 const PostCreatePart = () => {
+  const user = useSelector((activeUser) => activeUser.user.information);
   const [PostCreateModalShow, setPostCreateModalShow] = useState(false);
 
   return (
@@ -13,7 +14,7 @@ const PostCreatePart = () => {
       <div className="flex items-center gap-x-2.5 border-b-[2px] border-secondary-border pb-3">
         <div className="box-content w-[48px] aspect-square rounded-full overflow-hidden border border-border_color">
           <img
-            src={userImage}
+            src={user?.profilePicture}
             alt=""
             className="w-full"
           />
@@ -24,7 +25,7 @@ const PostCreatePart = () => {
           className="bg-[#f0f2f5] px-5 py-2.5 w-full rounded-[30px] cursor-pointer hover:bg-[#e4e6e9] transition-all duration-150 ease-in-out"
         >
           <p className="font-segoe-ui text-lg text-secondary-text font-medium">
-            What's on your mind, Monsur?
+            What's on your mind, {user?.firstName}?
           </p>
         </div>
 

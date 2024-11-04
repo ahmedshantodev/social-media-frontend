@@ -7,8 +7,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import userImage from "/public/remove/shanto.jpg";
+import { useSelector } from "react-redux";
 
 const StoriesPart = () => {
+  const user = useSelector((activeUser) => activeUser.user.information);
+
   let sliderRef = useRef(null);
   var settings = {
     dots: false,

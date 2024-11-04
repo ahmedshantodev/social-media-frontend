@@ -14,6 +14,7 @@ module.exports = {
       "segoe-ui-bold": ["Segoe UI Bold"],
       poppins: ["Poppins", "system-ui"],
       inter: ["Inter", "sans-serif"],
+      roboto: ["Roboto", "sans-serif"],
     },
     extend: {
       screens: {

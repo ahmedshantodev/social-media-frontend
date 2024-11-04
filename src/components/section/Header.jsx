@@ -7,7 +7,6 @@ import recentSearchList from "../../data/recentSearchList";
 // componnets
 import Modal from "../modal/Modal";
 // images
-import userImage from "/public/remove/shanto.jpg";
 import rippleLogo from "/public/images/ripple-logo.png";
 // react icons
 import { FiSearch } from "react-icons/fi";
@@ -19,7 +18,7 @@ import { MdContactSupport } from "react-icons/md";
 import { MdNightsStay } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
 // react redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // react router dom
 import { useNavigate } from "react-router-dom";
 import { activeUser } from "../../redux/slices/activeUserSlice";
@@ -29,6 +28,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const searchBoxRef = useRef();
   const settingMenuBoxRef = useRef();
+  const user = useSelector((activeUser) => activeUser.user.information)
   const [isSearchBarshow, setIsSearchBarShow] = useState(false);
   const [isSettingMenuShow, setIsSettingMenuShow] = useState(false);
   const [isLogoutModalShow, setIsLogoutModalShow] = useState(false);
@@ -119,7 +119,7 @@ const Header = () => {
 
           <div ref={settingMenuBoxRef} className="relative">
             <img
-              src={userImage}
+              src={user?.profilePicture}
               alt="ripple-logo"
               onClick={() => setIsSettingMenuShow(!isSettingMenuShow)}
               className="w-[45px] aspect-square rounded-full box-content border-2 border-primary-border cursor-pointer"
@@ -129,11 +129,11 @@ const Header = () => {
               <div className="w-[400px] bg-white px-4 py-4 absolute top-full right-0 z-30 translate-y-[15px] rounded-[12px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
                 <div className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 bg-[#f0f2f5] cursor-pointer mb-3 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
                   <div className="w-[50px] aspect-square rounded-full overflow-hidden border-2 border-primary-border">
-                    <img src={userImage} alt={""} className={`w-full`} />
+                    <img src={user?.profilePicture} alt={""} className={`w-full`} />
                   </div>
 
                   <h3 className="text-[18px] font-segoe-ui font-medium text-primary-text">
-                    Monsur Ahmed Shanto
+                  {user?.firstName} {user?.lastName}
                   </h3>
                 </div>
 

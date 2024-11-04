@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 // react icons
 import { RxCross2 } from "react-icons/rx";
-// image
-import userImage from "/public/remove/shanto.jpg";
 // redux rtq
-import { usePostCreateMutation } from "../../redux/api/authenticationApi";
-
+import { useCreatePostMutation } from "../../redux/api/postApi";
 // react components
 import Modal from "./Modal";
 import PostCreateEditorPart from "../layout/PostCreateEditorPart";
 import PostCreateFeelingsPart from "../layout/PostCreateFeelingsPart";
-import ImageUploader from "../layout/ImageUploader";
+import PostImageUploader from "../layout/PostImageUploader";
 import PostCreateBackgroundPart from "../layout/PostCreateBackgroundPart";
 import PostCustomizationOption from "../layout/PostCustomizationOption";
 import PostCreateGifPart from "../layout/PostCreateGifPart";
@@ -25,7 +22,7 @@ const PostCreateModal = ({ show, setShow }) => {
   const scrollRef = useRef();
 
   // active user information
-  const activeUser = useSelector((activeUser) => activeUser.user.information);
+  const user = useSelector((activeUser) => activeUser.user.information);
 
   // post information
   const [text, setText] = useState("");
@@ -41,17 +38,17 @@ const PostCreateModal = ({ show, setShow }) => {
   const [isGifShow, setIsGifShow] = useState(false);
 
   // api call
-  const [postCreate, { isLoading }] = usePostCreateMutation();
+  const [createPost, { isLoading }] = useCreatePostMutation();
 
   // post create function
   const handlePost = async () => {
-    let response = await postCreate({
+    let response = await createPost({
       text: text,
       background: backgroundInfo,
       images: postImages,
       feelings: feelings,
       gif: gif,
-      user: activeUser.id,
+      user: user.id,
     });
 
     if (response?.data.message) {
@@ -73,7 +70,7 @@ const PostCreateModal = ({ show, setShow }) => {
 
   // background text color
   const [placeholder, setPlaceholder] = useState(
-    `What's on your mind, Monsur?`
+    `What's on your mind, ${user?.firstName} ?`
   );
   const handleChange = () => {
     setPlaceholder("");
@@ -107,14 +104,14 @@ const PostCreateModal = ({ show, setShow }) => {
         <div className="mt-4 flex items-center gap-x-3">
           <div>
             <img
-              src={userImage}
+              src={user?.profilePicture}
               alt=""
               className="w-[45px] aspect-square rounded-full border border-primary-border"
             />
           </div>
 
           <p className="font-segoe-ui text-[19px] text-primary-text font-semibold">
-            Monsur Ahmed Shanto
+          {user?.firstName} {user?.lastName} 
           </p>
         </div>
 
@@ -148,7 +145,7 @@ const PostCreateModal = ({ show, setShow }) => {
               </div>
             </div>
           ) : (
-            <PostCreateEditorPart text={text} setText={setText} />
+            <PostCreateEditorPart user={user} text={text} setText={setText} />
           )}
 
           {isGifShow && (
@@ -169,7 +166,7 @@ const PostCreateModal = ({ show, setShow }) => {
           )}
 
           {isImageUploaderShow && (
-            <ImageUploader
+            <PostImageUploader
               show={isImageUploaderShow}
               setShow={setIsImageUploaderShow}
               postImages={postImages}

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const PostCreateEditorPart = ({ text, setText }) => {
+const PostCreateEditorPart = ({ user, text, setText }) => {
   const scrollToViewRef = useRef();
 
   const modules = {
@@ -26,7 +26,7 @@ const PostCreateEditorPart = ({ text, setText }) => {
         modules={modules}
         value={text}
         onChange={setText}
-        placeholder="What's on your mind. Monsur?"
+        placeholder={`What's on your mind. ${user?.firstName}?`}
       />
 
       <div ref={scrollToViewRef} />

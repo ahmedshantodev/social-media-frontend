@@ -1,36 +1,15 @@
 import React, { useState } from "react";
-import Post from "../../components/section/Post";
-import userImageOne from "/public/remove/shanto.jpg";
-import postImageOne from "/public/remove/postImageOne.jpg";
-import postImageTwo from "/public/remove/post-image.jpg";
+import Post from "../../components/post/Post";
+import { useGetPostQuery } from "../../redux/api/postApi";
 
 const PostPart = () => {
+  const { data } = useGetPostQuery();
+
   return (
     <div className="mt-4">
-      <Post
-        name={`Monsur Ahmed Shanto`}
-        image={userImageOne}
-        time={`a day ago`}
-        content={postImageTwo}
-      />
-      <Post
-        name={`Monsur Ahmed Shanto`}
-        image={userImageOne}
-        time={`a day ago`}
-        content={postImageOne}
-      />
-      <Post
-        name={`Monsur Ahmed Shanto`}
-        image={userImageOne}
-        time={`a day ago`}
-        content={postImageTwo}
-      />
-      <Post
-        name={`Monsur Ahmed Shanto`}
-        image={userImageOne}
-        time={`a day ago`}
-        content={postImageOne}
-      />
+      {data?.map((item) => (
+        <Post key={item._id} post={item} />
+      ))}
     </div>
   );
 };
