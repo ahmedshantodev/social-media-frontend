@@ -15,10 +15,11 @@ import { useSelector } from "react-redux";
 // npm package
 import { toast } from "react-toastify";
 import BeatLoader from "react-spinners/BeatLoader";
+import AutoResizeTextarea from "../post/AutoResizeTextarea";
 
 const PostCreateModal = ({ show, setShow }) => {
   // useRef
-  const inputRef = useRef();
+  const backgroundTextareaRef = useRef(null);
   const scrollRef = useRef();
 
   // active user information
@@ -68,16 +69,6 @@ const PostCreateModal = ({ show, setShow }) => {
     }
   };
 
-  // background text color
-  const [placeholder, setPlaceholder] = useState(
-    `What's on your mind, ${user?.firstName} ?`
-  );
-  const handleChange = () => {
-    setPlaceholder("");
-    let value = inputRef.current.textContent;
-    setText(value);
-  };
-
   // scroll Into View function
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -111,38 +102,28 @@ const PostCreateModal = ({ show, setShow }) => {
           </div>
 
           <p className="font-segoe-ui text-[19px] text-primary-text font-semibold">
-          {user?.firstName} {user?.lastName} 
+            {user?.firstName} {user?.lastName}
           </p>
         </div>
 
         <div className="w-full max-h-[480px] overflow-y-auto mt-1 mb-2 pr-1">
           {backgroundInfo != "" ? (
-            <div>
-              <div
-                className="mt-3 rounded-md w-full h-[390px] relative mb-2 flex items-center justify-center text-center"
-                style={{
-                  background: `url(${backgroundInfo.background})`,
-                }}
-              >
-                {/* <textarea
-                  type="text"
-                  ref={inputRef}
-                  autoFocus={true}
-                  onChange={(e) => setText(e.target.value)}
-                  placeholder="What's on your mind, Monsur?"
-                  style={{ color: backgroundInfo.textColor }}
-                  className="w-full h-full text-center bg-transparent outline-none resize-none text-3xl font-semibold leading-[45px] text-white placeholder:text-white"
-                /> */}
-                <p
-                  ref={inputRef}
-                  contentEditable="true"
-                  onInput={handleChange}
-                  style={{ color: backgroundInfo.textColor }}
-                  className="outline-none text-3xl text-white font-inter"
-                >
-                  {placeholder}
-                </p>
-              </div>
+            <div
+              className="mt-3 rounded-md w-full h-[390px] relative mb-2"
+              style={{
+                background: `url(${backgroundInfo.background})`,
+              }}
+            >
+              <AutoResizeTextarea
+                value={text}
+                textareaRef={backgroundTextareaRef}
+                maxlength={"140"}
+                row={"1"}
+                style={{ color: backgroundInfo.textColor }}
+                onChange={(e) => setText(e.target.value)}
+                placeholder={`What's on your mind, Monsur?`}
+                className={` absolute top-2/4 -translate-y-2/4 left-0 resize-none w-full max-h-full text-center outline-none bg-transparent px-7s text-3xl font-semibold leading-[45px] text-white placeholder:text-white`}
+              />
             </div>
           ) : (
             <PostCreateEditorPart user={user} text={text} setText={setText} />
@@ -159,7 +140,7 @@ const PostCreateModal = ({ show, setShow }) => {
 
           {isBackgroundShow && (
             <PostCreateBackgroundPart
-              inputRef={inputRef}
+              inputRef={backgroundTextareaRef}
               setbackgroundInfo={setBackgroundInfo}
               setIsBackgroundShow={setIsBackgroundShow}
             />
@@ -185,20 +166,20 @@ const PostCreateModal = ({ show, setShow }) => {
         </div>
 
         <PostCustomizationOption
-          isBackgroundShow={isBackgroundShow}
-          setIsBackgroundShow={setIsBackgroundShow}
-          postImages={postImages}
-          setPostImages={setPostImages}
-          isImageUploaderShow={isImageUploaderShow}
-          setIsImageUploaderShow={setIsImageUploaderShow}
-          backgroundInfo={backgroundInfo}
-          setBackgroundInfo={setBackgroundInfo}
-          feelingSelectorShow={isFeelingSelectorShow}
-          setFeelingSelectorShow={setIsFeelingSelectorShow}
           gif={gif}
           setGif={setGif}
           isGifShow={isGifShow}
           setIsGifShow={setIsGifShow}
+          postImages={postImages}
+          setPostImages={setPostImages}
+          backgroundInfo={backgroundInfo}
+          setBackgroundInfo={setBackgroundInfo}
+          isBackgroundShow={isBackgroundShow}
+          setIsBackgroundShow={setIsBackgroundShow}
+          isImageUploaderShow={isImageUploaderShow}
+          setIsImageUploaderShow={setIsImageUploaderShow}
+          feelingSelectorShow={isFeelingSelectorShow}
+          setFeelingSelectorShow={setIsFeelingSelectorShow}
         />
 
         <div className="pr-1">
@@ -208,7 +189,7 @@ const PostCreateModal = ({ show, setShow }) => {
                 "w-full mt-3 rounded-[6px] py-2.5 bg-tertiary-bg text-lg font-segoe-ui font-medium text-white cursor-not-allowed"
               }
             >
-              <BeatLoader size={10}/>
+              <BeatLoader size={10} />
             </button>
           ) : (
             <button

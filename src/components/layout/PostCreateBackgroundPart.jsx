@@ -36,7 +36,7 @@ const PostCreateBackgroundPart = ({
         <div
           key={index}
           onClick={() => handleBackgroundSelect(item)}
-          className={`w-[18%] aspect-square rounded-[10px] overflow-hidden border-primary-border cursor-pointer`}
+          className={`w-[18%] aspect-square rounded-[10px] overflow-hidden border border-primary-border cursor-pointer`}
         >
           <img
             src={item.thumbnail}
