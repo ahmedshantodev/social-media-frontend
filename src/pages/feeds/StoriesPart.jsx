@@ -35,10 +35,10 @@ const StoriesPart = () => {
       <div className="slider-container">
         <Slider {...settings} ref={sliderRef}>
           <div>
-            <div className="group relative w-[95%] h-[210px] rounded-[10px] overflow-hidden cursor-pointer">
+            <div className="group relative w-[95%] h-[210px] border border-primary-border rounded-[10px] overflow-hidden cursor-pointer">
               <div className="w-full h-[70%]">
                 <img
-                  src={userImage}
+                  src={user?.profilePicture}
                   alt={""}
                   className="w-full h-full object-cover group-hover:scale-[1.05] transition-all duration-150 ease-in-out"
                 />

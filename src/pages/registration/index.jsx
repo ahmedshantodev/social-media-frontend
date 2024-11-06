@@ -13,12 +13,14 @@ import {
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { activeUser } from "../../redux/slices/activeUserSlice";
-import BeatLoader from "react-spinners/BeatLoader";
+import { ColorRing } from "react-loader-spinner";
 
 const Registration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(false);
+  const [verifyAndProcedLoading, setVerifyAndProcedLoading] = useState(false);
   const [registration, { isLoading: isRegistrationLoading }] = useRegistrationMutation();
   const [sendUserVerificationOtp, { isLoading: isOtpLoading }] = useSendUserVerificationOtpMutation();
   const [verifyUserVerificationOtp, { isLoading: isVerifyOtpLoading }] = useVerifyUserVerificationOtpMutation();
@@ -38,6 +40,8 @@ const Registration = () => {
     birthMonth: "",
     birthYear: "",
     gender: "",
+    profilePicture: "https://res.cloudinary.com/dpxse6rju/image/upload/v1730820743/dummy-profile-pic_ghvkab.jpg",
+    coverPhoto: "",
   });
 
   const [error, setError] = useState({
@@ -56,14 +60,18 @@ const Registration = () => {
   });
 
   const handleSendOtp = async () => {
+    setLoading(true);
     const response = await sendUserVerificationOtp({
       firstName: info.firstName,
       email: info.email,
     });
 
     if (response.data?.message) {
-      setIsOtpVerificationShow(true);
-      setIsOtpModalShow(false);
+      setTimeout(() => {
+        setIsOtpVerificationShow(true);
+        setIsOtpModalShow(false);
+        setLoading(false);
+      }, 1500);
     }
   };
 
@@ -92,20 +100,32 @@ const Registration = () => {
         birthYear: info.birthYear,
         gender: info.gender,
         verified: true,
+        profilePicture: info.profilePicture,
+        coverPhoto: info.coverPhoto,
       });
 
-      const { message, ...rest } = response.data;
-      dispatch(activeUser(rest));
-      localStorage.setItem("user", JSON.stringify(rest));
+      if (response.error?.data?.message) {
+        return alert("somthing went wrong, please try again")
+      }
 
-      toast.success(message, {
-        autoClose: 4000,
-        position: "bottom-center",
-        hideProgressBar: true,
-        theme: "colored",
-      });
+      if (response.data?.message) {
+        setVerifyAndProcedLoading(true);
+        const { message, ...rest } = response.data;
 
-      navigate("/");
+        setTimeout(() => {
+          setVerifyAndProcedLoading(false);
+          dispatch(activeUser(rest));
+          localStorage.setItem("user", JSON.stringify(rest));
+
+          toast.success(message, {
+            autoClose: 4000,
+            position: "bottom-left",
+            hideProgressBar: true,
+          });
+
+          navigate("/");
+        }, 1500);
+      }
     }
   };
 
@@ -130,6 +150,7 @@ const Registration = () => {
               <h2 className="font-segoe-ui text-5xl font-medium text-secondary-text">
                 Create a Ripple Account
               </h2>
+
               <p className="w-[80%] font-segoe-ui text-lg mt-5 font-normal text-secondary-text">
                 We've saved your spot in the ripple, friend! ✨ Signin and
                 connect with the conversations that sparked your mind. Dive back
@@ -147,6 +168,8 @@ const Registration = () => {
                   setError={setError}
                   handleVerifyOtp={handleVerifyOtp}
                   isVerifyOtpLoading={isVerifyOtpLoading}
+                  verifyAndProcedLoading={verifyAndProcedLoading}
+                  setVerifyAndProcedLoading={setVerifyAndProcedLoading}
                 />
               ) : (
                 <FormPart
@@ -175,9 +198,23 @@ const Registration = () => {
                   code will be valid for 10 minutes.
                 </h2>
 
-                {isOtpLoading ? (
-                  <button className="bg-[#d1d5db] h-[48px] w-full rounded-[6px] text-lg font-inter font-medium border-2 border-[#d1d5db] cursor-not-allowed">
-                    <BeatLoader size={10}/>
+                {isOtpLoading || loading ? (
+                  <button className="bg-[#1877f2] w-full flex items-center justify-center rounded-[6px] border-2 border-[#1877f2] cursor-not-allowed">
+                    <ColorRing
+                      visible={true}
+                      height="44"
+                      width="44"
+                      ariaLabel="color-ring-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="color-ring-wrapper"
+                      colors={[
+                        "#ffffff",
+                        "#ffffff",
+                        "#ffffff",
+                        "#ffffff",
+                        "#ffffff",
+                      ]}
+                    />
                   </button>
                 ) : (
                   <button

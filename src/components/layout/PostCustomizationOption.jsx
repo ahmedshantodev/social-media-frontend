@@ -3,28 +3,24 @@ import addBackgroudLogo from "/public/images/add-background-logo.png";
 import galaryLogo from "/public/images/galaryLogo.png";
 import addEmojiLogo from "/public/images/feelingsLogo.png";
 import tagFriends from "/public/images/tag-friends.png";
-import addLocation from "/public/images/add-location.png";
 import addGif from "/public/images/add-gif.png";
 import { RxCross2 } from "react-icons/rx";
 
 const PostCustomizationOption = ({
-  backgroundInfo,
-  setBackgroundInfo,
-  isBackgroundShow,
-  setIsBackgroundShow,
-
-  postImages,
-  setPostImages,
-  isImageUploaderShow,
-  setIsImageUploaderShow, 
-
-  feelingSelectorShow,
-  setFeelingSelectorShow,
-
   gif,
   setGif,
   isGifShow,
   setIsGifShow,
+  postImages,
+  setPostImages,
+  backgroundInfo,
+  isBackgroundShow,
+  setBackgroundInfo,
+  setIsBackgroundShow,
+  feelingSelectorShow,
+  isImageUploaderShow,
+  setIsImageUploaderShow, 
+  setFeelingSelectorShow,
 }) => {
   
   const removeBackground = () => {
@@ -179,14 +175,6 @@ const PostCustomizationOption = ({
             </p>
           </button>
         )}
-
-        <button className="p-2 rounded-full hover:bg-tertiary-bg relative group">
-          <img src={addLocation} alt="location-icon" className="w-[25px]" />
-
-          <p className="hidden group-hover:block w-[92px] absolute bottom-full left-2/4 -translate-x-2/4 z-30 bg-[#3c3c3c] text-white px-4 py-2 rounded-[10px] font-[15px] font-segoe-ui">
-            Check in
-          </p>
-        </button>
 
         {isImageUploaderShow || postImages.length > 0 || isBackgroundShow || backgroundInfo ? (
           <button

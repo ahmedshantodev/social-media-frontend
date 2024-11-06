@@ -4,7 +4,7 @@ const StoryListItem = ({ index, name, image, story }) => {
   return (
     <div
       key={index}
-      className="relative w-[95%] h-[210px] rounded-[10px] overflow-hidden cursor-pointer group"
+      className="relative w-[95%] h-[210px] border border-primary-border rounded-[10px] overflow-hidden cursor-pointer group"
     >
       <div className="absolute top-0 left-0 w-full h-full z-10 bg-gradient-to-b from-transparent via-transparent to-black/60"/>
 

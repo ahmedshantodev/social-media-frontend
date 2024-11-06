@@ -1,6 +1,4 @@
 import React from "react";
-import LeftPart from "./LeftPart";
-import RightPart from "./RightPart";
 import Header from "../../components/section/Header";
 import { Outlet } from "react-router-dom";
 
@@ -11,18 +9,8 @@ const RootLayout = () => {
         <Header />
       </div>
 
-      <div className="flex w-full h-[calc(100dvh-73px)] overflow-y-auto">
-        <div className="scrollbar-parent w-[22%] h-[calc(100dvh-73px)] sticky top-0 left-0">
-          <LeftPart />
-        </div>
-
-        <div className="w-[56%] pt-5">
-          <Outlet />
-        </div>
-
-        <div className="scrollbar-parent w-[22%] h-[calc(100dvh-73px)] sticky top-0 left-0 pr-1">
-          <RightPart />
-        </div>
+      <div className="w-full h-[calc(100dvh-73px)] overflow-y-auto">
+        <Outlet />
       </div>
     </section>
   );

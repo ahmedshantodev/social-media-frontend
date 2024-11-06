@@ -5,7 +5,6 @@ import { RxCross2 } from "react-icons/rx";
 import { useCreatePostMutation } from "../../redux/api/postApi";
 // react components
 import Modal from "./Modal";
-import PostCreateEditorPart from "../layout/PostCreateEditorPart";
 import PostCreateFeelingsPart from "../layout/PostCreateFeelingsPart";
 import PostImageUploader from "../layout/PostImageUploader";
 import PostCreateBackgroundPart from "../layout/PostCreateBackgroundPart";
@@ -14,32 +13,40 @@ import PostCreateGifPart from "../layout/PostCreateGifPart";
 import { useSelector } from "react-redux";
 // npm package
 import { toast } from "react-toastify";
-import BeatLoader from "react-spinners/BeatLoader";
+import { ColorRing } from "react-loader-spinner";
 import AutoResizeTextarea from "../post/AutoResizeTextarea";
 
 const PostCreateModal = ({ show, setShow }) => {
   // useRef
-  const backgroundTextareaRef = useRef(null);
   const scrollRef = useRef();
-
+  const textareaRef = useRef(null);
+  const backgroundTextareaRef = useRef(null);
   // active user information
   const user = useSelector((activeUser) => activeUser.user.information);
-
   // post information
   const [text, setText] = useState("");
   const [backgroundInfo, setBackgroundInfo] = useState("");
   const [postImages, setPostImages] = useState([]);
   const [feelings, setFeelings] = useState("");
   const [gif, setGif] = useState("");
-
   // state
+  const [loading, setLoading] = useState(false);
   const [isImageUploaderShow, setIsImageUploaderShow] = useState(false);
   const [isBackgroundShow, setIsBackgroundShow] = useState(false);
   const [isFeelingSelectorShow, setIsFeelingSelectorShow] = useState(false);
   const [isGifShow, setIsGifShow] = useState(false);
-
   // api call
   const [createPost, { isLoading }] = useCreatePostMutation();
+
+  const handleTextareaChange = (event) => {
+    const maxLines = 5;
+    const newText = event.target.value;
+    const lines = newText.split("\n");
+
+    // user can write maximum 5 line
+    const truncatedText = lines.slice(0, maxLines).join("\n");
+    setText(truncatedText);
+  };
 
   // post create function
   const handlePost = async () => {
@@ -53,19 +60,24 @@ const PostCreateModal = ({ show, setShow }) => {
     });
 
     if (response?.data.message) {
-      toast.success(response?.data.message, {
-        autoClose: 2500,
-        position: "bottom-left",
-        hideProgressBar: true,
-      });
+      setLoading(true);
 
-      setText("");
-      setBackgroundInfo("");
-      setPostImages("");
-      setFeelings("");
-      setGif("");
+      setTimeout(() => {
+        setLoading(false);
+        toast.success(response?.data.message, {
+          autoClose: 2500,
+          position: "bottom-left",
+          hideProgressBar: true,
+        });
 
-      setShow(false);
+        setText("");
+        setBackgroundInfo("");
+        setPostImages("");
+        setFeelings("");
+        setGif("");
+
+        setShow(false);
+      }, 800);
     }
   };
 
@@ -97,7 +109,7 @@ const PostCreateModal = ({ show, setShow }) => {
             <img
               src={user?.profilePicture}
               alt=""
-              className="w-[45px] aspect-square rounded-full border border-primary-border"
+              className="w-[45px] aspect-square rounded-full border-2 border-primary-border"
             />
           </div>
 
@@ -115,18 +127,34 @@ const PostCreateModal = ({ show, setShow }) => {
               }}
             >
               <AutoResizeTextarea
-                value={text}
-                textareaRef={backgroundTextareaRef}
-                maxlength={"140"}
                 row={"1"}
+                maxlength={"100"}
+                value={text}
+                onChange={handleTextareaChange}
+                textareaRef={backgroundTextareaRef}
                 style={{ color: backgroundInfo.textColor }}
-                onChange={(e) => setText(e.target.value)}
-                placeholder={`What's on your mind, Monsur?`}
-                className={` absolute top-2/4 -translate-y-2/4 left-0 resize-none w-full max-h-full text-center outline-none bg-transparent px-7s text-3xl font-semibold leading-[45px] text-white placeholder:text-white`}
+                placeholder={`What's on your mind, ${user?.firstName}?`}
+                className={` absolute top-2/4 -translate-y-2/4 left-0 px-7 resize-none w-full max-h-full text-center outline-none bg-transparent px-7s text-3xl font-semibold leading-[45px] text-white placeholder:text-white`}
               />
             </div>
           ) : (
-            <PostCreateEditorPart user={user} text={text} setText={setText} />
+            <AutoResizeTextarea
+              row={"1"}
+              value={text}
+              maxlength={"5000"}
+              textareaRef={textareaRef}
+              onChange={(e) => setText(e.target.value)}
+              placeholder={`What's on your mind, ${user?.firstName}?`}
+              className={
+                isImageUploaderShow || isGifShow
+                  ? "w-full resize-none outline-none mt-2 text-[18px] placeholder:text-[#65686c] min-h-[80px]"
+                  : text.length >= 200
+                  ? "w-full resize-none outline-none mt-2 text-[18px] placeholder:text-[#65686c] min-h-[180px]"
+                  : text.length >= 90
+                  ? "w-full resize-none outline-none mt-2 text-[22px] placeholder:text-[#65686c] min-h-[180px]"
+                  : "w-full resize-none outline-none mt-2 text-[28px] placeholder:text-[#65686c] min-h-[180px]"
+              }
+            />
           )}
 
           {isGifShow && (
@@ -183,19 +211,37 @@ const PostCreateModal = ({ show, setShow }) => {
         />
 
         <div className="pr-1">
-          {isLoading ? (
+          {isLoading || loading ? (
             <button
               className={
-                "w-full mt-3 rounded-[6px] py-2.5 bg-tertiary-bg text-lg font-segoe-ui font-medium text-white cursor-not-allowed"
+                "w-full flex items-center justify-center mt-3 rounded-[6px] bg-primary-button cursor-not-allowed"
               }
             >
-              <BeatLoader size={10} />
+              <ColorRing
+                visible={true}
+                height="48"
+                width="48"
+                ariaLabel="color-ring-loading"
+                wrapperStyle={{}}
+                wrapperClass="color-ring-wrapper"
+                colors={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]}
+              />
             </button>
-          ) : (
+          ) : text != "" ||
+            (text != "" && backgroundInfo) ||
+            postImages.length >= 1 ? (
             <button
               onClick={handlePost}
               className={
                 "w-full mt-3 rounded-[6px] py-2.5 bg-primary-button text-white text-lg font-segoe-ui font-medium"
+              }
+            >
+              Post
+            </button>
+          ) : (
+            <button
+              className={
+                "w-full mt-3 rounded-[6px] py-2.5 bg-[#e2e5e9] text-secondary-text/50 text-lg font-segoe-ui font-medium cursor-not-allowed"
               }
             >
               Post

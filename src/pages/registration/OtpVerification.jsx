@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSendUserVerificationOtpMutation } from "../../redux/api/authenticationApi";
-import BeatLoader from "react-spinners/BeatLoader";
+import { ColorRing } from "react-loader-spinner";
 
 let currentOtpIndex = 0;
 const OtpVerification = ({
@@ -10,6 +10,8 @@ const OtpVerification = ({
   setError,
   handleVerifyOtp,
   isVerifyOtpLoading,
+  verifyAndProcedLoading,
+  setVerifyAndProcedLoading,
 }) => {
   const [timer, setTimer] = useState(60);
   const [isRunning, setIsRunning] = useState(false);
@@ -26,8 +28,6 @@ const OtpVerification = ({
       firstName: info.firstName,
       email: info.email,
     });
-
-    console.log(response);
   };
 
   useEffect(() => {
@@ -154,16 +154,22 @@ const OtpVerification = ({
           </p>
         )}
 
-        {isVerifyOtpLoading ? (
-          <button
-            className="h-[52px] bg-[#d1d5db] px-20 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#d1d5db] cursor-not-allowed"
-          >
-            <BeatLoader size={10}/>
+        {isVerifyOtpLoading || verifyAndProcedLoading ? (
+          <button className="bg-[#1877f2] text-white  w-[230px] flex items-center justify-center rounded-full font-inter border-2 border-[#1877f2]">
+            <ColorRing
+              visible={true}
+              height="48"
+              width="48"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]}
+            />
           </button>
         ) : (
           <button
             onClick={handleVerify}
-            className="bg-[#1877f2] text-white px-10 py-3 rounded-full font-inter border-2 border-[#1877f2]"
+            className="bg-[#1877f2] text-white w-[230px] py-3 rounded-full font-inter border-2 border-[#1877f2]"
           >
             Verify and proceed
           </button>

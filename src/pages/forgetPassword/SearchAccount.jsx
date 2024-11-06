@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
 import { useFindUserMutation } from "../../redux/api/authenticationApi";
-import BeatLoader from "react-spinners/BeatLoader";
+import { ColorRing } from "react-loader-spinner";
 
 const SearchAccount = ({ setActiveItem, setFoundUserInfo }) => {
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ const SearchAccount = ({ setActiveItem, setFoundUserInfo }) => {
         setTimeout(() => {
           setLoading(false);
           setActiveItem(1);
-        }, 1000);
+        }, 2000);
       }
     } catch (error) {
       console.log(error.message);
@@ -111,10 +111,16 @@ const SearchAccount = ({ setActiveItem, setFoundUserInfo }) => {
         )}
 
         {isLoading || loading ? (
-          <button
-            className="w-1/2 h-[48px] bg-[#dddcea] flex items-center justify-center rounded-md text-secondary-text font-poppins font-semibold cursor-not-allowed"
-          >
-            <BeatLoader size={10} />
+          <button className="rounded-md w-[50%] flex items-center justify-center capitalize text-[16px] bg-[#1877f2] text-white font-semibold cursor-not-allowed">
+            <ColorRing
+              visible={true}
+              height="45"
+              width="45"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]}
+            />
           </button>
         ) : (
           <button

@@ -20,7 +20,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 // react redux
 import { useDispatch, useSelector } from "react-redux";
 // react router dom
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { activeUser } from "../../redux/slices/activeUserSlice";
 
 const Header = () => {
@@ -52,9 +52,9 @@ const Header = () => {
     <>
       <div className="flex items-center justify-between bg-primary-bg px-5 py-3 relative shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
         <div className="flex items-center gap-1">
-          <div>
+          <Link to={"/"}>
             <img src={rippleLogo} alt="ripple-logo" className="w-[45px]" />
-          </div>
+          </Link>
 
           <h3 className="text-xl font-medium font-segoe-ui ml-2 text-primary-text">
             Ripple

@@ -3,8 +3,8 @@ import { FiThumbsUp } from "react-icons/fi";
 import { RiChat3Line } from "react-icons/ri";
 import { PiShareFatBold } from "react-icons/pi";
 import { PiLinkSimpleBold } from "react-icons/pi";
-import like from "/public/reaction/like-normal.png";
-import love from "/public/reaction/love-normal.png";
+import like from "/public/images/reaction/like-normal.png";
+import love from "/public/images/reaction/love-normal.png";
 import ReactionPicker from "./ReactionPicker";
 import { IoSend } from "react-icons/io5";
 import galaryLogo from "/public/images/galaryLogo.png";
@@ -39,7 +39,7 @@ const PostFooter = () => {
   };
 
   const handleRemoveImage = (index) => {
-    const newItem = selectedImages.filter((item, nindex) => index !== nindex);
+    const newItem = selectedImages.filter((item, findex) => index !== findex);
     setSelectedImages(newItem);
   };
 
@@ -152,7 +152,7 @@ const PostFooter = () => {
 
                         <RxCross2
                           onClick={() => handleRemoveImage(index)}
-                          className="absolute top-2 right-2 box-content p-[2px] border border-primary-border text-secondary-text bg-white rounded-full cursor-pointer"
+                          className="absolute top-1 right-1 text-sm box-content p-[2px] border border-primary-border text-secondary-text bg-white rounded-full cursor-pointer"
                         />
                       </div>
                     ))}

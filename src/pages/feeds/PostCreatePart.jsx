@@ -12,7 +12,7 @@ const PostCreatePart = () => {
   return (
     <div className="w-full bg-white px-4 pt-4 pb-2 rounded-[10px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <div className="flex items-center gap-x-2.5 border-b-[2px] border-secondary-border pb-3">
-        <div className="box-content w-[48px] aspect-square rounded-full overflow-hidden border border-border_color">
+        <div className="w-[48px] aspect-square rounded-full overflow-hidden border-2 border-primary-border">
           <img
             src={user?.profilePicture}
             alt=""
@@ -24,7 +24,7 @@ const PostCreatePart = () => {
           onClick={() => setPostCreateModalShow(true)}
           className="bg-[#f0f2f5] px-5 py-2.5 w-full rounded-[30px] cursor-pointer hover:bg-[#e4e6e9] transition-all duration-150 ease-in-out"
         >
-          <p className="font-segoe-ui text-lg text-secondary-text font-medium">
+          <p className="font-poppins text-[17px]  text-secondary-text">
             What's on your mind, {user?.firstName}?
           </p>
         </div>

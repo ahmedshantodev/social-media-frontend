@@ -14,7 +14,7 @@ export const navmenu = [
   {
     icon: messengerLogo,
     text: "Messenger",
-    path: "/messages",
+    path: "/messenger",
   },
   {
     icon: friendsLogo,

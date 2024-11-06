@@ -1,15 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-const Messages = () => {
+const Messenger = () => {
   return (
     <>
       <Helmet>
-        <title>Ripple | Messages</title>
+        <title>Ripple | Messenger</title>
       </Helmet>
       Messages
     </>
   );
 };
 
-export default Messages;
+export default Messenger;

@@ -1,6 +1,7 @@
 import React from "react";
 import { RxCross2 } from "react-icons/rx";
 import { RiImageAddFill } from "react-icons/ri";
+import { MdEdit } from "react-icons/md";
 
 const PostImageUploader = ({ show, setShow, postImages, setPostImages }) => {
   const handleImageSelect = (e) => {
@@ -33,24 +34,33 @@ const PostImageUploader = ({ show, setShow, postImages, setPostImages }) => {
         "w-full border border-primary-border p-2.5 rounded-[6px] mb-2 mt-2 relative"
       }
     >
-      <label
-        htmlFor="add-more-photos"
-        className="bg-white absolute top-5 left-5 z-10 px-5 py-2 rounded-[8px] flex items-center gap-x-2.5 border border-primary-border cursor-pointer"
-      >
-        <RiImageAddFill className="text-[21px] text-secondary-text" />
-        <p className="text-[17px] text-secondary-text font-segoe-ui font-medium">
-          Add more photos
-        </p>
+      <div className="absolute top-4 left-4 z-10 flex items-center gap-x-3">
+        <button className="bg-white pl-3 pr-4 py-2 rounded-[8px] flex items-center gap-x-2 border border-primary-border cursor-pointer transition-all active:scale-[0.98]">
+          <MdEdit className="text-[21px] text-secondary-text" />
+          <p className="text-[17px] text-secondary-text font-segoe-ui font-medium">
+            Edit
+          </p>
+        </button>
 
-        <input
-          id="add-more-photos"
-          type="file"
-          multiple
-          onChange={handleImageSelect}
-          accept="image/jpeg,image/png,image/webp,image/gif"
-          className="hidden"
-        />
-      </label>
+        <label
+          htmlFor="add-more-photos"
+          className="bg-white px-3 py-2 rounded-[8px] flex items-center gap-x-2.5 border border-primary-border cursor-pointer  transition-all active:scale-[0.98]"
+        >
+          <RiImageAddFill className="text-[21px] text-secondary-text" />
+          <p className="text-[17px] text-secondary-text font-segoe-ui font-medium">
+            Add more photos
+          </p>
+
+          <input
+            id="add-more-photos"
+            type="file"
+            multiple
+            onChange={handleImageSelect}
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            className="hidden"
+          />
+        </label>
+      </div>
 
       <button
         onClick={mediaUploaderPartClose}

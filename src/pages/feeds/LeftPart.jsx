@@ -6,6 +6,7 @@ import GroupListItem from "../../components/listItem/GroupListItem";
 import MenuListItem from "../../components/listItem/MenuListItem";
 import { IoIosArrowUp } from "react-icons/io";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const LeftPart = () => {
   const [seeMore, setSeeMore] = useState(false);
@@ -14,15 +15,15 @@ const LeftPart = () => {
   return (
     <div className="w-full h-full overflow-y-scroll no-scrollbar pl-3 pr-1 pb-2">
       <div className="w-full pb-2 border-b border-primary-border mt-5">
-        <div className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1 cursor-pointer">
-          <div className="w-[45px] aspect-square rounded-full overflow-hidden border border-border_color">
+        <Link to={`/${user?.username}`} className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1 cursor-pointer">
+          <div className="w-[45px] aspect-square rounded-full overflow-hidden border-2 border-primary-border">
             <img src={user?.profilePicture} alt={""} className={`w-full`} />
           </div>
 
           <h3 className="text-[17px] font-segoe-ui font-medium text-primary-text">
-          {user?.firstName} {user?.lastName} 
+            {user?.firstName} {user?.lastName}
           </h3>
-        </div>
+        </Link>
 
         {navmenu.map((item, index) => (
           <MenuListItem
@@ -49,16 +50,32 @@ const LeftPart = () => {
           {shortcutList.map((item, index) =>
             seeMore ? (
               item.type === "friend" ? (
-                <FriendListItem key={index} image={item.image} name={item.name} />
+                <FriendListItem
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                />
               ) : (
-                <GroupListItem key={index} image={item.image} name={item.name} />
+                <GroupListItem
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                />
               )
             ) : (
               index <= 5 &&
               (item.type === "friend" ? (
-                <FriendListItem key={index} image={item.image} name={item.name} />
+                <FriendListItem
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                />
               ) : (
-                <GroupListItem key={index} image={item.image} name={item.name} />
+                <GroupListItem
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                />
               ))
             )
           )}

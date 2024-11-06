@@ -30,6 +30,14 @@ export const authenticationApi = createApi({
       }),
     }),
 
+    findUserEmail: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/authentication/find-user-email",
+        method: "POST",
+        body,
+      }),
+    }),
+
     findUsername: builder.mutation({
       query: (body) => ({
         url: "/api/v1/authentication/find-username",
@@ -84,6 +92,7 @@ export const {
   useRegistrationMutation,
   useLoginMutation,
   useFindUserMutation,
+  useFindUserEmailMutation,
   useFindUsernameMutation,
   useSendPasswordResetOtpMutation,
   useVerifyPasswordResetOtpMutation,

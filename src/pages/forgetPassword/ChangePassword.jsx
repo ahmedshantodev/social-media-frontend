@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { usePasswordResetMutation } from "../../redux/api/authenticationApi";
-import BeatLoader from "react-spinners/BeatLoader";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { ColorRing } from "react-loader-spinner";
 
 const ChangePassword = ({ foundUserInfo }) => {
   const navigate = useNavigate();
@@ -58,7 +59,12 @@ const ChangePassword = ({ foundUserInfo }) => {
       setTimeout(() => {
         setLoading(false);
         navigate("/login");
-      }, 1000);
+        toast.success("Password changed. Log in again.", {
+          autoClose: 5000,
+          position: "bottom-left",
+          hideProgressBar: true,
+        });
+      }, 2000);
     }
   };
 
@@ -155,7 +161,7 @@ const ChangePassword = ({ foundUserInfo }) => {
               "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-secondary-text font-semibold text-center cursor-not-allowed"
             }
           >
-            back
+            Cancel
           </button>
         ) : (
           <Link
@@ -169,8 +175,16 @@ const ChangePassword = ({ foundUserInfo }) => {
         )}
 
         {isLoading || loading ? (
-          <button className="w-1/2 h-[48px] bg-[#dddcea] flex items-center justify-center rounded-md text-secondary-text font-poppins font-semibold cursor-not-allowed">
-            <BeatLoader size={10} />
+          <button className="rounded-md w-[50%] flex items-center justify-center capitalize text-[16px] bg-[#1877f2] text-white font-semibold cursor-not-allowed">
+            <ColorRing
+              visible={true}
+              height="45"
+              width="45"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]}
+            />
           </button>
         ) : (
           <button

@@ -4,19 +4,25 @@ const PostContent = ({ post }) => {
   return (
     <div>
       {post.type === "text" ? (
-        <div
-          id="post-content"
-          className="px-5 pb-4"
-          dangerouslySetInnerHTML={{ __html: post.text }}
-        />
-      ) : post.type === "gif" ? (
-        <div className="w-full flex items-center justify-center">
-          <img
-            src={post.gif.url}
-            alt={post.gif.description}
-            className="max-w-full object-contain"
-          />
+        <div className=" break-words max-w-full">
+          <pre className="text-[22px] font-segoe-ui px-4 pb-2 break-words">
+            {post.text}
+          </pre>
         </div>
+      ) : post.type === "gif" ? (
+        <di>
+          <pre className="text-[22px] font-segoe-ui px-4 pb-2 break-words">
+            {post.text}
+          </pre>
+
+          <div className="w-full flex items-center justify-center border-t border-primary-border/50">
+            <img
+              src={post.gif.url}
+              alt={post.gif.description}
+              className="max-w-full object-contain"
+            />
+          </div>
+        </di>
       ) : post.type === "background" ? (
         <div
           className="w-full h-[450px] flex items-center justify-center"
@@ -26,36 +32,34 @@ const PostContent = ({ post }) => {
             backgroundSize: "cover",
           }}
         >
-          <p
+          <pre
             style={{ color: post.background.textColor }}
             className="text-5xl font-inter text-center leading-[50px] mx-8"
           >
             {post.text}
-          </p>
+          </pre>
         </div>
       ) : (
         <div>
           {post.text && (
-            <div
-              id="post-content"
-              className="px-5 pb-4"
-              dangerouslySetInnerHTML={{ __html: post.text }}
-            />
+            <pre className="text-[22px] font-segoe-ui px-4 pb-2 break-words">
+              {post.text}
+            </pre>
           )}
 
           {post.images.length <= 4 ? (
             <div
               className={
                 post.images.length === 1
-                  ? "w-full overflow-hidden border-t border-[#ced0d4]/50"
+                  ? "w-full overflow-hidden border-t border-primary-border/50"
                   : post.images.length === 2
-                  ? "w-full overflow-hidden flex gap-x-[2px] border-t border-[#ced0d4]/50"
+                  ? "w-full overflow-hidden flex gap-x-[2px] border-t border-primary-border/50"
                   : post.images.length === 3
-                  ? "w-full h-[300px]s overflow-hidden flex gap-x-[2px] border-t border-[#ced0d4]/50"
+                  ? "w-full h-[300px]s overflow-hidden flex gap-x-[2px] border-t border-primary-border/50"
                   : post.images.length === 4
-                  ? "w-full overflow-hidden flex gap-[2px] flex-wrap border-t border-[#ced0d4]/50"
+                  ? "w-full overflow-hidden flex gap-[2px] flex-wrap border-t border-primary-border/50"
                   : post.images.length > 4 &&
-                    "w-full overflow-hidden flex gap-[2px] flex-wrap border-t border-[#ced0d4]/50"
+                    "w-full overflow-hidden flex gap-[2px] flex-wrap border-t border-primary-border/50"
               }
             >
               {post.images.map(

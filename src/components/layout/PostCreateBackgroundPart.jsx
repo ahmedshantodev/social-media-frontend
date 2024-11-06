@@ -20,7 +20,7 @@ const PostCreateBackgroundPart = ({
   return (
     <div
       className={
-        "mt-3 w-full h-[200px] flex flex-wrap justify-between gap-3 overflow-y-auto"
+        "mt-3 w-full h-[200px] flex flex-wrap justify-between gap-3 overflow-y-auto pr-1"
       }
     >
       <div

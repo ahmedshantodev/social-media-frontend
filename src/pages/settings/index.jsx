@@ -1,18 +1,16 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-const Media = () => {
+const Settings = () => {
   return (
     <>
       <Helmet>
-        <title>Ripple | Media</title>
+        <title>Ripple | Settings</title>
       </Helmet>
-      
-      <section>
-        media
-      </section>
+
+      <section>settings</section>
     </>
   );
 };
 
-export default Media;
+export default Settings;

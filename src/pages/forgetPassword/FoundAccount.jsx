@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useSendPasswordResetOtpMutation } from "../../redux/api/authenticationApi";
-import BeatLoader from "react-spinners/BeatLoader";
+import { ColorRing } from "react-loader-spinner";
 
 const FoundAccount = ({ setActiveItem, foundUserInfo }) => {
   const [loading, setLoading] = useState(false);
   const [sendPasswordResetOtp, { isLoading }] =
     useSendPasswordResetOtpMutation();
+  console.log(foundUserInfo);
 
   const handleOtpSend = async () => {
     try {
@@ -18,7 +19,7 @@ const FoundAccount = ({ setActiveItem, foundUserInfo }) => {
         setTimeout(() => {
           setLoading(false);
           setActiveItem(2);
-        }, 1000);
+        }, 2000);
       }
     } catch (error) {
       console.log("error =>", error);
@@ -33,21 +34,18 @@ const FoundAccount = ({ setActiveItem, foundUserInfo }) => {
 
       <div className="flex gap-x-4 items-center mb-3">
         <img
-          // src={foundUserInfo.profilePicture}
-          src={
-            "https://med.gov.bz/wp-content/uploads/2020/08/dummy-profile-pic.jpg"
-          }
-          alt=""
-          className="w-[70px] aspect-square object-cover rounded-md"
+          src={foundUserInfo?.profilePicture}
+          alt={`${foundUserInfo?.firstName} ${foundUserInfo?.lastName}`}
+          className="w-[70px] aspect-square object-cover rounded-md border border-primary-border"
         />
 
         <div>
           <h4 className="font-poppins text-xl font-semibold">
-            {foundUserInfo.firstName} {foundUserInfo.lastName}
+            {foundUserInfo?.firstName} {foundUserInfo?.lastName}
           </h4>
 
           <h4 className="font-poppins text-lgs font-medium text-secondary-text">
-            {foundUserInfo.email}
+            {foundUserInfo?.email}
           </h4>
         </div>
       </div>
@@ -72,8 +70,16 @@ const FoundAccount = ({ setActiveItem, foundUserInfo }) => {
         )}
 
         {isLoading || loading ? (
-          <button className="w-1/2 h-[48px] bg-[#dddcea] flex items-center justify-center rounded-md text-secondary-text font-poppins font-semibold cursor-not-allowed">
-            <BeatLoader size={10} />
+          <button className="rounded-md w-[50%] flex items-center justify-center capitalize text-[16px] bg-[#1877f2] text-white font-semibold cursor-not-allowed">
+            <ColorRing
+              visible={true}
+              height="45"
+              width="45"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]}
+            />
           </button>
         ) : (
           <button

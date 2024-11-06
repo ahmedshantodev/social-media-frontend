@@ -7,11 +7,12 @@ import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../../redux/api/authenticationApi";
 import { toast } from "react-toastify";
 import { activeUser } from "../../redux/slices/activeUserSlice";
-import BeatLoader from "react-spinners/BeatLoader";
+import { ColorRing } from "react-loader-spinner";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [login, { isLoading }] = useLoginMutation();
   const [isPasswordShow, setIsPasswordShow] = useState(false);
 
@@ -84,18 +85,29 @@ const Login = () => {
     }
 
     if (response.data?.message) {
+      setLoading(true);
       const { message, ...rest } = response.data;
 
-      dispatch(activeUser(rest));
-      localStorage.setItem("user", JSON.stringify(rest));
+      setTimeout(() => {
+        setLoading(false);
+        setInfo({
+          email: "",
+          password: "",
+        });
+      }, 2000);
 
-      toast.success(response.data?.message, {
-        autoClose: 4000,
-        position: "bottom-center",
-        hideProgressBar: true,
-      });
+      setTimeout(() => {
+        dispatch(activeUser(rest));
+        localStorage.setItem("user", JSON.stringify(rest));
 
-      navigate("/");
+        toast.success(response.data?.message, {
+          autoClose: 4000,
+          position: "bottom-left",
+          hideProgressBar: true,
+        });
+
+        navigate("/");
+      }, 2500);
     }
   };
 
@@ -130,6 +142,7 @@ const Login = () => {
                     id={`email`}
                     name={`email`}
                     label={`Email`}
+                    value={info.email}
                     error={error.email}
                     onChange={handleChange}
                     className={`w-full mb-5`}
@@ -140,6 +153,7 @@ const Login = () => {
                     id={`password`}
                     name={`password`}
                     label={`Password`}
+                    value={info.password}
                     error={error.password}
                     onChange={handleChange}
                     className={`w-full mb-5`}
@@ -189,9 +203,23 @@ const Login = () => {
                   <span className="group-hover:underline">Registration</span>
                 </Link>
 
-                {isLoading ? (
-                  <button className="bg-[#e4e6eb] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#e4e6eb] cursor-not-allowed">
-                    <BeatLoader size={10} />
+                {isLoading || loading ? (
+                  <button className="bg-[#1877f2] text-white px-[39px] py-2.5s rounded-full text-lg font-segoe-ui font-medium border-2 border-[#1877f2] cursor-not-allowed">
+                    <ColorRing
+                      visible={true}
+                      height="48"
+                      width="48"
+                      ariaLabel="color-ring-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="color-ring-wrapper"
+                      colors={[
+                        "#ffffff",
+                        "#ffffff",
+                        "#ffffff",
+                        "#ffffff",
+                        "#ffffff",
+                      ]}
+                    />
                   </button>
                 ) : (
                   <button

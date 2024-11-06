@@ -5,10 +5,8 @@ import Name from "./Name";
 import Password from "./Password";
 import BirthDate_Gender from "./BirthDate_Gender";
 import Email_Username from "./Email_Username";
-import {
-  useFindUserMutation,
-  useFindUsernameMutation,
-} from "../../redux/api/authenticationApi";
+import { useFindUserEmailMutation, useFindUsernameMutation } from "../../redux/api/authenticationApi";
+import { ColorRing } from "react-loader-spinner";
 
 const FormPart = ({
   info,
@@ -18,9 +16,9 @@ const FormPart = ({
   isOtpModalShow,
   setIsOtpModalShow,
 }) => {
-  const [findUser, { isLoading: isUserLoading }] = useFindUserMutation();
-  const [findUsername, { isLoading: isUserNameLoading }] =
-    useFindUsernameMutation();
+  const [loading, setLoading] = useState(false);
+  const [findUserEmail, { isLoading: isUserEmailLoading }] = useFindUserEmailMutation();
+  const [findUsername, { isLoading: isUserNameLoading }] = useFindUsernameMutation();
   const [activeItem, setActiveItem] = useState(1);
 
   useEffect(() => {
@@ -141,14 +139,6 @@ const FormPart = ({
         });
       }
 
-      const emailResponse = await findUser({ email: info.email });
-      if (emailResponse.data?.email) {
-        return setError({
-          ...error,
-          email: "user already exist",
-        });
-      }
-
       if (info.username === "") {
         return setError({
           ...error,
@@ -163,6 +153,14 @@ const FormPart = ({
         });
       }
 
+      const emailResponse = await findUserEmail({ email: info.email });
+      if (emailResponse.error?.data?.message) {
+        return setError({
+          ...error,
+          email: emailResponse.error?.data?.message,
+        });
+      }
+
       const usernameResponse = await findUsername({ username: info.username });
       if (usernameResponse.error?.data?.message) {
         return setError({
@@ -171,7 +169,11 @@ const FormPart = ({
         });
       }
 
-      next();
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        next();
+      }, 1500);
     }
 
     if (activeItem === 4) {
@@ -196,7 +198,11 @@ const FormPart = ({
         });
       }
 
-      setIsOtpModalShow(true);
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setIsOtpModalShow(true);
+      }, 500);
     }
   };
 
@@ -251,14 +257,22 @@ const FormPart = ({
             </button>
           )}
 
-          {isUserLoading || isUserNameLoading ? (
-            <button className="bg-gray-300 text-black/50 px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#e4e6eb] cursor-not-allowed">
-              Next
+          {isUserEmailLoading || isUserNameLoading || loading ? (
+            <button className="bg-[#1877f2] text-white w-[130px] flex items-center justify-center rounded-full text-lg font-segoe-ui font-medium border-2 border-[#1877f2] cursor-not-allowed">
+              <ColorRing
+                visible={true}
+                height="48"
+                width="48"
+                ariaLabel="color-ring-loading"
+                wrapperStyle={{}}
+                wrapperClass="color-ring-wrapper"
+                colors={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]}
+              />
             </button>
           ) : (
             <button
               onClick={handleNext}
-              className="bg-[#1877f2] text-white px-10 py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#1877f2] active:scale-[0.95] transition-all duration-200 ease-in-out"
+              className="bg-[#1877f2] text-white w-[130px] py-2.5 rounded-full text-lg font-segoe-ui font-medium border-2 border-[#1877f2]"
             >
               Next
             </button>

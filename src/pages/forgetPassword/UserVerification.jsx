@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useVerifyPasswordResetOtpMutation } from "../../redux/api/authenticationApi";
-import BeatLoader from "react-spinners/BeatLoader";
+import { ColorRing } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
   const [loading, setLoading] = useState(false);
@@ -24,10 +25,8 @@ const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
         code: otp,
       });
 
-      console.log(response);
-
       if (response.error?.data?.message) {
-        return setError(response.error?.data?.message)
+        return setError(response.error?.data?.message);
       }
 
       if (response.data) {
@@ -36,7 +35,7 @@ const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
         setTimeout(() => {
           setLoading(false);
           setActiveItem(3);
-        }, 1000);
+        }, 2000);
       }
     } catch (error) {
       console.log(error);
@@ -87,7 +86,7 @@ const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
       </div>
 
       <div className="flex justify-between gap-x-3">
-        {!isLoading || loading ? (
+        {isLoading || loading ? (
           <button
             className={
               "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-secondary-text font-semibold text-center cursor-not-allowed"
@@ -96,18 +95,27 @@ const OtpSubmit = ({ setActiveItem, foundUserInfo }) => {
             Cancel
           </button>
         ) : (
-          <button
+          <Link
+            to={"/login"}
             className={
-              "rounded-md w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-black font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
+              "rounded-md text-center w-[50%] py-3 capitalize text-[16px] bg-[#dddcea] text-black font-semibold active:scale-[0.98] transition-all duration-200 ease-in-out"
             }
           >
             Cancel
-          </button>
+          </Link>
         )}
 
         {isLoading || loading ? (
-          <button className="w-1/2 h-[48px] bg-[#dddcea] flex items-center justify-center rounded-md text-secondary-text font-poppins font-semibold cursor-not-allowed">
-            <BeatLoader size={10} />
+          <button className="rounded-md w-[50%] flex items-center justify-center capitalize text-[16px] bg-[#1877f2] text-white font-semibold cursor-not-allowed">
+            <ColorRing
+              visible={true}
+              height="45"
+              width="45"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]}
+            />
           </button>
         ) : (
           <button
