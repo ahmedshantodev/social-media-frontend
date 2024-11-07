@@ -10,6 +10,7 @@ const Modal = ({ show, setShow, children, className }) => {
 
   return (
     <div
+      id="custom-modal"
       className={
         show
           ? "w-full h-dvh fixed top-0 left-0 z-[999] bg-gray-600/55 flex items-center justify-center overflow-y-auto"
@@ -18,6 +19,7 @@ const Modal = ({ show, setShow, children, className }) => {
     >
       <div
         ref={modalRef}
+        id="custom-modal-box"
         className={
           show
             ? `${className} bg-white rounded-[10px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]`

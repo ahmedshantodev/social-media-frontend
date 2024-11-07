@@ -5,41 +5,6 @@
 
 /* initial fonts */
 @font-face {
-  font-family: "Gilroy Thin";
-  src: url("./assets/fonts/Gilroy-Thin.ttf");
-}
-
-@font-face {
-  font-family: "Gilroy Light";
-  src: url("./assets/fonts/Gilroy-Light.ttf");
-}
-
-@font-face {
-  font-family: "Gilroy Reguler";
-  src: url("./assets/fonts/Gilroy-Regular.ttf");
-}
-
-@font-face {
-  font-family: "Gilroy Medium";
-  src: url("./assets/fonts/Gilroy-Medium.ttf");
-}
-
-@font-face {
-  font-family: "Gilroy SemiBold";
-  src: url("./assets/fonts/Gilroy-SemiBold.ttf");
-}
-
-@font-face {
-  font-family: "Gilroy Bold";
-  src: url("./assets/fonts/Gilroy-Bold.ttf");
-}
-
-@font-face {
-  font-family: "Gilroy ExtraBold";
-  src: url("./assets/fonts/Gilroy-ExtraBold.ttf");
-}
-
-@font-face {
   font-family: "Segoe UI";
   src: url("./assets/fonts/Segoe\ UI.ttf");
 }
@@ -80,42 +45,7 @@
   appearance: none;
 }
 
-/* react quils wysiwyg editor customize */
-.quill .ql-toolbar {
-  border-radius: 6px 6px 0 0;
-}
-
-.quill .ql-container {
-  min-height: 150px;
-  font-size: 20px;
-  font-family: "Segoe UI";
-  font-style: normal !important;
-  font-weight: 500;
-  color: #6e7074;
-  border-radius: 0 0 6px 6px;
-}
-
-/* post content edit */
-#post-content {
-  font-weight: 400;
-  color: #050505;
-  font-family: "Inter", sans-serif !important;
-  letter-spacing: 0.48px;
-  padding-top: 10px;
-}
-
-#post-content h1 {
-  font-size: 30px;
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-#post-content h2 {
-  font-size: 23px;
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
+/* react picker animation */
 #reaction-picker {
   animation: reactionPicer 0.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s forwards;
 }
@@ -129,5 +59,49 @@
   100% {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+
+/* custom modal animation */
+#custom-modal {
+  animation: modalmain 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+@keyframes modalmain {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#custom-modal-box {
+  animation: modalBox 0.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+@keyframes modalBox {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+#test {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 90% cover 90%;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to{
+    opacity: 1;
   }
 }

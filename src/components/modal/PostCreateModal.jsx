@@ -146,13 +146,7 @@ const PostCreateModal = ({ show, setShow }) => {
               onChange={(e) => setText(e.target.value)}
               placeholder={`What's on your mind, ${user?.firstName}?`}
               className={
-                isImageUploaderShow || isGifShow
-                  ? "w-full resize-none outline-none mt-2 text-[18px] placeholder:text-[#65686c] min-h-[80px]"
-                  : text.length >= 200
-                  ? "w-full resize-none outline-none mt-2 text-[18px] placeholder:text-[#65686c] min-h-[180px]"
-                  : text.length >= 90
-                  ? "w-full resize-none outline-none mt-2 text-[22px] placeholder:text-[#65686c] min-h-[180px]"
-                  : "w-full resize-none outline-none mt-2 text-[28px] placeholder:text-[#65686c] min-h-[180px]"
+                "w-full resize-none outline-none mt-2 text-[27px] placeholder:text-[#65686c] min-h-[160px]"
               }
             />
           )}

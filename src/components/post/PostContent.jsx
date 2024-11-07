@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 const PostContent = ({ post }) => {
+  const [isSeeMore, setIsSeeMore] = useState(true);
   return (
     <div>
       {post.type === "text" ? (
-        <div className=" break-words max-w-full">
-          <pre className="text-[22px] font-segoe-ui px-4 pb-2 break-words">
+        <div>
+          <pre
+            onClick={() => setIsSeeMore(!isSeeMore)}
+            className={
+              "text-[22px] font-segoe-ui px-4 pb-2 whitespace-pre-wrap"
+            }
+          >
             {post.text}
           </pre>
         </div>
       ) : post.type === "gif" ? (
         <di>
-          <pre className="text-[22px] font-segoe-ui px-4 pb-2 break-words">
+          <pre className="text-[22px] font-segoe-ui px-4 pb-2 whitespace-pre-wrap">
             {post.text}
           </pre>
 
@@ -34,7 +40,7 @@ const PostContent = ({ post }) => {
         >
           <pre
             style={{ color: post.background.textColor }}
-            className="text-5xl font-inter text-center leading-[50px] mx-8"
+            className="text-5xl font-inter text-center leading-[50px] mx-8 whitespace-pre-wrap"
           >
             {post.text}
           </pre>
@@ -42,7 +48,7 @@ const PostContent = ({ post }) => {
       ) : (
         <div>
           {post.text && (
-            <pre className="text-[22px] font-segoe-ui px-4 pb-2 break-words">
+            <pre className="text-[22px] font-segoe-ui px-4 pb-2 whitespace-pre-wrap">
               {post.text}
             </pre>
           )}

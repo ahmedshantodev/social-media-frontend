@@ -3,9 +3,7 @@ import userOne from "/public/remove/userOne.png";
 import { Link } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { MdModeEdit } from "react-icons/md";
-import { TbPhotoPlus } from "react-icons/tb";
 import { MdPhotoCamera } from "react-icons/md";
-import { IoIosCamera } from "react-icons/io";
 
 const ProfileHeaderPart = () => {
   const navMenu = [

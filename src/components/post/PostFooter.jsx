@@ -60,7 +60,7 @@ const PostFooter = () => {
             />
           </div>
 
-          <p className="font-poppins text-[16px] text-secondary-text hover:underline cursor-pointer">
+          <p className="font-poppins text-[17px] mt-[3px] text-secondary-text hover:underline cursor-pointer leading-[0.8]">
             9.8k
           </p>
         </div>
