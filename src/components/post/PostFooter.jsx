@@ -13,7 +13,7 @@ import addGif from "/public/images/add-gif.png";
 import AutoResizeTextarea from "./AutoResizeTextarea";
 import { RxCross2 } from "react-icons/rx";
 
-const PostFooter = () => {
+const PostFooter = ({ post }) => {
   const commentBoxTextareaRef = useRef(null);
   const [comment, setComment] = useState("");
   const [isCommentShow, setIsCommentShow] = useState(false);
@@ -122,9 +122,9 @@ const PostFooter = () => {
           <div className="flex items-start gap-x-2">
             <div className="w-[40px] aspect-square rounded-full overflow-hidden">
               <img
-                src="https://scontent.fdac41-2.fna.fbcdn.net/v/t39.30808-1/428701429_399313009412651_7021363013979176346_n.jpg?stp=cp0_dst-jpg_s40x40&_nc_cat=103&ccb=1-7&_nc_sid=6738e8&_nc_ohc=YfYWn3ZmWokQ7kNvgHpzRfq&_nc_zt=24&_nc_ht=scontent.fdac41-2.fna&_nc_gid=AZQXo215uyn6np4PYL0oNF9&oh=00_AYDW8W5gpM8b1Kb87gS4l2RGKBDD_sOJXfessiMgSB1Q9Q&oe=672F4B26"
-                alt=""
-                className="w-full aspect-square object-cover border border-primary-border box-content"
+                src={post?.user?.profilePicture}
+                alt={post?.user?.firstName + " " + post?.user?.lastName}
+                className="w-full aspect-square object-cover"
               />
             </div>
 
@@ -136,7 +136,7 @@ const PostFooter = () => {
                   name="comment"
                   textareaRef={commentBoxTextareaRef}
                   onChange={(e) => setComment(e.target.value)}
-                  placeholder="Comment as Monsur Ahmed Shanto"
+                  placeholder={`Comment as ${post?.user?.firstName + " " + post?.user?.lastName}`}
                   className="w-full bg-[#f0f2f5] max-h-[400px] resize-none text-[17px] placeholder:text-[#65676b] font-segoe-ui outline-none"
                 />
 

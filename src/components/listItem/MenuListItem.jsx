@@ -7,8 +7,8 @@ const MenuListItem = ({ icon, text, path }) => {
       to={path}
       className={({ isActive }) =>
         isActive
-          ? "py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1"
-          : "py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1"
+          ? "py-2.5 px-2.5 rounded-[10px] flex items-center gap-x-2.5 bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1"
+          : "py-2.5 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1"
       }
     >
       <div className="w-[38px] aspect-square relative overflow-hidden ">

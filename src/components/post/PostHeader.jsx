@@ -5,29 +5,30 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 
 const PostHeader = ({ post }) => {
+  
   return (
     <div className="px-4 py-[10px] flex items-center justify-between">
       <div className="flex items-center gap-x-2.5">
         <Link
-          to={`/profile/${post?.user?.username}`}
+          to={`/${post?.user?.username}`}
           className="w-[40px] aspect-square"
         >
           <img
             src={post?.user?.profilePicture}
             alt={post?.user?.firstName + " " + post?.user?.lastName}
-            className="w-full h-full object-cover rounded-full border border-primary-border"
+            className="w-full h-full object-cover rounded-full"
           />
         </Link>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-y-[2px]">
           <Link
             to={`/profile/${post?.user?.username}`}
-            className="font-segoe-ui font-semibold text-[16px] leading-none mb-[2px] hover:underline"
+            className="font-inter font-medium text-[17px] leading-none tracking-[0.45px] hover:underline"
           >
             {post?.user?.firstName} {post?.user?.lastName}
           </Link>
 
-          <p className="font-segoe-ui text-[13px] font-medium text-secondary-text">
+          <p className="font-inter text-[13px] font-medium text-secondary-text">
             {formatDistance(post.createdAt, new Date(), { addSuffix: true })}
           </p>
         </div>

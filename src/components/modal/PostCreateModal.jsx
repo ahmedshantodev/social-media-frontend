@@ -108,8 +108,8 @@ const PostCreateModal = ({ show, setShow }) => {
           <div>
             <img
               src={user?.profilePicture}
-              alt=""
-              className="w-[45px] aspect-square rounded-full border-2 border-primary-border"
+              alt={user?.firstName + " " + user?.lastName}
+              className="w-[45px] aspect-square rounded-full"
             />
           </div>
 

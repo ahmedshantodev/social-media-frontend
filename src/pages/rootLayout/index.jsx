@@ -9,7 +9,7 @@ const RootLayout = () => {
         <Header />
       </div>
 
-      <div className="w-full h-[calc(100dvh-73px)] overflow-y-auto">
+      <div className="w-full h-[calc(100dvh-69px)] overflow-y-auto">
         <Outlet />
       </div>
     </section>

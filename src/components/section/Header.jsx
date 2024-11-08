@@ -109,12 +109,12 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-x-2.5">
-          <button className="bg-[#e4e6eb] rounded-full p-2.5 border border-[#e4e6eb]">
-            <FaFacebookMessenger className="text-[25px]" />
+          <button className="bg-[#e4e6eb] w-[45px] aspect-square flex items-center justify-center rounded-full border border-[#e4e6eb]">
+            <FaFacebookMessenger className="text-[23px]" />
           </button>
 
-          <button className="bg-[#e4e6eb] rounded-full p-2 border border-[#e4e6eb]">
-            <IoMdNotifications className="text-[29px]" />
+          <button className="bg-[#e4e6eb] w-[45px] aspect-square rounded-full flex justify-center items-center border border-[#e4e6eb]">
+            <IoMdNotifications className="text-[27px]" />
           </button>
 
           <div ref={settingMenuBoxRef} className="relative">
@@ -122,7 +122,7 @@ const Header = () => {
               src={user?.profilePicture}
               alt="ripple-logo"
               onClick={() => setIsSettingMenuShow(!isSettingMenuShow)}
-              className="w-[45px] aspect-square rounded-full box-content border-2 border-primary-border cursor-pointer"
+              className="w-[45px] aspect-square rounded-full cursor-pointer"
             />
 
             {isSettingMenuShow && (

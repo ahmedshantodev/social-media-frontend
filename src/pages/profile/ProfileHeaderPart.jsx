@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import userOne from "/public/remove/userOne.png";
-import { Link } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { MdModeEdit } from "react-icons/md";
 import { MdPhotoCamera } from "react-icons/md";
 
-const ProfileHeaderPart = () => {
+const ProfileHeaderPart = ({ user }) => {
   const navMenu = [
-    "post",
     "about",
+    "post",
     "friends",
     "groups",
     "photos",
@@ -62,30 +61,18 @@ const ProfileHeaderPart = () => {
             <div className="w-[65%]">
               <h3 className="text-4xl font-semibold">Rayhand Ahmed Siam</h3>
 
-              <div className="space-x-[6px] mt-[5px]">
-                <Link
-                  to={""}
-                  className="font-poppinss font-semibold text-[16px] text-secondary-text hover:underline"
-                >
-                  290 friends
-                </Link>
-                <span className="text-secondary-text">-</span>
-                <Link
-                  to={""}
-                  className="font-poppinss font-semibold text-[16px] text-secondary-text hover:underline"
-                >
-                  192 mutual
-                </Link>
-              </div>
+              <p className="inline-block font-inter font-medium text-xl text-secondary-text mt-1">
+                @rayhanahmedsiam
+              </p>
             </div>
 
             <div className="w-[35%] flex items-center justify-end gap-x-2.5">
-              <button className=" bg-primary-button text-white font-poppins text-lg flex items-center gap-x-1 py-2.5 px-4 rounded-md">
-                <FiPlus className="text-2xl" /> Add story
+              <button className=" bg-primary-button text-white font-poppins text-[17px] flex items-center gap-x-1 py-2.5 px-4 rounded-md">
+                <FiPlus className="text-xl" /> Add story
               </button>
 
-              <button className=" bg-secondary-button text-primary-text font-poppins text-lg flex items-center gap-x-1 py-2.5 px-4 rounded-md">
-                <MdModeEdit className="text-2xl" /> Edit profile
+              <button className=" bg-secondary-button text-primary-text font-poppins text-[17px] font-medium flex items-center gap-x-1 py-2.5 px-4 rounded-md">
+                <MdModeEdit className="text-xl" /> Edit profile
               </button>
             </div>
           </div>

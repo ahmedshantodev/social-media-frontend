@@ -15,9 +15,16 @@ const LeftPart = () => {
   return (
     <div className="w-full h-full overflow-y-scroll no-scrollbar pl-3 pr-1 pb-2">
       <div className="w-full pb-2 border-b border-primary-border mt-5">
-        <Link to={`/${user?.username}`} className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1 cursor-pointer">
-          <div className="w-[45px] aspect-square rounded-full overflow-hidden border-2 border-primary-border">
-            <img src={user?.profilePicture} alt={""} className={`w-full`} />
+        <Link
+          to={`/${user?.username}`}
+          className="group py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1 cursor-pointer"
+        >
+          <div className="w-[42px] aspect-square rounded-full overflow-hidden">
+            <img
+              src={user?.profilePicture}
+              alt={""}
+              className={`w-full h-full object-cover group-hover:scale-[1.07] transition-all`}
+            />
           </div>
 
           <h3 className="text-[17px] font-segoe-ui font-medium text-primary-text">
