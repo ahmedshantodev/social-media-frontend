@@ -89,19 +89,35 @@
   }
 }
 
-
-#test {
-  animation: appear linear;
-  animation-timeline: view();
-  animation-range: entry 90% cover 90%;
+/* headers setting menu animation */
+#settings-menu {
+  animation: settings-menu 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-@keyframes appear {
-  from {
+@keyframes settings-menu {
+  0% {
     opacity: 0;
   }
-
-  to{
+  100% {
     opacity: 1;
   }
+}
+
+/* profile picture cropper custom css */
+#profile-cropper .reactEasyCrop_Container img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#profile-cropper .reactEasyCrop_CropAreaGrid {
+  width: 350px !important;
+  height: 350px !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+#profile-cropper .reactEasyCrop_CropAreaGrid::after{
+  all: unset;
+}
+#profile-cropper .reactEasyCrop_CropAreaGrid::before{
+  all: unset;
 }

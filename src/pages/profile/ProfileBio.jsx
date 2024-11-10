@@ -4,7 +4,7 @@ import education from "../../../public/images/user-info-icon/education.png";
 import homeTown from "../../../public/images/user-info-icon/home-town.png";
 import home from "../../../public/images/user-info-icon/home.png";
 
-const ProfileBio = () => {
+const ProfileBio = ({ visitor }) => {
   const [first, setFirst] = useState(
     '"সে কী পেল, যে আল্লাহ হারালো?\n' +
       'আর সে কি হারালো, যে আল্লাহকে পেল?"\n' +
@@ -15,22 +15,28 @@ const ProfileBio = () => {
   return (
     <div className="w-full bg-white px-4 pt-4 pb-4 rounded-[10px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <div>
-        <p className="font-poppins text-xl font-medium">
-          Intro
-        </p>
+        <p className="font-poppins text-xl font-medium">Intro</p>
 
         <div className="border-bs border-primary-border pb-3">
-          <pre className=" whitespace-pre-wrap font-segoe-ui tracking-[0.45px] text-center mt-2">
+          <pre
+            className={
+              visitor
+                ? "whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2"
+                : "whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2 pb-3 border-b border-primary-border"
+            }
+          >
             {first}
           </pre>
 
-          <SecondaryButton className={`w-full mt-3`}>
-            Edit bio
-          </SecondaryButton>
+          {visitor && (
+            <SecondaryButton className={`w-full mt-3`}>
+              Edit bio
+            </SecondaryButton>
+          )}
         </div>
       </div>
 
-      <div className="mt-3">
+      <div className={visitor && "mt-1"}>
         <div className="py-2 flex items-center gap-x-2.5">
           <div className="w-[20px] aspect-square">
             <img
@@ -80,12 +86,14 @@ const ProfileBio = () => {
           </p>
         </div>
 
-        <SecondaryButton className={`w-full mt-4`}>
-          Edit details
-        </SecondaryButton>
+        {visitor && (
+          <SecondaryButton className={`w-full mt-4`}>
+            Edit details
+          </SecondaryButton>
+        )}
       </div>
 
-      <div className="mt-4">
+      <div className={visitor ? "mt-4" : "mt-2"}>
         <div className="flex gap-x-2">
           <div className="w-1/3">
             <div className="group w-full h-[230px] rounded-lg overflow-hidden cursor-pointer">
@@ -100,7 +108,7 @@ const ProfileBio = () => {
               Collection
             </p>
           </div>
-          
+
           <div className="w-1/3">
             <div className="group w-full h-[230px] rounded-lg overflow-hidden cursor-pointer">
               <img
@@ -130,9 +138,11 @@ const ProfileBio = () => {
           </div>
         </div>
 
-        <SecondaryButton className={`w-full mt-4`}>
-          Add featured
-        </SecondaryButton>
+        {visitor && (
+          <SecondaryButton className={`w-full mt-4`}>
+            Add featured
+          </SecondaryButton>
+        )}
       </div>
     </div>
   );

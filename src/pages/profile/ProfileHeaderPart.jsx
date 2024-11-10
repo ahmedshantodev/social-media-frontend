@@ -3,8 +3,13 @@ import userOne from "/public/remove/userOne.png";
 import { FiPlus } from "react-icons/fi";
 import { MdModeEdit } from "react-icons/md";
 import { MdPhotoCamera } from "react-icons/md";
+import { IoPersonAdd } from "react-icons/io5";
+import { FaFacebookMessenger } from "react-icons/fa6";
+import SecondaryButton from "../../components/layout/SecondaryButton";
+import PrimaryButton from "../../components/layout/PrimaryButton";
+import ProfileUploadModal from "./ProfileUploadModal";
 
-const ProfileHeaderPart = ({ user }) => {
+const ProfileHeaderPart = ({ data, visitor, user }) => {
   const navMenu = [
     "about",
     "post",
@@ -14,6 +19,7 @@ const ProfileHeaderPart = ({ user }) => {
     "pinned posts",
   ];
   const [menuActiveItem, setMenuActiveItem] = useState(navMenu[0]);
+  const [isProfileUploadModalShow, setIsProfileUploadModalShow] = useState(false);
 
   return (
     <div className="relative w-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
@@ -31,9 +37,11 @@ const ProfileHeaderPart = ({ user }) => {
 
       <div className="w-[1300px] mx-auto relative">
         <div className="relative w-full h-[500px]">
-          <button className="absolute bottom-4 right-4 bg-white py-2 px-4 rounded-lg flex items-center gap-x-2 text-lg font-semibold">
-            <MdPhotoCamera className="text-[22px]" /> Edit Cover Photo
-          </button>
+          {visitor && (
+            <button className="absolute bottom-4 right-4 bg-white py-2 px-4 rounded-lg flex items-center gap-x-2 text-lg font-semibold">
+              <MdPhotoCamera className="text-[22px]" /> Edit Cover Photo
+            </button>
+          )}
 
           <img
             src={
@@ -50,10 +58,21 @@ const ProfileHeaderPart = ({ user }) => {
               className="w-[190px] aspect-square object-cover rounded-full border-[1px] border-primary-border"
             />
 
-            <button className="absolute bottom-0 right-0 -translate-x-[18%] -translate-y-[18%] text-2xl bg-[#d6d9dd] rounded-full p-2 border-2 border-white box-border">
-              <MdPhotoCamera />
-            </button>
+            {visitor && (
+              <button
+                onClick={() => setIsProfileUploadModalShow(true)}
+                className="absolute bottom-0 right-0 -translate-x-[18%] -translate-y-[18%] text-2xl bg-[#d6d9dd] rounded-full p-2 border-2 border-white box-border"
+              >
+                <MdPhotoCamera />
+              </button>
+            )}
           </div>
+
+          <ProfileUploadModal
+            show={isProfileUploadModalShow}
+            setShow={setIsProfileUploadModalShow}
+            user={user}
+          />
         </div>
 
         <div className="w-full h-[135px] pl-[260px] pt-[25px] border-b-2 border-primary-border/50">
@@ -66,15 +85,27 @@ const ProfileHeaderPart = ({ user }) => {
               </p>
             </div>
 
-            <div className="w-[35%] flex items-center justify-end gap-x-2.5">
-              <button className=" bg-primary-button text-white font-poppins text-[17px] flex items-center gap-x-1 py-2.5 px-4 rounded-md">
-                <FiPlus className="text-xl" /> Add story
-              </button>
+            {visitor ? (
+              <div className="w-[35%] flex items-center justify-end gap-x-2.5">
+                <PrimaryButton className={`flex items-center gap-x-1`}>
+                  <FiPlus className="text-xl" /> Add story
+                </PrimaryButton>
 
-              <button className=" bg-secondary-button text-primary-text font-poppins text-[17px] font-medium flex items-center gap-x-1 py-2.5 px-4 rounded-md">
-                <MdModeEdit className="text-xl" /> Edit profile
-              </button>
-            </div>
+                <SecondaryButton className={`flex items-center gap-x-1`}>
+                  <MdModeEdit className="text-xl" /> Edit profile
+                </SecondaryButton>
+              </div>
+            ) : (
+              <div className="w-[35%] flex items-center justify-end gap-x-2.5">
+                <PrimaryButton className={`flex items-center gap-x-1`}>
+                  <IoPersonAdd className="text-xl" /> Add friend
+                </PrimaryButton>
+
+                <SecondaryButton className={`flex items-center gap-x-1`}>
+                  <FaFacebookMessenger className="text-xl" /> Send message
+                </SecondaryButton>
+              </div>
+            )}
           </div>
         </div>
 

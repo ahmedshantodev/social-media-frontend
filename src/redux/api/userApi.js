@@ -9,7 +9,15 @@ export const userApi = createApi({
     getUser: builder.query({
       query: (username) => `api/v1/user/get-user/${username}`,
     }),
+
+    updateProfilePicture: builder.mutation({
+      query: (body) => ({
+        url: "api/v1/user/update-profile-picture",
+        method: "PUT",
+        body,
+      })
+    }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useGetUserQuery , useUpdateProfilePictureMutation } = userApi;

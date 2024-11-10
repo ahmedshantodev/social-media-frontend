@@ -50,6 +50,8 @@ const PostCreateModal = ({ show, setShow }) => {
 
   // post create function
   const handlePost = async () => {
+    setLoading(true);
+
     let response = await createPost({
       text: text,
       background: backgroundInfo,
@@ -59,9 +61,11 @@ const PostCreateModal = ({ show, setShow }) => {
       user: user.id,
     });
 
-    if (response?.data.message) {
-      setLoading(true);
+    if (response?.error?.data?.message) {
+      return setLoading(false)
+    }
 
+    if (response?.data?.message) {
       setTimeout(() => {
         setLoading(false);
         toast.success(response?.data.message, {
@@ -128,7 +132,7 @@ const PostCreateModal = ({ show, setShow }) => {
             >
               <AutoResizeTextarea
                 row={"1"}
-                maxlength={"100"}
+                maxLength={"100"}
                 value={text}
                 onChange={handleTextareaChange}
                 textareaRef={backgroundTextareaRef}
@@ -141,7 +145,7 @@ const PostCreateModal = ({ show, setShow }) => {
             <AutoResizeTextarea
               row={"1"}
               value={text}
-              maxlength={"5000"}
+              maxLength={"5000"}
               textareaRef={textareaRef}
               onChange={(e) => setText(e.target.value)}
               placeholder={`What's on your mind, ${user?.firstName}?`}

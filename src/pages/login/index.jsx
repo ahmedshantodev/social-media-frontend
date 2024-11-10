@@ -63,12 +63,14 @@ const Login = () => {
       }));
     }
 
+    setLoading(true)
     const response = await login({
       email: info.email,
       password: info.password,
     });
 
     if (response.error?.data?.message) {
+      setLoading(false)
       if (response.error?.data?.message == "user not found") {
         return setError((prev) => ({
           ...prev,
@@ -85,16 +87,15 @@ const Login = () => {
     }
 
     if (response.data?.message) {
-      setLoading(true);
       const { message, ...rest } = response.data;
-
+      
       setTimeout(() => {
         setLoading(false);
         setInfo({
           email: "",
           password: "",
         });
-      }, 2000);
+      }, 1500);
 
       setTimeout(() => {
         dispatch(activeUser(rest));

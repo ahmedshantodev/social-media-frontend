@@ -9,7 +9,7 @@ const PostContent = ({ post }) => {
           <pre
             onClick={() => setIsSeeMore(!isSeeMore)}
             className={
-              "text-[20px] font-segoe-ui px-4 pb-2 whitespace-pre-wrap"
+              "text-base font-inter px-4 pb-2 whitespace-pre-wrap"
             }
           >
             {post.text}
@@ -17,7 +17,7 @@ const PostContent = ({ post }) => {
         </div>
       ) : post.type === "gif" ? (
         <di>
-          <pre className="text-[20px] font-segoe-ui px-4 pb-2 whitespace-pre-wrap">
+          <pre className="text-base font-inter px-4 pb-2 whitespace-pre-wrap">
             {post.text}
           </pre>
 
@@ -48,7 +48,7 @@ const PostContent = ({ post }) => {
       ) : (
         <div>
           {post.text && (
-            <pre className="text-[20px] font-segoe-ui px-4 pb-2 whitespace-pre-wrap">
+            <pre className="text-base font-inter px-4 pb-2 whitespace-pre-wrap">
               {post.text}
             </pre>
           )}

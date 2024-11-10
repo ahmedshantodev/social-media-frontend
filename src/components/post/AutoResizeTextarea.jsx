@@ -8,7 +8,7 @@ const AutoResizeTextarea = ({
   style,
   onChange,
   className,
-  maxlength,
+  maxLength,
   textareaRef,
   placeholder,
 }) => {
@@ -30,7 +30,7 @@ const AutoResizeTextarea = ({
         name={name}
         value={value}
         style={style}
-        maxlength={maxlength}
+        maxLength={maxLength}
         className={className}
         onChange={onChange}
         placeholder={placeholder}

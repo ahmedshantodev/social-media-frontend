@@ -6,7 +6,7 @@ const PostViewType = () => {
   const [postViewType, setPostViewType] = useState("line");
 
   return (
-    <div className="w-full bg-white pt-4 mt-4 rounded-[10px] overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+    <div className="w-full bg-white pt-4 mb-4 rounded-[10px] overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <p className="font-poppins text-xl font-medium px-4 pb-3 border-b-2 border-primary-border/50">
         Post View
       </p>

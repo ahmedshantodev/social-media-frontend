@@ -10,7 +10,7 @@ const PostCreatePart = () => {
   const [PostCreateModalShow, setPostCreateModalShow] = useState(false);
 
   return (
-    <div className="w-full bg-white px-4 pt-4 pb-2 rounded-[10px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+    <div className="w-full bg-white px-4 pt-4 pb-2 mb-4 rounded-[10px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <div className="flex items-center gap-x-2.5 border-b-[2px] border-secondary-border pb-3">
         <div className="w-[46px] aspect-square rounded-full overflow-hidden">
           <img

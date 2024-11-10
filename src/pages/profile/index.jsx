@@ -4,28 +4,33 @@ import ProfileRightPart from "./ProfileRightPart";
 import ProfileLeftPart from "./ProfileLeftPart";
 import ProfileHeaderPart from "./ProfileHeaderPart";
 import { useParams } from "react-router-dom";
-import { useGetUserQuery } from "../../redux/api/postApi";
+import { useGetUserQuery } from "../../redux/api/userApi";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const { username } = useParams();
-  const { data: user } = useGetUserQuery(username)
+  const { data } = useGetUserQuery(username);
+  const user = useSelector((activeUser) => activeUser.user.information);
+  const visitor = user?.username === data?.username;
 
   return (
     <>
       <Helmet>
-        <title>Ripple | Rayhan Ahmed Siam</title>
+        <title>
+          Ripple {data ? `| ${data?.firstName + " " + data?.lastName}` : "- Where Connections Make Waves"}
+        </title>
       </Helmet>
 
       <section className="w-full h-full">
-        <ProfileHeaderPart user={user} />
+        <ProfileHeaderPart data={data} visitor={visitor} user={user} />
 
         <div className="w-[1300px] mx-auto pt-4 flex items-start  gap-x-4">
           <div className="w-[40%]">
-            <ProfileLeftPart user={user} />
+            <ProfileLeftPart data={data} visitor={visitor} />
           </div>
 
           <div className="w-[60%]">
-            <ProfileRightPart user={user} />
+            <ProfileRightPart data={data} visitor={visitor} />
           </div>
         </div>
       </section>

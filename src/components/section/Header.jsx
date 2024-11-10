@@ -28,7 +28,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const searchBoxRef = useRef();
   const settingMenuBoxRef = useRef();
-  const user = useSelector((activeUser) => activeUser.user.information)
+  const user = useSelector((activeUser) => activeUser.user.information);
   const [isSearchBarshow, setIsSearchBarShow] = useState(false);
   const [isSettingMenuShow, setIsSettingMenuShow] = useState(false);
   const [isLogoutModalShow, setIsLogoutModalShow] = useState(false);
@@ -126,29 +126,40 @@ const Header = () => {
             />
 
             {isSettingMenuShow && (
-              <div className="w-[400px] bg-white px-4 py-4 absolute top-full right-0 z-30 translate-y-[15px] rounded-[12px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
-                <div className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 bg-[#f0f2f5] cursor-pointer mb-3 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                  <div className="w-[50px] aspect-square rounded-full overflow-hidden border-2 border-primary-border">
-                    <img src={user?.profilePicture} alt={""} className={`w-full`} />
+              <div
+                id="settings-menu"
+                className="w-[400px] bg-white px-4 py-4 absolute top-full right-0 z-30 translate-y-[15px] rounded-[12px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]"
+              >
+                <Link
+                  to={`/${user?.username}`}
+                  onClick={() => setIsSettingMenuShow(false)}
+                  className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 bg-[#f0f2f5] cursor-pointer mb-3 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
+                >
+                  <div className="w-[45px] aspect-square rounded-full overflow-hidden">
+                    <img
+                      src={user?.profilePicture}
+                      alt={""}
+                      className={`w-full h-full object-cover`}
+                    />
                   </div>
 
-                  <h3 className="text-[18px] font-segoe-ui font-medium text-primary-text">
-                  {user?.firstName} {user?.lastName}
+                  <h3 className="text-[18px] font-inter font-medium text-primary-text">
+                    {user?.firstName + " " + user?.lastName}
                   </h3>
-                </div>
+                </Link>
 
                 <div className="group flex items-center gap-x-3 px-2 py-2.5 rounded-[6px] hover:bg-[#f0f2f5] cursor-pointer transition-all duration-200 ease-in-out">
-                  <IoMdSettings className="box-content bg-[#e4e6eb] group-hover:bg-white p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
+                  <IoMdSettings className="box-content bg-[#e4e6eb] p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
                   <p className="text-lg  font-inter">Setting</p>
                 </div>
 
                 <div className="group flex items-center gap-x-3 px-2 py-2.5 rounded-[6px] hover:bg-[#f0f2f5] cursor-pointer transition-all duration-200 ease-in-out">
-                  <MdContactSupport className="box-content bg-[#e4e6eb] group-hover:bg-white p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
+                  <MdContactSupport className="box-content bg-[#e4e6eb] p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
                   <p className="text-lg  font-inter">Help and Support</p>
                 </div>
 
                 <div className="group flex items-center gap-x-3 px-2 py-2.5 rounded-[6px] hover:bg-[#f0f2f5] cursor-pointer transition-all duration-200 ease-in-out">
-                  <MdNightsStay className="box-content bg-[#e4e6eb] group-hover:bg-white p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
+                  <MdNightsStay className="box-content bg-[#e4e6eb] p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
                   <p className="text-lg  font-inter">Theme</p>
                 </div>
 
@@ -156,7 +167,7 @@ const Header = () => {
                   onClick={() => setIsLogoutModalShow(true)}
                   className="group flex items-center gap-x-3 px-2 py-2.5 rounded-[6px] hover:bg-[#f0f2f5] cursor-pointer transition-all duration-200 ease-in-out"
                 >
-                  <HiOutlineLogout className="box-content bg-[#e4e6eb] group-hover:bg-white p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
+                  <HiOutlineLogout className="box-content bg-[#e4e6eb] p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
                   <p className="text-lg  font-inter">Log out</p>
                 </div>
               </div>

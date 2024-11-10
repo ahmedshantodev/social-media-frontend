@@ -2,12 +2,12 @@ import React from "react";
 import PostCreatePart from "../feeds/PostCreatePart";
 import ProfilePosts from "./ProfilePosts";
 
-const ProfileRightPart = ({ user }) => {
+const ProfileRightPart = ({ data, visitor }) => {
   return (
     <div>
       <PostCreatePart />
 
-      <ProfilePosts user={user} />
+      <ProfilePosts data={data} />
     </div>
   );
 };
