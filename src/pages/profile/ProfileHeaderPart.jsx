@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import userOne from "/public/remove/userOne.png";
 import { FiPlus } from "react-icons/fi";
 import { MdModeEdit } from "react-icons/md";
 import { MdPhotoCamera } from "react-icons/md";
@@ -8,27 +7,30 @@ import { FaFacebookMessenger } from "react-icons/fa6";
 import SecondaryButton from "../../components/layout/SecondaryButton";
 import PrimaryButton from "../../components/layout/PrimaryButton";
 import ProfileUploadModal from "./ProfileUploadModal";
+import CoverPhotoPart from "./CoverPhotoPart";
 
-const ProfileHeaderPart = ({ data, visitor, user }) => {
-  const navMenu = [
-    "about",
-    "post",
-    "friends",
-    "groups",
-    "photos",
-    "pinned posts",
-  ];
-  const [menuActiveItem, setMenuActiveItem] = useState(navMenu[0]);
-  const [isProfileUploadModalShow, setIsProfileUploadModalShow] = useState(false);
+const ProfileHeaderPart = ({
+  data,
+  visitor,
+  user,
+  menu,
+  menuActiveItem,
+  profileHeaderRef,
+  setMenuActiveItem,
+}) => {
+  const [coverPhoto, setCoverPhoto] = useState("");
+  const [isProfileUploadModalShow, setIsProfileUploadModalShow] =
+    useState(false);
 
   return (
-    <div className="relative w-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+    <div
+      ref={profileHeaderRef}
+      className="relative w-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
+    >
       <div className="w-full h-full absolute top-0 left-0 z-0">
         <img
-          src={
-            "https://scontent.fdac41-1.fna.fbcdn.net/v/t39.30808-6/410566861_1046073563381297_1306627701025954984_n.jpg?stp=dst-jpg_s960x960&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=O-1VF3TARFgQ7kNvgGdldTE&_nc_zt=23&_nc_ht=scontent.fdac41-1.fna&_nc_gid=AzzSjVep_LPt-zVK0vr9Y5_&oh=00_AYDB7gv0FoIlOjoDZIM7MjwnOzcrb74SZTGn51QWu16vcQ&oe=6730FDCE"
-          }
-          alt="cover photo"
+          src={coverPhoto || user?.coverPhoto}
+          alt="cover photo background"
           className="w-full h-full object-cover"
         />
 
@@ -37,23 +39,17 @@ const ProfileHeaderPart = ({ data, visitor, user }) => {
 
       <div className="w-[1300px] mx-auto relative">
         <div className="relative w-full h-[500px]">
-          {visitor && (
-            <button className="absolute bottom-4 right-4 bg-white py-2 px-4 rounded-lg flex items-center gap-x-2 text-lg font-semibold">
-              <MdPhotoCamera className="text-[22px]" /> Edit Cover Photo
-            </button>
-          )}
-
-          <img
-            src={
-              "https://scontent.fdac41-1.fna.fbcdn.net/v/t39.30808-6/410566861_1046073563381297_1306627701025954984_n.jpg?stp=dst-jpg_s960x960&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=O-1VF3TARFgQ7kNvgGdldTE&_nc_zt=23&_nc_ht=scontent.fdac41-1.fna&_nc_gid=AzzSjVep_LPt-zVK0vr9Y5_&oh=00_AYDB7gv0FoIlOjoDZIM7MjwnOzcrb74SZTGn51QWu16vcQ&oe=6730FDCE"
-            }
-            alt="cover photo"
-            className="w-full h-full object-cover rounded-b-[12px]"
+          <CoverPhotoPart
+            user={user}
+            data={data}
+            visitor={visitor}
+            coverPhoto={coverPhoto}
+            setCoverPhoto={setCoverPhoto}
           />
 
           <div className="absolute top-full left-12 z-20 -translate-y-[40%] border-4 border-white rounded-full">
             <img
-              src={userOne}
+              src={user?.profilePicture}
               alt=""
               className="w-[190px] aspect-square object-cover rounded-full border-[1px] border-primary-border"
             />
@@ -69,9 +65,10 @@ const ProfileHeaderPart = ({ data, visitor, user }) => {
           </div>
 
           <ProfileUploadModal
+            user={user}
+            data={data}
             show={isProfileUploadModalShow}
             setShow={setIsProfileUploadModalShow}
-            user={user}
           />
         </div>
 
@@ -110,7 +107,7 @@ const ProfileHeaderPart = ({ data, visitor, user }) => {
         </div>
 
         <div className="mt-1">
-          {navMenu.map((item, index) => (
+          {menu.map((item, index) => (
             <button
               key={index}
               onClick={() => setMenuActiveItem(item)}

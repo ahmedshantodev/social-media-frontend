@@ -7,10 +7,17 @@ import { useDropzone } from "react-dropzone";
 import { RiImageAddFill } from "react-icons/ri";
 import fileDropIcon from "/images/file-drop-icon.png";
 
-const ProfileUploadModal = ({ show, setShow, user }) => {
+const ProfileUploadModal = ({ show, setShow, user, data }) => {
   const descriptionRef = useRef();
-  const [text, setText] = useState("")
+  const [text, setText] = useState("");
   const [image, setImage] = useState("");
+  const [isSeeMore, setIsSeeMore] = useState(false);
+
+  const allProfilePicture = data?.images?.resources?.filter((item) => {
+    return item.asset_folder === `user-image/${user?.username}/profile-picture`;
+  });
+
+  // console.log(allProfilePicture);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -34,7 +41,7 @@ const ProfileUploadModal = ({ show, setShow, user }) => {
   });
 
   return (
-    <Modal show={show} setShow={setShow} className={`py-5`}>
+    <Modal show={show} setShow={setShow} className={`py-5 max-h-[765px]`}>
       <p className="text-center text-xl text-primary-text font-inter font-semibold border-b border-primary-border/80 pb-3">
         Upload profile picture
       </p>
@@ -62,7 +69,7 @@ const ProfileUploadModal = ({ show, setShow, user }) => {
         <div className="px-6 pt-5">
           <div
             {...getRootProps()}
-            className="w-[500px] h-[260px] border border-primary-border p-2.5 rounded-[6px]"
+            className="w-full h-[250px] border border-primary-border p-2.5 rounded-[6px]"
           >
             <input {...getInputProps()} />
 
@@ -88,6 +95,36 @@ const ProfileUploadModal = ({ show, setShow, user }) => {
                   </p>
                 </div>
               )}
+            </div>
+          </div>
+
+          <div className="mt-4 w-[600px]">
+            <div className="flex justify-between items-center">
+              <p className="font-inter text-xl font-medium">Suggested Photos</p>
+              
+              {allProfilePicture?.length >= 4 && (
+                <button
+                  onClick={() => setIsSeeMore(!isSeeMore)}
+                  className="font-inter text-lg text-primary-button hover:underline mr-1"
+                >
+                  {isSeeMore ? "see less" : "see more"}
+                </button>
+              )}
+            </div>
+
+            <div className="w-full max-h-[300px] overflow-y-auto flex items-start flex-wrap gap-[6px] mt-2 overflow-hidden">
+              {allProfilePicture?.slice(0 , isSeeMore ? allProfilePicture?.length : 4).map((item, index) => (
+                <div
+                  onClick={() => setImage(item.secure_url)}
+                  className="w-[24%] aspect-square cursor-pointer"
+                >
+                  <img
+                    src={item.secure_url}
+                    alt={item.asset_id}
+                    className="w-full h-full object-cover rounded-md border border-primary-border/80"
+                  />
+                </div>
+              ))}              
             </div>
           </div>
 

@@ -40,7 +40,7 @@ const ProfileCropper = ({ user, text, setText, image, setImage, setShow }) => {
       const croppedImage = await getCroppedImg(image, croppedAreaPixels);
       const response = await updateProfilePicture({
         text: text,
-        image: croppedImage,
+        profilePicture: croppedImage,
         username: user?.username,
       });
 
@@ -154,7 +154,7 @@ const ProfileCropper = ({ user, text, setText, image, setImage, setShow }) => {
           </SecondaryButton>
         ) : (
           <SecondaryButton
-            onClick={() => setShow(false)}
+            onClick={() => setImage("")}
             className={`w-1/2 h-[50px]`}
           >
             Cancel

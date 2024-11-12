@@ -5,7 +5,6 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 
 const PostHeader = ({ post }) => {
-  
   return (
     <div className="px-4 py-[10px] flex items-center justify-between">
       <div className="flex items-center gap-x-2.5">
@@ -21,12 +20,25 @@ const PostHeader = ({ post }) => {
         </Link>
 
         <div className="flex flex-col gap-y-[2px]">
-          <Link
-            to={`/profile/${post?.user?.username}`}
-            className="font-inter font-medium text-[17px] leading-none tracking-[0.45px] hover:underline"
-          >
-            {post?.user?.firstName} {post?.user?.lastName}
-          </Link>
+          <div className="flex gap-x-1">
+            <Link
+              to={`/profile/${post?.user?.username}`}
+              className="font-inter font-medium text-[17px] leading-none tracking-[0.45px] hover:underline"
+            >
+              {post?.user?.firstName} {post?.user?.lastName}
+            </Link>
+
+            {post?.type === "profilePicture" && (
+              <p className="font-inter text-secondary-text text-[17px] leading-none tracking-[0.45px]">
+                updated {post?.user?.gender === "male" ? "his" : "her"} profile picture.
+              </p>
+            )}
+            {post?.type === "coverPhoto" && (
+              <p className="font-inter text-secondary-text text-[17px] leading-none tracking-[0.45px]">
+                updated {post?.user?.gender === "male" ? "his" : "her"} cover photo.
+              </p>
+            )}
+          </div>
 
           <p className="font-inter text-[13px] font-medium text-secondary-text">
             {formatDistance(post.createdAt, new Date(), { addSuffix: true })}

@@ -80,7 +80,7 @@
 }
 @keyframes modalBox {
   0% {
-    transform: scale(0);
+    transform: scale(0.7);
     opacity: 0;
   }
   100% {
@@ -103,8 +103,22 @@
   }
 }
 
+/* profile upload menu animation */
+#profile-upload-menu {
+  animation: profile-upload-menu 0.25s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes profile-upload-menu {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* profile picture cropper custom css */
-#profile-cropper .reactEasyCrop_Container img{
+#profile-cropper .reactEasyCrop_Container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -115,9 +129,28 @@
   height: 350px !important;
   color: rgba(255, 255, 255, 0.5) !important;
 }
-#profile-cropper .reactEasyCrop_CropAreaGrid::after{
+#profile-cropper .reactEasyCrop_CropAreaGrid::after {
   all: unset;
 }
-#profile-cropper .reactEasyCrop_CropAreaGrid::before{
+#profile-cropper .reactEasyCrop_CropAreaGrid::before {
   all: unset;
+}
+
+/* profile picture cropper custom css */
+#cover-photo-cropper .reactEasyCrop_Container img {
+  width: 100%;
+  object-fit: cover;
+}
+
+#cover-photo-cropper .reactEasyCrop_CropAreaGrid::after {
+  all: unset;
+}
+
+#cover-photo-cropper .reactEasyCrop_CropAreaGrid::before {
+  all: unset;
+}
+
+#cover-photo-cropper .reactEasyCrop_CropAreaGrid {
+  width: 100% !important;
+  height: 100% !important;
 }

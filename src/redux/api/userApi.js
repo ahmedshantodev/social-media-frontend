@@ -17,7 +17,15 @@ export const userApi = createApi({
         body,
       })
     }),
+
+    updateCoverPhoto: builder.mutation({
+      query: (body) => ({
+        url: "api/v1/user/update-cover-photo",
+        method: "PUT",
+        body,
+      })
+    }),
   }),
 });
 
-export const { useGetUserQuery , useUpdateProfilePictureMutation } = userApi;
+export const { useGetUserQuery , useUpdateProfilePictureMutation , useUpdateCoverPhotoMutation } = userApi;
