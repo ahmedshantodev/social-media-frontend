@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
-import StoryListItem from "../../components/listItem/StoryListItem";
+import StoryListItem from "../../components/layout/StoryListItem";
 import { FiPlus } from "react-icons/fi";
 import { story } from "../../data/story";
 import { IoIosArrowForward } from "react-icons/io";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import userImage from "/public/remove/shanto.jpg";
 import { useSelector } from "react-redux";
 
 const StoriesPart = () => {

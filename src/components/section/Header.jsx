@@ -2,10 +2,10 @@ import React, { useRef, useState } from "react";
 // functions
 import OutSideClick from "../../functions/click";
 // lists
-import RecentSearchListItem from "../listItem/RecentSearchListItem";
+import RecentSearchListItem from "../layout/RecentSearchListItem";
 import recentSearchList from "../../data/recentSearchList";
 // componnets
-import Modal from "../modal/Modal";
+import Modal from "../layout/Modal";
 // images
 import rippleLogo from "/public/images/ripple-logo.png";
 // react icons
@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 // react router dom
 import { Link, useNavigate } from "react-router-dom";
 import { activeUser } from "../../redux/slices/activeUserSlice";
+import SearchBox from "../layout/SearchBox";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -67,16 +68,10 @@ const Header = () => {
           onClick={() => setIsSearchBarShow(true)}
         >
           <div className="relative z-[1]">
-            <input
-              placeholder="Search"
-              className={
-                isSearchBarshow
-                  ? "bg-input-color w-[700px] rounded-full py-2.5 pl-[42px] pr-5 focus:outline-[2px] outline-[#848f95] placeholder:font-segoe-ui placeholder:text-[17px]"
-                  : "bg-input-color w-[700px] rounded-full py-2.5 pl-[42px] pr-5 focus:outline-[2px] outline-secondary_color placeholder:font-segoe-ui placeholder:text-[17px]"
-              }
-            />
-
-            <FiSearch className="absolute top-2/4 -translate-y-2/4 left-4 text-lg text-secondary-text" />
+            <div className="w-[700px]">
+              <SearchBox />
+            </div>
+            
             {isSearchBarshow && (
               <RxCross2
                 onClick={() => setIsSearchBarShow(false)}
@@ -122,7 +117,7 @@ const Header = () => {
               src={user?.profilePicture}
               alt="ripple-logo"
               onClick={() => setIsSettingMenuShow(!isSettingMenuShow)}
-              className="w-[45px] aspect-square rounded-full cursor-pointer"
+              className="w-[45px] aspect-square rounded-full cursor-pointer border"
             />
 
             {isSettingMenuShow && (
@@ -130,24 +125,6 @@ const Header = () => {
                 id="settings-menu"
                 className="w-[400px] bg-white px-4 py-4 absolute top-full right-0 z-30 translate-y-[15px] rounded-[12px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]"
               >
-                <Link
-                  to={`/${user?.username}`}
-                  onClick={() => setIsSettingMenuShow(false)}
-                  className="py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 bg-[#f0f2f5] cursor-pointer mb-3 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
-                >
-                  <div className="w-[45px] aspect-square rounded-full overflow-hidden">
-                    <img
-                      src={user?.profilePicture}
-                      alt={""}
-                      className={`w-full h-full object-cover`}
-                    />
-                  </div>
-
-                  <h3 className="text-[18px] font-inter font-medium text-primary-text">
-                    {user?.firstName + " " + user?.lastName}
-                  </h3>
-                </Link>
-
                 <div className="group flex items-center gap-x-3 px-2 py-2.5 rounded-[6px] hover:bg-[#f0f2f5] cursor-pointer transition-all duration-200 ease-in-out">
                   <IoMdSettings className="box-content bg-[#e4e6eb] p-2 rounded-full text-2xl transition-all duration-200 ease-in-out" />{" "}
                   <p className="text-lg  font-inter">Setting</p>

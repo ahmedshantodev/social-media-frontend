@@ -6,7 +6,6 @@ const FoundAccount = ({ setActiveItem, foundUserInfo }) => {
   const [loading, setLoading] = useState(false);
   const [sendPasswordResetOtp, { isLoading }] =
     useSendPasswordResetOtpMutation();
-  console.log(foundUserInfo);
 
   const handleOtpSend = async () => {
     try {

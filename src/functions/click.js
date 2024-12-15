@@ -6,18 +6,18 @@ const OutSideClick = (ref, func) => {
       if (!ref.current || ref.current.contains(e.target)) {
         return false;
       }
-      
-      func()
+
+      func();
     };
 
-    document.addEventListener("mousedown" , click)
-    document.addEventListener("touchstart" , click)
+    document.addEventListener("mousedown", click);
+    document.addEventListener("touchstart", click);
 
     return () => {
-        document.removeEventListener("mousedown" , click)
-        document.removeEventListener("touchstart" , click)
-    }
-  }, [ref , func]);
+      document.removeEventListener("mousedown", click);
+      document.removeEventListener("touchstart", click);
+    };
+  }, [ref, func]);
 };
 
 export default OutSideClick;

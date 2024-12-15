@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { navmenu } from "../../data/navmenu";
 import { shortcutList } from "../../data/shortcutList";
-import FriendListItem from "../../components/listItem/FriendListItem";
-import GroupListItem from "../../components/listItem/GroupListItem";
-import MenuListItem from "../../components/listItem/MenuListItem";
+import FriendListItem from "../../components/layout/FriendListItem";
+import GroupListItem from "../../components/layout/GroupListItem";
+import MenuListItem from "../../components/layout/MenuListItem";
 import { IoIosArrowUp } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ const LeftPart = () => {
           to={`/${user?.username}`}
           className="group py-2 px-2.5 rounded-[10px] flex items-center gap-x-2.5 hover:bg-[#e4e6e9] transition-all duration-150 ease-linear mb-1 cursor-pointer"
         >
-          <div className="w-[42px] aspect-square rounded-full overflow-hidden">
+          <div className="w-[42px] aspect-square rounded-full overflow-hidden border">
             <img
               src={user?.profilePicture}
               alt={""}
@@ -59,8 +59,8 @@ const LeftPart = () => {
               item.type === "friend" ? (
                 <FriendListItem
                   key={index}
-                  image={item.image}
-                  name={item.name}
+                  info={item}
+                  type={"small"}
                 />
               ) : (
                 <GroupListItem
@@ -74,8 +74,8 @@ const LeftPart = () => {
               (item.type === "friend" ? (
                 <FriendListItem
                   key={index}
-                  image={item.image}
-                  name={item.name}
+                  info={item}
+                  type={"small"}
                 />
               ) : (
                 <GroupListItem

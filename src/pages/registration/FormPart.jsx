@@ -5,7 +5,10 @@ import Name from "./Name";
 import Password from "./Password";
 import BirthDate_Gender from "./BirthDate_Gender";
 import Email_Username from "./Email_Username";
-import { useFindUserEmailMutation, useFindUsernameMutation } from "../../redux/api/authenticationApi";
+import {
+  useFindUserEmailMutation,
+  useFindUsernameMutation,
+} from "../../redux/api/authenticationApi";
 import { ColorRing } from "react-loader-spinner";
 
 const FormPart = ({
@@ -17,8 +20,10 @@ const FormPart = ({
   setIsOtpModalShow,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [findUserEmail, { isLoading: isUserEmailLoading }] = useFindUserEmailMutation();
-  const [findUsername, { isLoading: isUserNameLoading }] = useFindUsernameMutation();
+  const [findUserEmail, { isLoading: isUserEmailLoading }] =
+    useFindUserEmailMutation();
+  const [findUsername, { isLoading: isUserNameLoading }] =
+    useFindUsernameMutation();
   const [activeItem, setActiveItem] = useState(1);
 
   useEffect(() => {
@@ -153,8 +158,12 @@ const FormPart = ({
         });
       }
 
+      setLoading(true);
+
       const emailResponse = await findUserEmail({ email: info.email });
       if (emailResponse.error?.data?.message) {
+        setLoading(false);
+
         return setError({
           ...error,
           email: emailResponse.error?.data?.message,
@@ -163,17 +172,18 @@ const FormPart = ({
 
       const usernameResponse = await findUsername({ username: info.username });
       if (usernameResponse.error?.data?.message) {
+        setLoading(false);
+
         return setError({
           ...error,
           username: usernameResponse.error?.data?.message,
         });
       }
 
-      setLoading(true);
       setTimeout(() => {
         setLoading(false);
         next();
-      }, 1500);
+      }, 1000);
     }
 
     if (activeItem === 4) {

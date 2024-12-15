@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ripple_logo from "/public/images/ripple-logo.png";
 import FormPart from "./FormPart";
 import { Helmet } from "react-helmet-async";
-import Modal from "../../components/modal/Modal";
+import Modal from "../../components/layout/Modal";
 import OtpVerification from "./OtpVerification";
 import { toast } from "react-toastify";
 import {
@@ -40,7 +40,7 @@ const Registration = () => {
     birthMonth: "",
     birthYear: "",
     gender: "",
-    profilePicture: "https://res.cloudinary.com/dpxse6rju/image/upload/v1730820743/dummy-profile-pic_ghvkab.jpg",
+    profilePicture: "",
     coverPhoto: "",
   });
 
@@ -76,12 +76,16 @@ const Registration = () => {
   };
 
   const handleVerifyOtp = async () => {
+    setVerifyAndProcedLoading(true);
+
     const verificationResponse = await verifyUserVerificationOtp({
       email: info.email,
       otp: info.otp,
     });
 
     if (verificationResponse.error?.data?.message) {
+      setVerifyAndProcedLoading(false);
+
       return setError((prev) => ({
         ...prev,
         otp: verificationResponse.error?.data?.message,
@@ -105,15 +109,15 @@ const Registration = () => {
       });
 
       if (response.error?.data?.message) {
+        setVerifyAndProcedLoading(false);
+
         return alert("somthing went wrong, please try again")
       }
 
       if (response.data?.message) {
-        setVerifyAndProcedLoading(true);
         const { message, ...rest } = response.data;
 
         setTimeout(() => {
-          setVerifyAndProcedLoading(false);
           dispatch(activeUser(rest));
           localStorage.setItem("user", JSON.stringify(rest));
 
@@ -123,8 +127,9 @@ const Registration = () => {
             hideProgressBar: true,
           });
 
+          setVerifyAndProcedLoading(false);
           navigate("/");
-        }, 1500);
+        }, 1000);
       }
     }
   };

@@ -6,8 +6,8 @@ export const userApi = createApi({
     baseUrl: import.meta.env.VITE_BACKEND_URL,
   }),
   endpoints: (builder) => ({
-    getUser: builder.query({
-      query: (username) => `api/v1/user/get-user/${username}`,
+    getProfileInformation: builder.query({
+      query: (username) => `api/v1/user/get-profile-information/${username}`,
     }),
 
     updateProfilePicture: builder.mutation({
@@ -25,7 +25,15 @@ export const userApi = createApi({
         body,
       })
     }),
+
+    updateUserInformation: builder.mutation({
+      query: (body) => ({
+        url: "api/v1/user/update-user-information",
+        method: "PUT",
+        body,
+      })
+    }),
   }),
 });
 
-export const { useGetUserQuery , useUpdateProfilePictureMutation , useUpdateCoverPhotoMutation } = userApi;
+export const { useGetProfileInformationQuery , useUpdateProfilePictureMutation , useUpdateCoverPhotoMutation, useUpdateUserInformationMutation } = userApi;

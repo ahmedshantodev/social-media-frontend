@@ -1,6 +1,6 @@
 import React from "react";
-import Post from "../../components/post/Post";
 import { useGetPostQuery } from "../../redux/api/postApi";
+import Post from "../../components/post/post_show_part";
 
 const PostPart = () => {
   const { data } = useGetPostQuery();

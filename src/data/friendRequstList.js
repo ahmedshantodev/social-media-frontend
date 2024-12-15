@@ -24,4 +24,9 @@ export const friendRequstList = [
     name: "Tanvir Ahmed",
     time: "2 hours ago",
   },
+  {
+    image: userThirteen,
+    name: "Shoriful Islam Sabbir",
+    time: "2 hours ago",
+  },
 ];

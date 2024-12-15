@@ -88,16 +88,13 @@ const Login = () => {
 
     if (response.data?.message) {
       const { message, ...rest } = response.data;
-      
+
       setTimeout(() => {
-        setLoading(false);
         setInfo({
           email: "",
           password: "",
         });
-      }, 1500);
 
-      setTimeout(() => {
         dispatch(activeUser(rest));
         localStorage.setItem("user", JSON.stringify(rest));
 
@@ -107,8 +104,9 @@ const Login = () => {
           hideProgressBar: true,
         });
 
+        setLoading(false);
         navigate("/");
-      }, 2500);
+      }, 1000);
     }
   };
 
