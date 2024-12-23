@@ -4,23 +4,21 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import SecondaryButton from "../../../../../../components/layout/SecondaryButton";
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
-import Modal from "../../../../../../components/layout/Modal";
 
 const EducationDetailsItem = ({
   index,
   subject,
-  details,
-  setDetails,
+  information,
+  setInformation,
   institute,
 }) => {
-  const [isDeleteModalShow, setIsDeleteModalShow] = useState(false);
   const [isEducationEditAreaShow, setIsEducationEditAreaShow] = useState(false);
-  const [editedInstitute, setEditedInstitute] = useState(details?.education[index].institute);
-  const [editedSubject, setEditedSubject] = useState(details?.education[index].subject);
+  const [editedInstitute, setEditedInstitute] = useState(information?.education[index].institute);
+  const [editedSubject, setEditedSubject] = useState(information?.education[index].subject);
 
   const handleEditCancel = () => {
-    setEditedInstitute(details?.education[index].institute);
-    setEditedSubject(details?.education[index].subject);
+    setEditedInstitute(information?.education[index].institute);
+    setEditedSubject(information?.education[index].subject);
 
     setIsEducationEditAreaShow(false);
   };
@@ -29,7 +27,7 @@ const EducationDetailsItem = ({
     if (editedInstitute === "") {
       alert("please enter your instiute name");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         education: [
           ...prev.education.slice(0, index),
@@ -48,7 +46,7 @@ const EducationDetailsItem = ({
   };
 
   const deleteEducationItem = () => {
-    setDetails((prev) => ({
+    setInformation((prev) => ({
       ...prev,
       education: [
         ...prev.education.slice(0, index),
@@ -61,7 +59,7 @@ const EducationDetailsItem = ({
     <div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2.5 mb-3">
-          <div className="w-[23px] aspect-square">
+          <div className="min-w-[23px] aspect-square">
             <img
               src={education}
               alt="education-icon"
@@ -107,6 +105,7 @@ const EducationDetailsItem = ({
             <input
               type="text"
               id="subject"
+              maxLength={50}
               value={editedSubject}
               placeholder="Describe"
               onChange={(e) => setEditedSubject(e.target.value)}
@@ -122,6 +121,7 @@ const EducationDetailsItem = ({
             <input
               type="text"
               id="Insitute"
+              maxLength={50}
               value={editedInstitute}
               placeholder="Enter your institute name"
               onChange={(e) => setEditedInstitute(e.target.value)}

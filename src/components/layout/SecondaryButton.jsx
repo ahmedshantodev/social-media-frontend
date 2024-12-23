@@ -4,7 +4,7 @@ import { ColorRing } from "react-loader-spinner";
 const SecondaryButton = ({ onClick, className, isLoading, children }) => {
   return isLoading ? (
     <button
-      className={`${className} bg-[#d6d9dd] font-inter text-primary-text text-[17px] font-medium px-12 rounded-md cursor-not-allowed`}
+      className={`${className} h-[45px] flex items-center justify-center gap-x-[6px] px-5 bg-[#d6d9dd] rounded-md cursor-not-allowed`}
     >
       <ColorRing
         visible={true}
@@ -19,7 +19,7 @@ const SecondaryButton = ({ onClick, className, isLoading, children }) => {
   ) : (
     <button
       onClick={onClick}
-      className={`${className} bg-[#e2e5e9] hover:bg-[#d6d9dd] font-inter text-primary-text text-[17px] font-medium py-2 px-4 rounded-md transition-all`}
+      className={`${className} h-[45px] flex items-center justify-center gap-x-[6px] px-4 bg-[#e2e5e9] hover:bg-[#d6d9dd] font-inter text-primary-text text-[17px] font-medium rounded-md`}
     >
       {children}
     </button>

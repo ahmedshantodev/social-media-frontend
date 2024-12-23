@@ -6,9 +6,9 @@ import { FiPlus } from "react-icons/fi";
 import SecondaryButton from "../../../../../../components/layout/SecondaryButton";
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 
-const RelationshipPart = ({ details, setDetails }) => {
+const RelationshipPart = ({ information, setInformation }) => {
   const [relationship, setRelationship] = useState("");
-  const [editedRelationship, setEditedRelationship] = useState(details?.relationship);
+  const [editedRelationship, setEditedRelationship] = useState(information?.relationship);
   const [isRelationshipEditAreaShow, setIsRelationshipEditAreaShow] = useState(false);
   const [isRelationshipAddAreaShow, setIsRelationshipAddAreaShow] = useState(false);
 
@@ -16,7 +16,7 @@ const RelationshipPart = ({ details, setDetails }) => {
     if (relationship === "") {
       alert("please enter your city name");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         relationship: relationship,
       }));
@@ -31,7 +31,7 @@ const RelationshipPart = ({ details, setDetails }) => {
     if (editedRelationship === "") {
       alert("please enter your city name");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         relationship: editedRelationship,
       }));
@@ -41,7 +41,7 @@ const RelationshipPart = ({ details, setDetails }) => {
   };
 
   const handleDeleteRelationship = () => {
-    setDetails((prev) => ({
+    setInformation((prev) => ({
       ...prev,
       relationship: "",
     }));
@@ -53,7 +53,7 @@ const RelationshipPart = ({ details, setDetails }) => {
         Relationship
       </p>
 
-      {details?.relationship ? (
+      {information?.relationship ? (
         isRelationshipEditAreaShow ? (
           <div>
             <div>
@@ -100,7 +100,7 @@ const RelationshipPart = ({ details, setDetails }) => {
               </div>
 
               <p className="text-secondary-text text-lg font-inter font-medium capitalize">
-                {details?.relationship}
+                {information?.relationship}
               </p>
             </div>
 

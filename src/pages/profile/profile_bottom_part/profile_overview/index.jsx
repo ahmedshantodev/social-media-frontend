@@ -4,10 +4,10 @@ import OverviewRightPart from "./overview_right_part";
 
 const ProfileOverview = ({
   user,
-  profileInfo,
-  visitor,
   isLoading,
+  profileInfo,
   menuActiveItem,
+  profileVisitor,
   setMenuActiveItem,
 }) => {
   return (
@@ -15,10 +15,10 @@ const ProfileOverview = ({
       <div className="w-[40%]">
         <OverviewLeftPart
           user={user}
-          profileInfo={profileInfo}
-          visitor={visitor}
           isLoading={isLoading}
+          profileInfo={profileInfo}
           menuActiveItem={menuActiveItem}
+          profileVisitor={profileVisitor}
           setMenuActiveItem={setMenuActiveItem}
         />
       </div>
@@ -26,10 +26,10 @@ const ProfileOverview = ({
       <div className="w-[60%]">
         <OverviewRightPart
           user={user}
-          profileInfo={profileInfo}
-          visitor={visitor}
           isLoading={isLoading}
+          profileInfo={profileInfo}
           menuActiveItem={menuActiveItem}
+          profileVisitor={profileVisitor}
           setMenuActiveItem={setMenuActiveItem}
         />
       </div>

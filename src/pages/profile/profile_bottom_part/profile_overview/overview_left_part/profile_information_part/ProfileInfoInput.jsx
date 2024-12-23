@@ -8,6 +8,7 @@ const ProfileInfoInput = ({
   placeholder,
   onChange,
   className,
+  maxLength
 }) => {
   return (
     <div className={className}>
@@ -21,6 +22,7 @@ const ProfileInfoInput = ({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        maxLength={maxLength}
         className="w-full border border-primary-border py-2.5 px-5 rounded-md outline-none"
       />
     </div>

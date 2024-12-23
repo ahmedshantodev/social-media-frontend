@@ -15,7 +15,7 @@ const PostCreatePart = () => {
         <div className="w-[46px] aspect-square rounded-full overflow-hidden border">
           <img
             src={user?.profilePicture}
-            alt={user?.firstName + " " + user?.lastName}
+            alt={user?.fullName}
             className="w-full h-full object-cover"
           />
         </div>

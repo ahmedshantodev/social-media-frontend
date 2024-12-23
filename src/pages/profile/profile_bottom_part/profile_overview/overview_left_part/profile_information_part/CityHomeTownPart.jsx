@@ -7,14 +7,14 @@ import { FiPlus } from "react-icons/fi";
 import SecondaryButton from "../../../../../../components/layout/SecondaryButton";
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 
-const CityHomeTownPart = ({ details, setDetails }) => {
+const CityHomeTownPart = ({ information, setInformation }) => {
   const [currentCityName, setCurrentCityName] = useState("");
-  const [editedCity, setEditedCity] = useState(details?.currentCity)
+  const [editedCity, setEditedCity] = useState(information?.currentCity)
   const [isCityEditShow, setIsCityEditShow] = useState(false);
   const [isCityAddAreaShow, setIsCityAddAreaShow] = useState(false);
 
   const [homeTownName, setHomeTownName] = useState("");
-  const [editedHomeTown, setEditedHomeTown] = useState(details?.hometown)
+  const [editedHomeTown, setEditedHomeTown] = useState(information?.hometown)
   const [isHomeTownAddAreaShow, setIsHomeTownAddAreaShow] = useState(false);
   const [isHomeTownEditShow, setIsHomeTownEditShow] = useState(false);
 
@@ -22,7 +22,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
     if (currentCityName === "") {
       alert("please enter your city name");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         currentCity: currentCityName,
       }));
@@ -37,7 +37,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
     if (editedCity === "") {
       alert("please enter your city name");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         currentCity: editedCity,
       }));
@@ -48,7 +48,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
   
 
   const handleDeleteCity = () => {
-    setDetails((prev) => ({
+    setInformation((prev) => ({
       ...prev,
       currentCity: "",
     }));
@@ -58,7 +58,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
     if (homeTownName === "") {
       alert("please enter your Home town");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         hometown: homeTownName,
       }));
@@ -73,7 +73,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
     if (editedHomeTown === "") {
       alert("please enter your Home town");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         hometown: editedHomeTown,
       }));
@@ -84,7 +84,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
   
 
   const handleDeleteHomeTown = () => {
-    setDetails((prev) => ({
+    setInformation((prev) => ({
       ...prev,
       hometown: "",
     }));
@@ -96,7 +96,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
         Places lived:
       </p>
 
-      {details?.currentCity ? (
+      {information?.currentCity ? (
         isCityEditShow ? (
           <div>
             <div>
@@ -107,6 +107,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
               <input
                 type="text"
                 id="edit-city"
+                maxLength={50}
                 value={editedCity}
                 placeholder="Enter your current city name"
                 onChange={(e) => setEditedCity(e.target.value)}
@@ -136,7 +137,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
               <p className="text-secondary-text text-lg font-inter">
                 Lives in{" "}
                 <span className="text-black font-medium">
-                  {details?.currentCity}
+                  {information?.currentCity}
                 </span>
               </p>
             </div>
@@ -166,6 +167,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
             <input
               type="text"
               id="city"
+              maxLength={50}
               placeholder="Enter your current city name"
               onChange={(e) => setCurrentCityName(e.target.value)}
               className="w-full border border-primary-border py-2.5 px-5 rounded-md outline-none"
@@ -192,7 +194,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
         </button>
       )}
 
-      {details?.hometown ? (
+      {information?.hometown ? (
         isHomeTownEditShow ? (
           <div>
             <div>
@@ -203,6 +205,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
               <input
                 type="text"
                 id="edit-hometown"
+                maxLength={50}
                 value={editedHomeTown}
                 placeholder="Enter your current city name"
                 onChange={(e) => setEditedHomeTown(e.target.value)}
@@ -232,7 +235,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
               <p className="text-secondary-text text-lg font-inter">
                 From{" "}
                 <span className="text-black font-medium">
-                  {details?.hometown}
+                  {information?.hometown}
                 </span>
               </p>
             </div>
@@ -262,6 +265,7 @@ const CityHomeTownPart = ({ details, setDetails }) => {
             <input
               type="text"
               id="hometown"
+              maxLength={50}
               placeholder="Enter your hometown"
               onChange={(e) => setHomeTownName(e.target.value)}
               className="w-full border border-primary-border py-2.5 px-5 rounded-md outline-none"

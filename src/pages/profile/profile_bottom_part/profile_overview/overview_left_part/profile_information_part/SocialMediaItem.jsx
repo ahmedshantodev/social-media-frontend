@@ -9,14 +9,14 @@ import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 
-const SocialMediaItem = ({ index, name, link, details, setDetails }) => {
+const SocialMediaItem = ({ index, name, link, information, setInformation }) => {
   const [isSocialMediaEditAreaShow, setIsSocialMediaEditAreaShow] = useState(false);
-  const [editedName, setEditedName] = useState(details?.socialMedia[index].name);
-  const [editedLink, setEditedLink] = useState(details?.socialMedia[index].link);
+  const [editedName, setEditedName] = useState(information?.socialMedia[index].name);
+  const [editedLink, setEditedLink] = useState(information?.socialMedia[index].link);
 
   const handleEditCancel = () => {
-    setEditedName(details?.socialMedia[index].name);
-    setEditedLink(details?.socialMedia[index].link);
+    setEditedName(information?.socialMedia[index].name);
+    setEditedLink(information?.socialMedia[index].link);
 
     setIsSocialMediaEditAreaShow(false);
   };
@@ -27,7 +27,7 @@ const SocialMediaItem = ({ index, name, link, details, setDetails }) => {
     } else if (editedLink === "") {
       alert("please enter social media link");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         socialMedia: [
           ...prev.socialMedia.slice(0, index),
@@ -44,7 +44,7 @@ const SocialMediaItem = ({ index, name, link, details, setDetails }) => {
   };
 
   const deleteSocialLinkItem = () => {
-    setDetails((prev) => ({
+    setInformation((prev) => ({
       ...prev,
       socialMedia: [
         ...prev.socialMedia.slice(0, index),

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import education from "/public/images/user-info-icon/education.png";
 import homeTown from "/public/images/user-info-icon/home-town.png";
 import home from "/public/images/user-info-icon/home.png";
@@ -13,73 +13,79 @@ import relationship from "/public/images/user-info-icon/relationship.png";
 import EditDetailsModal from "./EditDetailsModal";
 import SecondaryButton from "../../../../../../components/layout/SecondaryButton";
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
+import { useUpdateUserInformationMutation } from "../../../../../../redux/api/userApi";
 
-const ProfileInformation = ({ user, profileInfo, visitor }) => {
+const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
+  const [details, setDetails] = useState({});
   const [isEditModalShow, setIsEditModalShow] = useState(false);
   const [isEditBioShow, setIsEditBioShow] = useState(false);
-  const [remainingCharacters, setRemainingCharacters] = useState(110);
+  // api call
+  const [updateUserInformation, { isLoading }] =
+    useUpdateUserInformationMutation();
 
-  // const [details, setDetails] = useState({
-  //   bio: profileInfo?.details.bio,
-  //   otherName: profileInfo?.details.otherName,
-  //   education: profileInfo?.details.education,
-  //   workplace: profileInfo?.details.workplace,
-  //   currentCity: profileInfo?.details.currentCity,
-  //   hometown: profileInfo?.details.hometown,
-  //   socialMedia: profileInfo?.details.socialMedia,
-  //   website: profileInfo?.details.website,
-  //   relationship: profileInfo?.details.relationship,
-  // });
+  // get bio text length and line count
+  function countLines(text) {
+    return text?.split(/\r\n|\r|\n/).length;
+  }
+  const biosLineCount = countLines(details?.bio);
+  const maxTextLines = 10;
+  const maxTextLength = 110;
 
-  const [details, setDetails] = useState({
-    bio:
-      '"সে কী পেল, যে আল্লাহ হারালো?\n' +
-      'আর সে কি হারালো, যে আল্লাহকে পেল?"\n' +
-      "\n" +
-      "Blood Group:O+\n" +
-      "Last Donate:01/10/24",
-    otherName: "Mute",
+  const remainingLines = maxTextLines - biosLineCount;
+  const remainingCharacters = maxTextLength - details?.bio?.length;
 
-    education: [
-      {
-        type: "College",
-        institute: "Shyampur Govt Model School and College",
-        current: false,
-      },
-      {
-        type: "High School",
-        institute: "Creative it institute",
-        current: false,
-      },
-      {
-        type: "High School",
-        institute: "Bakchor primary school",
-        current: false,
-      },
-    ],
-    workplace: [
-      { position: "Developer", company: "Creative IT", current: true },
-      { position: "Manager", company: "One Year", current: false },
-    ],
-    currentCity: "Dhaka",
-    hometown: "Chandpur",
-    relationship: "Single",
-    socialMedia: [
-      { name: "instagram", link: "https://www.instagram.com" },
-      { name: "linkedin", link: "https://www.instagram.com" },
-    ],
-    website: [
-      { link: "https://www.instagram.com" },
-    ],
-  });
+  useEffect(() => {
+    if (profileInfo?.details) {
+      setDetails({
+        bio: profileInfo.details.bio,
+        otherName: profileInfo.details.otherName,
+        education: profileInfo.details.education,
+        workplace: profileInfo.details.workplace,
+        currentCity: profileInfo.details.currentCity,
+        hometown: profileInfo.details.hometown,
+        socialMedia: profileInfo.details.socialMedia,
+        website: profileInfo.details.website,
+        relationship: profileInfo.details.relationship,
+      });
+    }
+  }, [profileInfo]);
 
   const handleChange = (e) => {
     setDetails((prev) => ({
       ...prev,
       bio: e.target.value,
     }));
+  };
 
-    setRemainingCharacters(110 - e.target.value.length);
+  const handleBioUpdateCancel = () => {
+    setDetails((prev) => ({
+      ...prev,
+      bio: profileInfo?.details?.bio,
+    }));
+    setIsEditBioShow(false);
+  };
+
+  const handleUpdateBio = async () => {
+    try {
+      if (biosLineCount > 10) {
+        return alert(
+          "Please make sure your bio is fewer than 10 lines long and try again."
+        );
+      }
+
+      if (biosLineCount <= 10) {
+        const response = await updateUserInformation({
+          id: user.id,
+          details: details,
+        });
+
+        if (response?.data?.message === "success") {
+          setIsEditBioShow(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -101,17 +107,25 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
 
             <div className="flex items-center justify-between">
               <p className="text-secondary-text">
-                {remainingCharacters} characters remaining
+                {remainingCharacters} characters & {remainingLines} lines
+                remaining
               </p>
 
-              <div className="space-x-2">
-                <SecondaryButton onClick={() => setIsEditBioShow(false)}>
+              <div className="flex space-x-2">
+                <SecondaryButton onClick={handleBioUpdateCancel}>
                   Cancel
                 </SecondaryButton>
 
-                <PrimaryButton onClick={() => setIsEditBioShow(false)}>
-                  Save
-                </PrimaryButton>
+                {biosLineCount > 10 ? (
+                  <SecondaryButton>Save</SecondaryButton>
+                ) : (
+                  <PrimaryButton
+                    isLoading={isLoading}
+                    onClick={handleUpdateBio}
+                  >
+                    Save
+                  </PrimaryButton>
+                )}
               </div>
             </div>
           </div>
@@ -119,7 +133,7 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
           <div className="border-bs border-primary-border pb-3">
             <pre
               className={
-                visitor
+                !profileVisitor
                   ? "whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2"
                   : "whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2 pb-3 border-b border-primary-border"
               }
@@ -127,14 +141,14 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
               {details?.bio}
             </pre>
 
-            {visitor &&
-              (profileInfo?.bio ? (
+            {!profileVisitor &&
+              (details?.bio == "" ? (
                 <SecondaryButton
                   onClick={() => setIsEditBioShow(true)}
                   isLoading={false}
                   className={`w-full mt-3`}
                 >
-                  Edit bio
+                  Add bio
                 </SecondaryButton>
               ) : (
                 <SecondaryButton
@@ -142,7 +156,7 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
                   onClick={() => setIsEditBioShow(true)}
                   className={`w-full mt-3`}
                 >
-                  Add bio
+                  Edit bio
                 </SecondaryButton>
               ))}
           </div>
@@ -157,12 +171,12 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
         setIsEditModalShow={setIsEditModalShow}
       />
 
-      <div className={visitor && "mt-1"}>
+      <div className={!profileVisitor && "mt-1"}>
         {details.education &&
           details.education.map((item, index) =>
             item.subject ? (
               <div key={index} className="py-2 flex items-center gap-x-2.5">
-                <div className="w-[20px] aspect-square">
+                <div className="min-w-[20px] aspect-square">
                   <img
                     src={education}
                     alt="education-icon"
@@ -179,7 +193,7 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
               </div>
             ) : (
               <div key={index} className="py-2 flex items-center gap-x-2.5">
-                <div className="w-[20px] aspect-square">
+                <div className="min-w-[20px] aspect-square">
                   <img
                     src={education}
                     alt="education-icon"
@@ -321,31 +335,15 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
           </div>
         )}
 
-        {visitor &&
-          (profileInfo?.details?.bio === " " ||
-          profileInfo?.details?.currentCity === " " ||
-          profileInfo?.details?.hometown === " " ||
-          profileInfo?.details?.education === " " ||
-          profileInfo?.details?.workplace === " " ||
-          profileInfo?.details?.socialMedia === " " ||
-          profileInfo?.details?.website === " " ? (
-            <SecondaryButton
-              onClick={() => setIsEditModalShow(true)}
-              className={`w-full mt-4`}
-            >
-              Edit your details
-            </SecondaryButton>
-          ) : (
-            <SecondaryButton
-              onClick={() => setIsEditModalShow(true)}
-              className={`w-full mt-4`}
-            >
-              Add your details
-            </SecondaryButton>
-          ))}
+        <SecondaryButton
+          onClick={() => setIsEditModalShow(true)}
+          className={`w-full mt-4`}
+        >
+          Edit your details
+        </SecondaryButton>
       </div>
 
-      <div className={visitor ? "mt-4" : "mt-2"}>
+      <div className={!profileVisitor ? "mt-4" : "mt-2"}>
         <div className="flex gap-x-2">
           <div className="w-1/3">
             <div className="group w-full h-[230px] rounded-lg overflow-hidden cursor-pointer">
@@ -386,7 +384,7 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
           </div>
         </div>
 
-        {visitor && (
+        {!profileVisitor && (
           <SecondaryButton className={`w-full mt-4`}>
             Add featured
           </SecondaryButton>
@@ -396,4 +394,4 @@ const ProfileInformation = ({ user, profileInfo, visitor }) => {
   );
 };
 
-export default ProfileInformation;
+export default ProfileInformationPart;

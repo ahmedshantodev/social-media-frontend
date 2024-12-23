@@ -4,7 +4,7 @@ import SecondaryButton from "../../../../../../components/layout/SecondaryButton
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 import WebsiteItem from "./WebsiteItem";
 
-const WebsitePart = ({ details, setDetails }) => {
+const WebsitePart = ({ information, setInformation }) => {
   const [isAddNewWebsiteLinkAreaShow, setIsAddNewWebsiteLinkAreaShow] = useState(false);
   const [link, setLink] = useState("");
 
@@ -12,7 +12,7 @@ const WebsitePart = ({ details, setDetails }) => {
     if (link === "") {
       alert("please enter website link");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         website: [
           ...prev.website,
@@ -31,13 +31,13 @@ const WebsitePart = ({ details, setDetails }) => {
       </p>
 
       <div>
-        {details?.website?.map((item, index) => (
+        {information?.website?.map((item, index) => (
           <WebsiteItem
             key={index}
             index={index}
             link={item.link}
-            details={details}
-            setDetails={setDetails}
+            information={information}
+            setInformation={setInformation}
           />
         ))}
       </div>

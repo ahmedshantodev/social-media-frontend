@@ -2,7 +2,7 @@ import React from "react";
 import ProfilePosts from "./ProfilePosts";
 import PostCreatePart from "../../../../../components/post/post_create_part"
 
-const OverviewRightPart = ({ profileInfo, visitor }) => {
+const OverviewRightPart = ({ profileInfo, profileVisitor }) => {
   return (
     <>
       <PostCreatePart />

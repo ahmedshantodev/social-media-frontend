@@ -4,7 +4,7 @@ import SecondaryButton from "../../../../../../components/layout/SecondaryButton
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 import SocialMediaItem from "./SocialMediaItem";
 
-const SocialMediaPart = ({ details, setDetails }) => {
+const SocialMediaPart = ({ information, setInformation }) => {
   const [isAddNewSocialLinkAreaShow, setIsAddNewSocialLinkAreaShow] = useState(false);
   const [name, setName] = useState("linkedin");
   const [link, setLink] = useState("");
@@ -13,7 +13,7 @@ const SocialMediaPart = ({ details, setDetails }) => {
     if (link === "") {
       alert("please enter social media link");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         socialMedia: [
           ...prev.socialMedia,
@@ -37,14 +37,14 @@ const SocialMediaPart = ({ details, setDetails }) => {
       </p>
 
       <div>
-        {details?.socialMedia?.map((item, index) => (
+        {information?.socialMedia?.map((item, index) => (
           <SocialMediaItem
             key={index}
             index={index}
             name={item.name}
             link={item.link}
-            details={details}
-            setDetails={setDetails}
+            information={information}
+            setInformation={setInformation}
           />
         ))}
       </div>

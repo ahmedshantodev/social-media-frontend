@@ -8,45 +8,45 @@ import ProfileAllSavedPosts from "./profile_all_saved_posts";
 
 const ProfileBottomPart = ({
   user,
-  data: profileInfo,
-  visitor,
   isLoading,
+  profileInfo,
   menuActiveItem,
+  profileVisitor,
   setMenuActiveItem,
 }) => {
   return menuActiveItem === "intro" ? (
     <ProfileOverview
       user={user}
-      profileInfo={profileInfo}
-      visitor={visitor}
       isLoading={isLoading}
+      profileInfo={profileInfo}
       menuActiveItem={menuActiveItem}
+      profileVisitor={profileVisitor}
       setMenuActiveItem={setMenuActiveItem}
     />
   ) : menuActiveItem === "about" ? (
     <ProfileAbout
       user={user}
       profileInfo={profileInfo}
-      visitor={visitor}
       isLoading={isLoading}
       menuActiveItem={menuActiveItem}
+      profileVisitor={profileVisitor}
       setMenuActiveItem={setMenuActiveItem}
     />
   ) : menuActiveItem === "friends" ? (
     <ProfileAllFriends
       user={user}
       profileInfo={profileInfo}
-      visitor={visitor}
       isLoading={isLoading}
       menuActiveItem={menuActiveItem}
+      profileVisitor={profileVisitor}
       setMenuActiveItem={setMenuActiveItem}
     />
   ) : menuActiveItem === "photos" ? (
     <ProfileAllPhotos
       user={user}
       profileInfo={profileInfo}
-      visitor={visitor}
       isLoading={isLoading}
+      profileVisitor={profileVisitor}
       menuActiveItem={menuActiveItem}
       setMenuActiveItem={setMenuActiveItem}
     />
@@ -54,8 +54,8 @@ const ProfileBottomPart = ({
     <ProfileAllGroups
       user={user}
       profileInfo={profileInfo}
-      visitor={visitor}
       isLoading={isLoading}
+      profileVisitor={profileVisitor}
       menuActiveItem={menuActiveItem}
       setMenuActiveItem={setMenuActiveItem}
     />
@@ -63,7 +63,7 @@ const ProfileBottomPart = ({
     <ProfileAllSavedPosts
       user={user}
       profileInfo={profileInfo}
-      visitor={visitor}
+      profileVisitor={profileVisitor}
       isLoading={isLoading}
       menuActiveItem={menuActiveItem}
       setMenuActiveItem={setMenuActiveItem}

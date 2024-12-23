@@ -15,7 +15,7 @@ import { activeUser } from "../../../redux/slices/activeUserSlice";
 import { useUpdateCoverPhotoMutation } from "../../../redux/api/userApi";
 import Modal from "../../../components/layout/Modal";
 
-const CoverPhotoPart = ({ user, profileInfo, visitor, coverPhoto, setCoverPhoto }) => {
+const CoverPhotoPart = ({ user, profileInfo, coverPhoto, setCoverPhoto, profileVisitor }) => {
   const dispatch = useDispatch();
   // ref
   const menuBoxRef = useRef();
@@ -134,7 +134,6 @@ const CoverPhotoPart = ({ user, profileInfo, visitor, coverPhoto, setCoverPhoto 
         <div className="absolute bottom-0 left-0 z-20 w-full bg-white/40 py-3 px-5 flex items-center justify-end gap-3">
           <SecondaryButton
             className={`!px-6 h-[45px]`}
-            isLoading={loading || isLoading}
             onClick={() => setCoverPhoto("")}
           >
             cancel
@@ -142,7 +141,7 @@ const CoverPhotoPart = ({ user, profileInfo, visitor, coverPhoto, setCoverPhoto 
 
           {loading || isLoading ? (
             <PrimaryButton
-              className={`w-[170px] h-[45px] flex items-center justify-center cursor-not-allowed`}
+              className={`w-[170px] flex items-center justify-center cursor-not-allowed`}
             >
               <ColorRing
                 visible={true}
@@ -157,15 +156,15 @@ const CoverPhotoPart = ({ user, profileInfo, visitor, coverPhoto, setCoverPhoto 
           ) : (
             <PrimaryButton
               onClick={handleSave}
-              className={`w-[170px] h-[45px] py-0`}
+              className={`w-[170px] py-0`}
             >
-              Save Changes
+              Save
             </PrimaryButton>
           )}
         </div>
       )}
 
-      {visitor && (
+      {!profileVisitor && (
         <div ref={menuBoxRef} className="absolute bottom-4 right-4">
           {!coverPhoto && (
             <button

@@ -5,12 +5,12 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import websiteIcon from "/public/images/user-info-icon/website.png";
 
-const WebsiteItem = ({ index, link, details, setDetails }) => {
+const WebsiteItem = ({ index, link, information, setInformation }) => {
   const [isWebsiteEditAreaShow, setIsWebsiteEditAreaShow] = useState(false);
-  const [editedLink, setEditedLink] = useState(details?.website[index].link);
+  const [editedLink, setEditedLink] = useState(information?.website[index].link);
 
   const handleEditCancel = () => {
-    setEditedLink(details?.website[index].link);
+    setEditedLink(information?.website[index].link);
 
     setIsWebsiteEditAreaShow(false);
   };
@@ -19,7 +19,7 @@ const WebsiteItem = ({ index, link, details, setDetails }) => {
     if (editedLink === "") {
       alert("please enter website link");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         website: [
           ...prev.website.slice(0, index),
@@ -33,7 +33,7 @@ const WebsiteItem = ({ index, link, details, setDetails }) => {
   };
 
   const deleteWebsiteItem = () => {
-    setDetails((prev) => ({
+    setInformation((prev) => ({
       ...prev,
       website: [
         ...prev.website.slice(0, index),

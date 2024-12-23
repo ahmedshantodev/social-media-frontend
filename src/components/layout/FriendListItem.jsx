@@ -1,6 +1,7 @@
 import React from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import Skeleton from "./Skeleton";
 
 const FriendListItem = ({ type, info }) => {
   return type === "small" ? (
@@ -29,8 +30,8 @@ const FriendListItem = ({ type, info }) => {
     >
       <div className="w-[17%] aspect-square rounded-[6px] overflow-hidden border cursor-pointer">
         <img
-          src={info.image}
-          alt={info.name}
+          src={info.profilePicture}
+          alt={info.username}
           className="w-full h-full object-cover"
         />
       </div>
@@ -38,10 +39,10 @@ const FriendListItem = ({ type, info }) => {
       <div className="w-[83%] flex items-center justify-between">
         <div>
           <Link
-            to={"/username"}
+            to={`/${info.username}`}
             className="text-[19px] font-medium font-segoe-ui text-primary-text hover:underline"
           >
-            {info.name}
+            {info.firstName + " " + info.lastName}
           </Link>
 
           <p className="text-secondary-text font-inter text-sm leading-none hover:underline cursor-pointer">
@@ -52,6 +53,17 @@ const FriendListItem = ({ type, info }) => {
         <button className="bg-whtie hover:bg-secondary-bg text-secondary-text text-[22px] box-content p-2 rounded-full transition-all">
           <HiDotsHorizontal />
         </button>
+      </div>
+    </div>
+  ) : type === "medium-skeleton" ? (
+    <div
+      className={`bg-white border border-primary-border/50 rounded-[6px] p-4 flex items-center gap-x-5`}
+    >
+      <Skeleton type={`image`} className={`w-[17%] aspect-square`}/>
+
+      <div className="w-[83%]">
+        <Skeleton type={`box`} className={`w-[70%] h-4 mb-[6px]`}/>
+        <Skeleton type={`box`} className={`w-[55%] h-[14px]`}/>
       </div>
     </div>
   ) : (

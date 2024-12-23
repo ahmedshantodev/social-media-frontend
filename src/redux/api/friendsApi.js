@@ -13,6 +13,7 @@ export const friendsApi = createApi({
         body,
       }),
     }),
+
     deleteSentRequst: builder.mutation({
       query: (body) => ({
         url: "/api/v1/friends/delete-sent-requst",
@@ -20,6 +21,7 @@ export const friendsApi = createApi({
         body,
       }),
     }),
+
     acceptFriendRequst: builder.mutation({
       query: (body) => ({
         url: "/api/v1/friends/accept-friend-requst",
@@ -27,6 +29,7 @@ export const friendsApi = createApi({
         body,
       }),
     }),
+
     rejectFriendRequst: builder.mutation({
       query: (body) => ({
         url: "/api/v1/friends/reject-friend-requst",
@@ -34,7 +37,42 @@ export const friendsApi = createApi({
         body,
       }),
     }),
+
+    getAllFriendsList: builder.query({
+      query: (username) => `/api/v1/friends/get-all-friends-list/${username}`,
+    }),
+    
+    getAddFriendsList: builder.query({
+      query: (username) => `/api/v1/friends/get-add-friends-list/${username}`,
+    }),
+    
+    getRecivedRequstList: builder.query({
+      query: (username) => `/api/v1/friends/get-recived-requsts-list/${username}`,
+    }),
+    
+    getSentRequstList: builder.query({
+      query: (username) => `/api/v1/friends/get-sent-requsts-list/${username}`,
+    }),
+
+    
+    unfriend: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/friends/unfriend",
+        method: "PUT",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useSendFriendRequstMutation, useAcceptFriendRequstMutation, useDeleteSentRequstMutation, useRejectFriendRequstMutation } = friendsApi;
+export const {
+  useSendFriendRequstMutation,
+  useAcceptFriendRequstMutation,
+  useDeleteSentRequstMutation,
+  useRejectFriendRequstMutation,
+  useGetAllFriendsListQuery,
+  useGetAddFriendsListQuery,
+  useGetRecivedRequstListQuery,
+  useGetSentRequstListQuery,
+  useUnfriendMutation,
+} = friendsApi;

@@ -112,13 +112,13 @@ const PostCreateModal = ({ show, setShow }) => {
           <div>
             <img
               src={user?.profilePicture}
-              alt={user?.firstName + " " + user?.lastName}
+              alt={user?.fullName}
               className="w-[45px] aspect-square rounded-full border"
             />
           </div>
 
           <p className="font-segoe-ui text-[19px] text-primary-text font-semibold">
-            {user?.firstName} {user?.lastName}
+            {user?.fullName}
           </p>
         </div>
 

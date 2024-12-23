@@ -1,16 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SecondaryButton from "../layout/SecondaryButton";
+import Skeleton from "./Skeleton";
 
-const BlockListItem = ({ info }) => {
-  return (
+const BlockListItem = ({ type, info }) => {
+  return type === "skeleton" ? (
+    <div className="w-full border rounded-md overflow-hidden ">
+      <Skeleton type={`image`} className={`w-full aspect-square`} />
+
+      <div className="pt-3 pb-2.5 px-2">
+        <Skeleton type={`box`} className={`w-full h-5 mt-2.5 mb-3`} />
+
+        <Skeleton type={`box`} className={`w-full h-[45px] rounded-lg`} />
+      </div>
+    </div>
+  ) : (
     <div className={`w-full border rounded-md overflow-hidden`}>
-      <div>
+      <Link to={"/username"}>
         <img
           src={info.image}
           alt={info.name}
           className={"w-full aspect-square object-cover cursor-pointer"}
         />
-      </div>
+      </Link>
 
       <div className={"pt-2.5 pb-2 px-2"}>
         <Link
@@ -20,13 +32,9 @@ const BlockListItem = ({ info }) => {
           {info.name}
         </Link>
 
-        <button
-          className={
-            "bg-[#4e4f50] w-full py-2.5 text-white font-semibold rounded-lg mt-1 active:scale-[0.97]"
-          }
-        >
+        <SecondaryButton className={`w-full !font-semibold`}>
           Unblock
-        </button>
+        </SecondaryButton>
       </div>
     </div>
   );

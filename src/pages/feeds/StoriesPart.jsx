@@ -38,7 +38,7 @@ const StoriesPart = () => {
               <div className="w-full h-[70%]">
                 <img
                   src={user?.profilePicture}
-                  alt={""}
+                  alt={user?.fullName}
                   className="w-full h-full object-cover group-hover:scale-[1.05] transition-all duration-150 ease-in-out"
                 />
               </div>

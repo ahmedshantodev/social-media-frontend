@@ -14,7 +14,7 @@ const PostHeader = ({ post }) => {
         >
           <img
             src={post?.user?.profilePicture}
-            alt={post?.user?.firstName + " " + post?.user?.lastName}
+            alt={post?.user?.fullName}
             className="w-full h-full object-cover rounded-full"
           />
         </Link>
@@ -25,7 +25,7 @@ const PostHeader = ({ post }) => {
               to={`/profile/${post?.user?.username}`}
               className="font-inter font-medium text-[17px] leading-none tracking-[0.45px] hover:underline"
             >
-              {post?.user?.firstName} {post?.user?.lastName}
+              {post?.user?.fullName}
             </Link>
 
             {post?.type === "profilePicture" && (

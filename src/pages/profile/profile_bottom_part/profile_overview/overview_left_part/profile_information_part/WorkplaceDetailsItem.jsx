@@ -7,18 +7,18 @@ import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 
 const WorkplaceDetailsItem = ({
   index,
-  details,
-  setDetails,
   position,
   company,
+  information,
+  setInformation,
 }) => {
   const [isWorkEditeAreaShows, setIsWorkEditeAreaShows] = useState(false);
-  const [editedJobPosition, setEditedJobPosition] = useState(details?.workplace[index].position);
-  const [editedCompanyName, setEditedCompanyName] = useState(details?.workplace[index].company);
+  const [editedJobPosition, setEditedJobPosition] = useState(information?.workplace[index].position);
+  const [editedCompanyName, setEditedCompanyName] = useState(information?.workplace[index].company);
 
   const handleEditCancel = () => {
-    setEditedJobPosition(details?.workplace[index].position)
-    setEditedCompanyName(details?.workplace[index].company)
+    setEditedJobPosition(information?.workplace[index].position)
+    setEditedCompanyName(information?.workplace[index].company)
     setIsWorkEditeAreaShows(false)
   }
 
@@ -28,7 +28,7 @@ const WorkplaceDetailsItem = ({
     } else if (editedJobPosition === "") {
       alert("please enter your job position");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         workplace: [
           ...prev.workplace.slice(0, index),
@@ -46,7 +46,7 @@ const WorkplaceDetailsItem = ({
   };
 
   const deleteWorkplaceItem = () => {
-    setDetails((prev) => ({
+    setInformation((prev) => ({
       ...prev,
       workplace: [
         ...prev.workplace.slice(0, index),
@@ -97,6 +97,7 @@ const WorkplaceDetailsItem = ({
             <input
               type="text"
               id="position"
+              maxLength={50}
               value={editedJobPosition}
               placeholder="Enter your job position"
               onChange={(e) => setEditedJobPosition(e.target.value)}
@@ -112,6 +113,7 @@ const WorkplaceDetailsItem = ({
             <input
               type="text"
               id="conpany"
+              maxLength={50}
               value={editedCompanyName}
               placeholder="Enter your conpany name"
               onChange={(e) => setEditedCompanyName(e.target.value)}

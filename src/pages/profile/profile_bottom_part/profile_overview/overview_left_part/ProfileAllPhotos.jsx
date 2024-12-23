@@ -1,6 +1,4 @@
 import React from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import SecondaryButton from "../../../../../components/layout/SecondaryButton";
 
 const ProfileAllPhotos = ({ profileInfo, isLoading, setMenuActiveItem }) => {
@@ -9,7 +7,7 @@ const ProfileAllPhotos = ({ profileInfo, isLoading, setMenuActiveItem }) => {
       <p className="font-poppins text-xl font-medium">Photos</p>
 
       {isLoading ? (
-        <Skeleton containerClassName="flex-1" width={"100%"} height={"350px"} />
+        <div>loading...</div>
       ) : (
         <div className="flex flex-wrap mt-4 overflow-hidden gap-[6px]">
           {profileInfo?.images?.resources.length >= 1 &&

@@ -22,13 +22,13 @@ const LeftPart = () => {
           <div className="w-[42px] aspect-square rounded-full overflow-hidden border">
             <img
               src={user?.profilePicture}
-              alt={""}
+              alt={user?.fullName}
               className={`w-full h-full object-cover group-hover:scale-[1.07] transition-all`}
             />
           </div>
 
           <h3 className="text-[17px] font-segoe-ui font-medium text-primary-text">
-            {user?.firstName} {user?.lastName}
+            {user?.fullName}
           </h3>
         </Link>
 
@@ -57,11 +57,7 @@ const LeftPart = () => {
           {shortcutList.map((item, index) =>
             seeMore ? (
               item.type === "friend" ? (
-                <FriendListItem
-                  key={index}
-                  info={item}
-                  type={"small"}
-                />
+                <FriendListItem key={index} info={item} type={"small"} />
               ) : (
                 <GroupListItem
                   key={index}
@@ -72,11 +68,7 @@ const LeftPart = () => {
             ) : (
               index <= 5 &&
               (item.type === "friend" ? (
-                <FriendListItem
-                  key={index}
-                  info={item}
-                  type={"small"}
-                />
+                <FriendListItem key={index} info={item} type={"small"} />
               ) : (
                 <GroupListItem
                   key={index}

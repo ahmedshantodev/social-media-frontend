@@ -5,7 +5,7 @@ import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 import EducationDetailsItem from "./EducationDetailsItem";
 import ProfileInfoInput from "./ProfileInfoInput";
 
-const EducationDetailsPart = ({ details, setDetails }) => {
+const EducationDetailsPart = ({ information, setInformation }) => {
   const [isAddNewEducationAreaShow, setIsAddNewEducationAreaShow] = useState(false);
   const [institute, setInstitute] = useState("");
   const [subject, setSubject] = useState("");
@@ -14,7 +14,7 @@ const EducationDetailsPart = ({ details, setDetails }) => {
     if (institute === "") {
       alert("please enter your instiute name");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         education: [
           ...prev.education,
@@ -40,12 +40,12 @@ const EducationDetailsPart = ({ details, setDetails }) => {
       </p>
 
       <div>
-        {details?.education?.map((item, index) => (
+        {information?.education?.map((item, index) => (
           <EducationDetailsItem
             key={index}
             index={index}
-            details={details}
-            setDetails={setDetails}
+            information={information}
+            setInformation={setInformation}
             subject={item.subject}
             institute={item.institute}
           />
@@ -58,6 +58,7 @@ const EducationDetailsPart = ({ details, setDetails }) => {
             <ProfileInfoInput
               id="subject"
               type={"text"}
+              maxLength={50}
               label={"Subject (optional)"}
               placeholder="Describe"
               onChange={(e) => setSubject(e.target.value)}
@@ -67,6 +68,7 @@ const EducationDetailsPart = ({ details, setDetails }) => {
             <ProfileInfoInput
               id={"Insitute"}
               type={"text"}
+              maxLength={50}
               label={"Insitute name :"}
               placeholder="Enter your institute name"
               onChange={(e) => setInstitute(e.target.value)}

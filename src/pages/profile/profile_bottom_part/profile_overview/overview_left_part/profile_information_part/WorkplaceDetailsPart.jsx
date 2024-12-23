@@ -4,7 +4,7 @@ import WorkplaceDetailsItem from "./WorkplaceDetailsItem";
 import SecondaryButton from "../../../../../../components/layout/SecondaryButton";
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 
-const WorkplaceDetailsPart = ({ details, setDetails }) => {
+const WorkplaceDetailsPart = ({ information, setInformation }) => {
   const [position, setPosition] = useState("");
   const [company, setCompany] = useState("");
   const [isAddNewWorkplaceAreaShow, setIsAddNewWorkplaceAreaShow] = useState(false);
@@ -15,7 +15,7 @@ const WorkplaceDetailsPart = ({ details, setDetails }) => {
     } else if (company === "") {
       alert("please enter your company name");
     } else {
-      setDetails((prev) => ({
+      setInformation((prev) => ({
         ...prev,
         workplace: [
           ...prev.workplace,
@@ -40,14 +40,14 @@ const WorkplaceDetailsPart = ({ details, setDetails }) => {
       </p>
 
       <div>
-        {details?.workplace?.map((item, index) => (
+        {information?.workplace?.map((item, index) => (
           <WorkplaceDetailsItem
             key={index}
             index={index}
-            details={details}
-            setDetails={setDetails}
-            position={item.position}
             company={item.company}
+            position={item.position}
+            information={information}
+            setInformation={setInformation}
           />
         ))}
       </div>
@@ -63,6 +63,7 @@ const WorkplaceDetailsPart = ({ details, setDetails }) => {
               <input
                 type="text"
                 id="Positon"
+                maxLength={50}
                 placeholder="Enter your job position"
                 onChange={(e) => setPosition(e.target.value)}
                 className="w-full border border-primary-border py-2.5 px-5 rounded-md outline-none"
@@ -77,6 +78,7 @@ const WorkplaceDetailsPart = ({ details, setDetails }) => {
               <input
                 type="text"
                 id="Company"
+                maxLength={50}
                 placeholder="Enter your company name"
                 onChange={(e) => setCompany(e.target.value)}
                 className="w-full border border-primary-border py-2.5 px-5 rounded-md outline-none"

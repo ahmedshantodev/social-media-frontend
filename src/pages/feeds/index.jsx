@@ -5,18 +5,8 @@ import StoriesPart from "./StoriesPart";
 import PostPart from "./PostPart";
 import LeftPart from "./LeftPart";
 import RightPart from "./RightPart";
-import { useSendFriendRequstMutation } from "../../redux/api/friendsApi";
 
 const Feeds = () => {
-  const [sendFriendRequst] = useSendFriendRequstMutation()
-
-  const handleClick = async () => {
-    const response = await sendFriendRequst({
-      senderId: "6746a0e595e06258d6d1287a",
-      reciverId: "6746a0e595e06258d6d1287a"
-    })
-    console.log(response);
-  }
   return (
     <>
       <Helmet>
@@ -35,7 +25,7 @@ const Feeds = () => {
               <StoriesPart />
               <PostPart />
 
-              <button onClick={handleClick}>
+              <button>
                 click
               </button>
             </div>

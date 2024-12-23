@@ -19,7 +19,7 @@ export const navmenu = [
   {
     icon: friendsLogo,
     text: "Friends",
-    path: "/friends",
+    path: "/friends/all-friends",
   },
   {
     icon: groupsLogo,
