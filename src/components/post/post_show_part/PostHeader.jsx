@@ -25,7 +25,7 @@ const PostHeader = ({ post }) => {
               to={`/profile/${post?.user?.username}`}
               className="font-inter font-medium text-[17px] leading-none tracking-[0.45px] hover:underline"
             >
-              {post?.user?.fullName}
+              {post?.user?.fullName} 
             </Link>
 
             {post?.type === "profilePicture" && (

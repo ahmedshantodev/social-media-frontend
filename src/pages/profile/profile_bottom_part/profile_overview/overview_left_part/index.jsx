@@ -2,6 +2,7 @@ import React from "react";
 import ProfileAllPhotos from "./ProfileAllPhotos";
 import ProfileAllFriends from "./ProfileAllFriends";
 import ProfileInformationPart from "./profile_information_part";
+import { useGetAllFriendsListQuery } from "../../../../../redux/api/friendsApi";
 
 const OverviewLeftPart = ({
   user,
@@ -9,8 +10,10 @@ const OverviewLeftPart = ({
   profileVisitor,
   setMenuActiveItem,
 }) => {
+  const { data: friendList } = useGetAllFriendsListQuery(profileInfo?.username);
+  
   return (
-    <>
+    <div>
       <ProfileInformationPart
         user={user}
         profileVisitor={profileVisitor}
@@ -24,11 +27,14 @@ const OverviewLeftPart = ({
         />
       )}
 
-      <ProfileAllFriends
-        profileInfo={profileInfo}
-        setMenuActiveItem={setMenuActiveItem}
-      />
-    </>
+      {friendList?.length >= 1 && (
+        <ProfileAllFriends
+          friendList={friendList}
+          profileVisitor={profileVisitor}
+          setMenuActiveItem={setMenuActiveItem}
+        />
+      )}
+    </div>
   );
 };
 

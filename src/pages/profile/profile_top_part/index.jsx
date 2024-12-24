@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // react icons
 import { FiPlus } from "react-icons/fi";
 import {
@@ -33,8 +33,8 @@ const ProfileTopPart = ({
   profileInfo,
   menuActiveItem,
   profileVisitor,
-  profileTopPartRef,
   setMenuActiveItem,
+  profileTopPartRef,
 }) => {
   const isFriendRef = useRef();
   const isFriend = profileInfo?.friends.includes(user?.id);
@@ -205,9 +205,7 @@ const ProfileTopPart = ({
                       <div className="absolute top-0 -translate-y-2/4 left-2 bg-white w-[15px] aspect-square rotate-45" />
 
                       {unfriendLoading ? (
-                        <button
-                          className="w-full flex items-center gap-x-2 font-medium text-lg py-2 px-2 rounded-md hover:bg-[#e2e5e9]"
-                        >
+                        <button className="w-full flex items-center gap-x-2 font-medium text-lg py-2 px-2 rounded-md hover:bg-[#e2e5e9]">
                           saving...
                         </button>
                       ) : (
@@ -319,7 +317,7 @@ const ProfileTopPart = ({
           </div>
         )}
 
-        <div className="mt-1 border-t-2 border-primary-border/50">
+        <div className="bg-white mt-1 border-t-2 border-primary-border/50">
           {menu.map((item, index) => (
             <button
               key={index}

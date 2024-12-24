@@ -6,12 +6,12 @@ const ProfileOverview = ({
   user,
   isLoading,
   profileInfo,
-  menuActiveItem,
   profileVisitor,
+  menuActiveItem,
   setMenuActiveItem,
 }) => {
   return (
-    <div className="flex items-start gap-x-4">
+    <div className="flex gap-x-4 relative">
       <div className="w-[40%]">
         <OverviewLeftPart
           user={user}

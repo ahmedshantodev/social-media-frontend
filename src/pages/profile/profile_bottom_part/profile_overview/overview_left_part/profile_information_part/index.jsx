@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import education from "/public/images/user-info-icon/education.png";
 import homeTown from "/public/images/user-info-icon/home-town.png";
 import home from "/public/images/user-info-icon/home.png";
@@ -14,8 +14,10 @@ import EditDetailsModal from "./EditDetailsModal";
 import SecondaryButton from "../../../../../../components/layout/SecondaryButton";
 import PrimaryButton from "../../../../../../components/layout/PrimaryButton";
 import { useUpdateUserInformationMutation } from "../../../../../../redux/api/userApi";
+import AutoResizeTextarea from "../../../../../../components/layout/AutoResizeTextarea";
 
 const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
+  const bioTextAreaRef = useRef();
   const [details, setDetails] = useState({});
   const [isEditModalShow, setIsEditModalShow] = useState(false);
   const [isEditBioShow, setIsEditBioShow] = useState(false);
@@ -23,15 +25,7 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
   const [updateUserInformation, { isLoading }] =
     useUpdateUserInformationMutation();
 
-  // get bio text length and line count
-  function countLines(text) {
-    return text?.split(/\r\n|\r|\n/).length;
-  }
-  const biosLineCount = countLines(details?.bio);
-  const maxTextLines = 10;
-  const maxTextLength = 110;
-
-  const remainingLines = maxTextLines - biosLineCount;
+  const maxTextLength = 150;
   const remainingCharacters = maxTextLength - details?.bio?.length;
 
   useEffect(() => {
@@ -50,10 +44,20 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
     }
   }, [profileInfo]);
 
+  const handleBioEditAreaShow = () => {
+    // bioTextAreaRef?.current?.focus()
+    setIsEditBioShow(true);
+  };
+
   const handleChange = (e) => {
+    const maxLines = 10;
+    const newText = e.target.value;
+    const lines = newText.split("\n");
+    const truncatedText = lines.slice(0, maxLines).join("\n");
+
     setDetails((prev) => ({
       ...prev,
-      bio: e.target.value,
+      bio: truncatedText,
     }));
   };
 
@@ -67,21 +71,13 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
 
   const handleUpdateBio = async () => {
     try {
-      if (biosLineCount > 10) {
-        return alert(
-          "Please make sure your bio is fewer than 10 lines long and try again."
-        );
-      }
+      const response = await updateUserInformation({
+        id: user.id,
+        details: details,
+      });
 
-      if (biosLineCount <= 10) {
-        const response = await updateUserInformation({
-          id: user.id,
-          details: details,
-        });
-
-        if (response?.data?.message === "success") {
-          setIsEditBioShow(false);
-        }
+      if (response?.data?.message === "success") {
+        setIsEditBioShow(false);
       }
     } catch (error) {
       console.log(error);
@@ -95,20 +91,30 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
 
         {isEditBioShow ? (
           <div>
-            <textarea
-              id="bio"
-              name="bio"
-              maxLength={"110"}
+            {/* <AutoResizeTextarea
+              id={"bio"}
+              name={"bio"}
+              maxLength={"150"}
               value={details?.bio}
               onChange={handleChange}
+              textareaRef={bioTextAreaRef}
               placeholder="Describe who you are"
-              className="w-full min-h-[150px] resize-none border border-primary-border hover:border-[#6b7280] mt-2 rounded-md p-2 outline-none text-center font-inter tracking-[0.40px]"
+              className={`w-full overflow-y-hidden min-h- resize-none border border-primary-border hover:border-[#6b7280] mt-2 rounded-md p-2 outline-none text-center font-inter tracking-[0.40px]`}
+            /> */}
+            <textarea
+              id={"bio"}
+              name={"bio"}
+              maxLength={"150"}
+              value={details?.bio}
+              onChange={handleChange}
+              textareaRef={bioTextAreaRef}
+              placeholder="Describe who you are"
+              className={`w-full h-[150px] resize-none border border-primary-border hover:border-[#6b7280] mt-2 rounded-md p-2 outline-none text-center font-inter tracking-[0.40px]`}
             />
 
             <div className="flex items-center justify-between">
               <p className="text-secondary-text">
-                {remainingCharacters} characters & {remainingLines} lines
-                remaining
+                {remainingCharacters} characters remaining
               </p>
 
               <div className="flex space-x-2">
@@ -116,16 +122,9 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
                   Cancel
                 </SecondaryButton>
 
-                {biosLineCount > 10 ? (
-                  <SecondaryButton>Save</SecondaryButton>
-                ) : (
-                  <PrimaryButton
-                    isLoading={isLoading}
-                    onClick={handleUpdateBio}
-                  >
-                    Save
-                  </PrimaryButton>
-                )}
+                <PrimaryButton isLoading={isLoading} onClick={handleUpdateBio}>
+                  Save
+                </PrimaryButton>
               </div>
             </div>
           </div>
@@ -134,8 +133,8 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
             <pre
               className={
                 !profileVisitor
-                  ? "whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2"
-                  : "whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2 pb-3 border-b border-primary-border"
+                  ? "break-words whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2"
+                  : "break-words whitespace-pre-wrap font-inter tracking-[0.40px] text-center mt-2 pb-3 border-b border-primary-border"
               }
             >
               {details?.bio}
@@ -144,7 +143,7 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
             {!profileVisitor &&
               (details?.bio == "" ? (
                 <SecondaryButton
-                  onClick={() => setIsEditBioShow(true)}
+                  onClick={handleBioEditAreaShow}
                   isLoading={false}
                   className={`w-full mt-3`}
                 >
@@ -153,7 +152,7 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
               ) : (
                 <SecondaryButton
                   isLoading={false}
-                  onClick={() => setIsEditBioShow(true)}
+                  onClick={handleBioEditAreaShow}
                   className={`w-full mt-3`}
                 >
                   Edit bio
@@ -335,12 +334,14 @@ const ProfileInformationPart = ({ user, profileInfo, profileVisitor }) => {
           </div>
         )}
 
-        <SecondaryButton
-          onClick={() => setIsEditModalShow(true)}
-          className={`w-full mt-4`}
-        >
-          Edit your details
-        </SecondaryButton>
+        {!profileVisitor && (
+          <SecondaryButton
+            onClick={() => setIsEditModalShow(true)}
+            className={`w-full mt-4`}
+          >
+            Edit your details
+          </SecondaryButton>
+        )}
       </div>
 
       <div className={!profileVisitor ? "mt-4" : "mt-2"}>

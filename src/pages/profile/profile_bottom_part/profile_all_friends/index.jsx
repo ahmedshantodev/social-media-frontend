@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import FriendListItem from "../../../../components/layout/FriendListItem";
-import { friendList } from "../../../../data/friendList";
+import ProfileFriends from "./ProfileFriends";
+import ProfileMutualFriends from "./ProfileMutualFriends";
 
-const ProfileAllFriends = () => {
-  const menu = ["all friends", "mutual friends", "friend requsts", "send requsts"];
+const ProfileAllFriends = ({ profileInfo }) => {
+  const menu = ["all friends", "mutual friends"];
   const [menuActiveItem, setMenuActiveItem] = useState(menu[0]);
+  const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    setSearchValue("");
+  }, [menuActiveItem]);
 
   return (
     <div className="w-full bg-white py-4 px-5 mb-10 rounded-[10px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
@@ -32,6 +37,8 @@ const ProfileAllFriends = () => {
           <div className="relative z-[1]">
             <input
               placeholder="Search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
               className={
                 "bg-input-color w-[500px] rounded-full py-2.5 pl-[42px] pr-5 focus:outline-[2px] outline-secondary_color placeholder:font-segoe-ui placeholder:text-[17px] outline-none"
               }
@@ -42,15 +49,18 @@ const ProfileAllFriends = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-5 mt-5">
-        {friendList.map((item, index) => (
-          <div key={index} className="w-[49%]">
-            <FriendListItem
-              info={item}
-              type={"medium"}
-            />
-          </div>
-        ))}
+      <div>
+        {menuActiveItem === "all friends" ? (
+          <ProfileFriends            
+            searchValue={searchValue}
+            profileInfo={profileInfo}
+          />
+        ) : menuActiveItem === "mutual friends" && (
+          <ProfileMutualFriends
+            searchValue={searchValue}
+            profileInfo={profileInfo}
+          />
+        )}
       </div>
     </div>
   );

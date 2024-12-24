@@ -61,6 +61,8 @@ const PostCreateModal = ({ show, setShow }) => {
       user: user.id,
     });
 
+    console.log(response);
+
     if (response?.error?.data?.message) {
       return setLoading(false)
     }

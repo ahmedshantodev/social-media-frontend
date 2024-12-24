@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { RiImageAddFill } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
+import fileDropIcon from "/images/file-drop-icon.png";
+import { useDropzone } from "react-dropzone";
 
 const PostImageUploader = ({ show, setShow, postImages, setPostImages }) => {
   const handleImageSelect = (e) => {
@@ -22,6 +24,35 @@ const PostImageUploader = ({ show, setShow, postImages, setPostImages }) => {
       }
     });
   };
+
+  const onDrop = useCallback((acceptedFiles) => {
+    const file = acceptedFiles;
+
+    const acceptedFormats = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/gif",
+    ];
+
+    file.forEach((image) => {
+      if (acceptedFormats.includes(image.type)) {
+        let reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onload = (readerImage) => {
+          setPostImages((prev) => [...prev, readerImage.target.result]);
+        };
+      } else {
+        alert("Please upload only JPEG, PNG, WEBP or gif image file");
+      }
+    });
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: "image/jpeg,image/png,image/webp,image/gif",
+    multiple: true,
+    onDrop,
+  });
 
   let mediaUploaderPartClose = () => {
     setPostImages([]);
@@ -154,42 +185,46 @@ const PostImageUploader = ({ show, setShow, postImages, setPostImages }) => {
     <div
       className={
         show
-          ? "mt-2 w-full h-[260px] visible opacity-100 border border-primary-border p-2.5 rounded-[6px] transition-all duration-150 ease-in-out"
-          : "mt-2 w-full h-0 invisible hidden opacity-0 border border-primary-border p-0 rounded-[6px] transition-all duration-150 ease-in-out"
+          ? "block relative mt-2 w-full h-[260px]"
+          : "hidden relative mt-2 w-full h-[260px]"
       }
     >
-      <div className="relative w-full h-full">
-        <button
-          onClick={() => setShow(false)}
-          className="box-content bg-white p-[6px] rounded-full absolute top-3 right-3 border border-primary-border hover:bg-tertiary-bg"
-        >
-          <RxCross2 className="text-xl" />
-        </button>
+      <button
+        onClick={() => setShow(false)}
+        className="box-content bg-white p-[5px] rounded-full absolute top-4 right-4 border border-primary-border hover:bg-tertiary-bg"
+      >
+        <RxCross2 className="text-xl" />
+      </button>
 
-        <label
-          htmlFor="postMedia"
-          className="w-full h-full bg-secondary-bg rounded-[6px] flex items-center justify-center text-center cursor-pointer hover:bg-tertiary-bg"
-        >
-          <div>
-            <RiImageAddFill className="text-3xl text-secondary-text mx-auto mb-1" />
+      <div
+        {...getRootProps()}
+        className="w-full h-full border border-primary-border p-2.5 rounded-[6px]"
+      >
+        <input {...getInputProps()} />
 
-            <p className="text-[19px] font-medium text-primary-text font-segoe-ui">
-              Add Photos/Videos
-            </p>
-            <p className="text-[14px] text-secondary-text font-segoe-ui">
-              Or drag and drop
-            </p>
-          </div>
+        <div className="min-w-[500px] h-full bg-secondary-bg rounded-[6px] flex items-center justify-center text-center cursor-pointer hover:bg-tertiary-bg">
+          {isDragActive ? (
+            <div className="">
+              <img
+                src={fileDropIcon}
+                alt=""
+                className="w-[150px] object-cover"
+              />
 
-          <input
-            id="postMedia"
-            type="file"
-            multiple
-            onChange={handleImageSelect}
-            accept="image/jpeg,image/png,image/webp,image/gif"
-            className="hidden"
-          />
-        </label>
+              <p className="mt-2">Drop the files here</p>
+            </div>
+          ) : (
+            <div>
+              <RiImageAddFill className="text-3xl text-secondary-text mx-auto mb-1" />
+              <p className="text-[19px] font-medium text-primary-text font-segoe-ui">
+                Choose profile picture
+              </p>
+              <p className="text-[14px] text-secondary-text font-segoe-ui">
+                Or drag and drop
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const AllFriends = () => {
   const [searchValue, setSearchValue] = useState("");
   const user = useSelector((activeUser) => activeUser.user.information);
-  const { data, isLoading } = useGetAllFriendsListQuery(user.username);
+  const { data, isLoading } = useGetAllFriendsListQuery(user?.username);
 
   const filteredList = data?.filter((item) => {
     return searchValue ? item.fullName.toLowerCase().includes(searchValue.toLowerCase()) : item;
@@ -17,7 +17,7 @@ const AllFriends = () => {
     <div className="w-full h-full">
       <div className={"h-[8%] flex items-center justify-between"}>
         <h4 className="font-inter text-[20px] font-semibold">
-          All Friend <span className="text-[#707276]">(290 friends)</span>
+          All Friend <span className="text-[#707276]">({data?.length} friends)</span>
         </h4>
 
         <div className="w-[500px]">
