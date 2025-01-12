@@ -11,7 +11,7 @@ const ProfileAllPhotos = ({ profileInfo }) => {
     }
 
     if (menuActiveItem === "profile picture") {
-      return (item.asset_folder === `usr-image/${profileInfo?.username}/profile-picture`);
+      return (item.asset_folder === `user-image/${profileInfo?.username}/profile-picture`);
     }
 
     if (menuActiveItem === "cover photo") {
