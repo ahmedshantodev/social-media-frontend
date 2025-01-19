@@ -61,10 +61,8 @@ const PostCreateModal = ({ show, setShow }) => {
       user: user.id,
     });
 
-    console.log(response);
-
     if (response?.error?.data?.message) {
-      return setLoading(false)
+      return setLoading(false);
     }
 
     if (response?.data?.message) {
@@ -115,13 +113,25 @@ const PostCreateModal = ({ show, setShow }) => {
             <img
               src={user?.profilePicture}
               alt={user?.fullName}
-              className="w-[45px] aspect-square rounded-full border"
+              className="min-w-[45px] max-w-[45px] aspect-square rounded-full border"
             />
           </div>
 
-          <p className="font-segoe-ui text-[19px] text-primary-text font-semibold">
-            {user?.fullName}
-          </p>
+          {feelings ? (
+            <div className="flex gap-x-[6px]">
+              <p className="font-segoe-ui text-[19px] text-primary-text font-semibold ">
+                {user?.fullName}
+              </p>
+
+              <p className="font-segoe-ui text-[19px] text-secondary-text font-mediums ">
+                is feeling {feelings.feeling + feelings.emoji}
+              </p>
+            </div>
+          ) : (
+            <p className="font-segoe-ui text-[19px] text-primary-text font-semibold ">
+              {user?.fullName}
+            </p>
+          )}
         </div>
 
         <div className="w-full max-h-[480px] overflow-y-auto mt-1 mb-2 pr-1">
@@ -185,6 +195,7 @@ const PostCreateModal = ({ show, setShow }) => {
 
           {isFeelingSelectorShow && (
             <PostCreateFeelingsPart
+              feelings={feelings}
               setFeelings={setFeelings}
               setFeelingSelectorShow={setIsFeelingSelectorShow}
             />

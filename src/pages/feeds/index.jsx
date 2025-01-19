@@ -24,10 +24,6 @@ const Feeds = () => {
               <PostCreatePart />
               <StoriesPart />
               <PostPart />
-
-              <button>
-                click
-              </button>
             </div>
           </div>
 

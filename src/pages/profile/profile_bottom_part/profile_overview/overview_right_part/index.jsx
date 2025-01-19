@@ -5,7 +5,10 @@ import PostCreatePart from "../../../../../components/post/post_create_part"
 const OverviewRightPart = ({ profileInfo, profileVisitor }) => {
   return (
     <>
-      <PostCreatePart />
+      {!profileVisitor && (
+        <PostCreatePart />
+      )}
+
       <ProfilePosts profileInfo={profileInfo} />
     </>
   );

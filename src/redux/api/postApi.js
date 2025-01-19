@@ -17,7 +17,23 @@ export const postApi = createApi({
     getPost: builder.query({
       query: () => "/api/v1/post/get-post",
     }),
+
+    addReaction: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/post/add-reaction",
+        method: "POST",
+        body,
+      })
+    }),
+
+    removeReaction: builder.mutation({
+      query: (body) => ({
+        url: "/api/v1/post/remove-reaction",
+        method: "POST",
+        body,
+      })
+    })
   }),
 });
 
-export const { useCreatePostMutation, useGetPostQuery } = postApi;
+export const { useCreatePostMutation, useGetPostQuery, useAddReactionMutation, useRemoveReactionMutation } = postApi;

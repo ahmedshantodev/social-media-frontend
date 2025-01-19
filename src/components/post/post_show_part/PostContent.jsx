@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PostText from "./PostText";
 
 const PostContent = ({ post }) => {
-  const [isSeeMore, setIsSeeMore] = useState(true);
   return (
     <div>
       {post.type === "text" ? (

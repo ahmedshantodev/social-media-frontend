@@ -47,7 +47,7 @@
 
 /* react picker animation */
 #reaction-picker {
-  animation: reactionPicer 0.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s forwards;
+  animation: reactionPicer 0.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.8s forwards;
 }
 
 /* reaction picker smoth animation */
@@ -58,7 +58,7 @@
   }
   100% {
     opacity: 1;
-    transform: translateY(40px);
+    transform: translateY(0px);
   }
 }
 

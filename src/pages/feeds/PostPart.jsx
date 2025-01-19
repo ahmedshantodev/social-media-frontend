@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGetPostQuery } from "../../redux/api/postApi";
 import Post from "../../components/post/post_show_part";
 

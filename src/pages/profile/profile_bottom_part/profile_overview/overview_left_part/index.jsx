@@ -16,8 +16,8 @@ const OverviewLeftPart = ({
     <div>
       <ProfileInformationPart
         user={user}
-        profileVisitor={profileVisitor}
         profileInfo={profileInfo}
+        profileVisitor={profileVisitor}
       />
 
       {profileInfo?.images?.total_count > 0 && (
